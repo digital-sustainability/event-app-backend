@@ -52,9 +52,10 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    presentation_id: {
-      model: 'presentation',
-      required: true
+    presentations: {
+      collection: 'presentation',
+      via: 'speaker_id',
+      through: 'presentationSpeaker'
     }
   },
 

@@ -1,5 +1,5 @@
 /**
- * Presentation.js
+ * PresentationSpeaker.js
  *
  * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -12,33 +12,7 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    title: {
-      type: 'string',
-      required: true
-    },
-    abstract: {
-      type: 'string',
-      columnType: 'TEXT',
-      allowNull: true
-    },
-    slides: {
-      type: 'string',
-      required: true
-    },
-    start: {
-      type: 'number',
-      required: true,
-      columnType: 'BIGINT'
-    },
-    end: {
-      type: 'number',
-      required: true,
-      columnType: 'BIGINT'
-    },
-    access_token: {
-      type: 'string',
-      required: true
-    },
+
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
@@ -48,23 +22,16 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    session_id: {
-      model: 'session',
+    presentation_id: {
+      model: 'presentation',
       required: true
     },
-    feedbacks: {
-      collection: 'feedback',
-      via: 'presentation_id'
-    },
-    speakers: {
-      collection: 'speaker',
-      via: 'presentation_id',
-      through: 'presentationSpeaker'
-    },
-    messages: {
-      collection: 'message',
-      via: 'presentation_id'
+
+    speaker_id: {
+      model: 'speaker',
+      required: true
     }
+
   },
 
 };
