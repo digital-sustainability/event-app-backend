@@ -17,6 +17,36 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  // '*': true,
+  '*': false,
+
+  EventController: {
+    'find': true,
+    'findOne': true
+  },
+
+  FeedbackController: {
+    'find': true,
+    'findOne': true
+  },
+
+  MessageController: {
+    'find': true,
+    'findOne': true
+  },
+
+  PresentationController: {
+    'find': true,
+    'findOne': true
+  },
+
+  SessionController: {
+    'find': true,
+    'findOne': true
+  },
+
+  SpeakerController: {
+    'find': true,
+    'findOne': true
+  }
 
 };

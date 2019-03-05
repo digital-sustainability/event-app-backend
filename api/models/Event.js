@@ -21,11 +21,13 @@ module.exports = {
     },
     start: {
       type: 'number',
-      required: true
+      required: true,
+      columnType: 'BIGINT'
     },
     end: {
       type: 'number',
-      required: true
+      required: true,
+      columnType: 'BIGINT'
     },
     location: {
       type: 'string',
