@@ -20,14 +20,14 @@ module.exports = {
       required: true
     },
     start: {
-      type: 'number',
+      type: 'ref',
       required: true,
-      columnType: 'BIGINT'
+      columnType: 'DATETIME'
     },
     end: {
-      type: 'number',
+      type: 'ref',
       required: true,
-      columnType: 'BIGINT'
+      columnType: 'DATETIME'
     },
     location: {
       type: 'string',
