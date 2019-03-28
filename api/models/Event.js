@@ -33,15 +33,9 @@ module.exports = {
       type: 'string',
       required: true
     },
-    lat: {
-      type: 'number',
-      columnType: 'double',
-      allowNull: true
-    },
-    lng: {
-      type: 'number',
-      columnType: 'double',
-      allowNull: true
+    location_details: {
+      type: 'string',
+      allowNull:true
     },
     image_path: {
       type: 'string',
