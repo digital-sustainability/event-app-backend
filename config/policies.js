@@ -27,7 +27,8 @@ module.exports.policies = {
 
   FeedbackController: {
     'find': true,
-    'findOne': true
+    'findOne': true,
+    'create': true
   },
 
   MessageController: {
