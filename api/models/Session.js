@@ -25,6 +25,10 @@ module.exports = {
       type: 'string',
       allowNull: true
     },
+    room: {
+      type: 'string',
+      allowNull: true
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
