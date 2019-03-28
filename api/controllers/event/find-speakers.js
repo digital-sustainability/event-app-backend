@@ -34,7 +34,7 @@ module.exports = {
     const speakers = await dataStore.sendNativeQuery(query, [inputs.id]);
 
     // All done.
-    return exits.success(speakers);
+    return exits.success(speakers.rows);
 
   }
 
