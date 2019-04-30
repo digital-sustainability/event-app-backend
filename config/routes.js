@@ -24,6 +24,9 @@ module.exports.routes = {
   '/event/:id/speaker': {
     action: 'event/find-speakers'
   },
+  '/event/schedule': {
+    action: 'event/get-by-date'
+  },
 
   /***************************************************************************
   *                                                                          *

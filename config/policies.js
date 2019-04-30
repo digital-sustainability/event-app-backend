@@ -22,7 +22,8 @@ module.exports.policies = {
   EventController: {
     'find': true,
     'findOne': true,
-    'find-speakers': true
+    'find-speakers': true,
+    'get-by-date': true
   },
 
   FeedbackController: {
