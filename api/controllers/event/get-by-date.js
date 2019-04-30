@@ -18,16 +18,16 @@ module.exports = {
     exits: { },
 
     fn: async function (inputs, exits) {
-        let events;
+        let filteredEvents;
         if (inputs.archive) {
-            events = await Event.find({
+            filteredEvents = await Event.find({
                 where: { end: { '<': inputs.date } }
             })
         } else {
-            event = await Event.find({
+            filteredEvents = await Event.find({
                 where: { end: { '>=': inputs.date } }
             })
         }
-        return exits.success(events);
+        return exits.success(filteredEvents);
     }
 };
