@@ -18,6 +18,7 @@ module.exports.policies = {
   ***************************************************************************/
 
   '*': false,
+  'security/grant-csrf-token': true,
 
   EventController: {
     'find': true,

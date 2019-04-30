@@ -1,0 +1,31 @@
+
+<form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+  <div class="login-box" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card fxFlex="90" fxFlex.lg="30">
+    <mat-card-title class="login-box-title">
+      Login
+    </mat-card-title>
+    <mat-card-content>
+        <div fxLayout="row wrap" fxLayoutAlign="center center">
+            <div fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
+              <div fxFlex="30" >
+                  <img class="card-img" src="./assets/img/digitale-nachhaltigkeit.png">
+              </div>
+            </div>
+            <mat-form-field class="justifier" fxFlex="100">
+              <input matInput placeholder="Email" type="text" formControlName="email">
+              <mat-icon matSuffix>mail</mat-icon>
+              <mat-error *ngIf="email.invalid">Email ist ungültig</mat-error>
+            </mat-form-field>
+            <mat-form-field class="justifier" fxFlex="100">
+                <input matInput placeholder="Passwort" type="password" formControlName="password" text="password">
+                <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+            <button mat-raised-button color="accent" [disabled]="loginForm.invalid" class="login-button">
+              <mat-icon>input</mat-icon> Login
+            </button>
+          </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+</form>

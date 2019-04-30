@@ -20,4 +20,9 @@ module.exports.custom = {
   // stripeSecret: 'sk_test_Zzd814nldl91104qor5911gjald',
   // …
 
+  mail: {
+    fromEmail: 'info@event-app.fdn.iwi.unibe.ch',
+    fromName: 'Event App'
+  }
+
 };
