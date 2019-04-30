@@ -21,6 +21,10 @@ module.exports = {
       columnType: 'TEXT',
       allowNull: true
     },
+    label_presentations: {
+      type: 'string',
+      allowNull: true
+    },
     room: {
       type: 'string',
       allowNull: true

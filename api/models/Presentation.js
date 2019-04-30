@@ -39,6 +39,10 @@ module.exports = {
       type: 'string',
       required: true
     },
+    room: {
+      type: 'string',
+      allowNull: true
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

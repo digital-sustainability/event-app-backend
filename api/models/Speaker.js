@@ -24,7 +24,7 @@ module.exports = {
       type: 'string',
       isEmail: true,
       unique: true,
-      required: true
+      allowNull: true
     },
     position: {
       type: 'string',

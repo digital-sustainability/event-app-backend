@@ -21,6 +21,9 @@ module.exports.routes = {
 
   '/': { view: 'pages/homepage' },
 
+  '/event/:id/speaker': {
+    action: 'event/find-speakers'
+  },
 
   /***************************************************************************
   *                                                                          *

@@ -33,9 +33,25 @@ module.exports = {
       type: 'string',
       required: true
     },
+    location_details: {
+      type: 'string',
+      allowNull:true
+    },
     image_path: {
       type: 'string',
       allowNull: true
+    },
+    url: {
+      type: 'string',
+      allowNull: true
+    },
+    url_label: {
+      type: 'string',
+      allowNull: true
+    },
+    published: {
+      type: 'boolean',
+      defaultsTo: false
     },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
