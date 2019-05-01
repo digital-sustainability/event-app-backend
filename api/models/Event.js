@@ -33,6 +33,7 @@ module.exports = {
       type: 'string',
       required: true
     },
+    /*
     lat: {
       type: 'number',
       columnType: 'double',
@@ -42,7 +43,7 @@ module.exports = {
       type: 'number',
       columnType: 'double',
       allowNull: true
-    },
+    },*/
     image_path: {
       type: 'string',
       allowNull: true
