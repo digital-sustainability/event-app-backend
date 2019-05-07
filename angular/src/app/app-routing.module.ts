@@ -39,7 +39,13 @@ const routes: Routes = [
         path: 'user/edit',
         canActivate: [OnlyLoggedInGuard],
         component: EditComponent
-    }
+    },
+  /*
+    {
+      path: 'user/edit',
+      canActivate: [OnlyLoggedInGuard],
+      component: EditComponent
+    },*/
 ];
 
 @NgModule({
