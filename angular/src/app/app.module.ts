@@ -15,6 +15,10 @@ import { RegisterComponent } from './auth/register/register.component';
 import { RegisterSuccessfulComponent } from './auth/register-successful/register-successful.component';
 import { RegisterConfirmComponent } from './auth/register-confirm/register-confirm.component';
 import { EditComponent } from './auth/edit/edit.component';
+import { EventFormComponent } from './event-form/event-form.component';
+import { PresenationFormComponent } from './presenation-form/presenation-form.component';
+import { SpeakerFormComponent } from './speaker-form/speaker-form.component';
+import { SessionFormComponent } from './session-form/session-form.component';
 
 
 export function appInitFactory(authService: AuthService): () => Promise<any> {
@@ -29,7 +33,11 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     RegisterComponent,
     RegisterConfirmComponent,
     RegisterSuccessfulComponent,
-    EditComponent
+    EditComponent,
+    EventFormComponent,
+    PresenationFormComponent,
+    SpeakerFormComponent,
+    SessionFormComponent
   ],
   imports: [
     BrowserModule,
