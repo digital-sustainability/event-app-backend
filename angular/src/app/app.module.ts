@@ -15,10 +15,21 @@ import { RegisterComponent } from './auth/register/register.component';
 import { RegisterSuccessfulComponent } from './auth/register-successful/register-successful.component';
 import { RegisterConfirmComponent } from './auth/register-confirm/register-confirm.component';
 import { EditComponent } from './auth/edit/edit.component';
-import { EventFormComponent } from './event-form/event-form.component';
+import { EventFormComponent } from './event/event-form/event-form.component';
 import { PresenationFormComponent } from './presenation-form/presenation-form.component';
-import { SpeakerFormComponent } from './speaker-form/speaker-form.component';
+import { SpeakerFormComponent } from './speaker/speaker-form/speaker-form.component';
 import { SessionFormComponent } from './session-form/session-form.component';
+import { EventComponent } from './event/event.component';
+import { SpeakerComponent } from './speaker/speaker.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { EventListComponent } from './event/event-list/event-list.component';
+import {
+  MatInputModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
+  MatSortModule,
+  MatTableModule
+} from "@angular/material";
 
 
 export function appInitFactory(authService: AuthService): () => Promise<any> {
@@ -37,7 +48,11 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     EventFormComponent,
     PresenationFormComponent,
     SpeakerFormComponent,
-    SessionFormComponent
+    SessionFormComponent,
+    EventComponent,
+    SpeakerComponent,
+    FeedbackComponent,
+    EventListComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +61,11 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     MaterialDesignModule,
     SailsModule.forRoot(),
     HttpClientModule,
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     {

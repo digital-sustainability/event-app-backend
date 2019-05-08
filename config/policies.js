@@ -23,7 +23,10 @@ module.exports.policies = {
   EventController: {
     'find': true,
     'findOne': true,
-    'find-speakers': true
+    'find-speakers': true,
+    'create': "isAuthenticated",
+    'update': "isAuthenticated",
+    'delete': "isAuthenticated"
   },
 
   FeedbackController: {

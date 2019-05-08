@@ -7,6 +7,9 @@ import { RegisterComponent } from './auth/register/register.component';
 import { RegisterSuccessfulComponent } from './auth/register-successful/register-successful.component';
 import { RegisterConfirmComponent } from './auth/register-confirm/register-confirm.component';
 import { EditComponent } from './auth/edit/edit.component';
+import { EventComponent } from "./event/event.component";
+import {FeedbackComponent} from "./feedback/feedback.component";
+import {SpeakerComponent} from "./speaker/speaker.component";
 
 const routes: Routes = [
     {
@@ -36,16 +39,29 @@ const routes: Routes = [
         data: { state: 'registerConfirm' }
     },
     {
+        path: 'event',
+        canActivate: [OnlyLoggedInGuard],
+        component: EventComponent,
+        //data: { state: 'events' }
+    },
+    {
+        path: 'speaker',
+        canActivate: [OnlyLoggedInGuard],
+        component: SpeakerComponent,
+        //data: { state: 'events' }
+    },
+    {
+        path: 'feedback',
+        canActivate: [OnlyLoggedInGuard],
+        component: FeedbackComponent,
+        //data: { state: 'events' }
+    },
+    {
         path: 'user/edit',
         canActivate: [OnlyLoggedInGuard],
         component: EditComponent
     },
-  /*
-    {
-      path: 'user/edit',
-      canActivate: [OnlyLoggedInGuard],
-      component: EditComponent
-    },*/
+
 ];
 
 @NgModule({

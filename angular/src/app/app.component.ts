@@ -12,7 +12,7 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Sails Angular';
+  title = 'Event-App Admin Interface';
 
   constructor(private _sailsService: SailsService,
     private authService: AuthService,
@@ -56,5 +56,5 @@ export class AppComponent {
   get authenticatedUser(): User {
     return this.authService.getAuthenticatedUser();
   }
-  
+
 }
