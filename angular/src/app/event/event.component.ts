@@ -7,7 +7,7 @@ import DateTimeFormat = Intl.DateTimeFormat;
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 import {Observable} from "rxjs/index";
 
-
+/*comment for timestamp*/
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
