@@ -24,12 +24,16 @@ import { SpeakerComponent } from './speaker/speaker.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { EventListComponent } from './event/event-list/event-list.component';
 import {
-  MatInputModule,
+  DateAdapter,
+  MatDatepicker, MatDatepickerModule,
+  MatInputModule, MatNativeDateModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
   MatSortModule,
   MatTableModule
 } from "@angular/material";
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 
 export function appInitFactory(authService: AuthService): () => Promise<any> {
@@ -52,7 +56,7 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     EventComponent,
     SpeakerComponent,
     FeedbackComponent,
-    EventListComponent
+    EventListComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +69,10 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule
   ],
   providers: [
     {

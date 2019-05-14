@@ -15,8 +15,8 @@ export class EventService {
     return this.http.get<Event>(environment.apiURL + 'api/' + `event/${id}`);
   };
 
-  getEvents(): Observable<Event> {
-    return this.http.get<Event>(environment.apiURL + 'api/event');
+  getEvents(): Observable<Event[]> {
+    return this.http.get<Event[]>(environment.apiURL + 'api/event');
   };
 
   createEvent(event: Event): Observable<Event> {
@@ -24,7 +24,7 @@ export class EventService {
   };
 
   updateEvent(event: Event): Observable<Event> {
-    return this.http.put<Event>(environment.apiURL + `api/event/${event.id}`, event);
+    return this.http.patch<Event>(environment.apiURL + `api/event/${event.id}`, event);
   };
 
   deleteEvent(id: number): Observable<Event> {

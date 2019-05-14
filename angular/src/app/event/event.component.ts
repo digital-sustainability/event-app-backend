@@ -15,6 +15,10 @@ import {Observable} from "rxjs/index";
 })
 export class EventComponent implements OnInit {
 
+  event1: Event;
+
+  events: Event[];
+
   displayedColums: string[] = [
     'Id',
     'Titel',
@@ -29,7 +33,7 @@ export class EventComponent implements OnInit {
   ];
 
   newEvent = {
-    id: 11,
+    id: 12,
     title: "NewEventToTestCrud",
     description: "if it works, it would be great",
     start: "2019-05-09 09:00:00",
@@ -49,15 +53,15 @@ export class EventComponent implements OnInit {
   ngOnInit() {
     this.getAllEvents();
     this.getAnEventById();
-    this.createNewEvent();
-
+    //this.createNewEvent();
   }
 
   getAnEventById() {
     this.eventService.getEventById(1)
       .subscribe((event) => {
         console.log("des", event);
-        return event;
+        this.event1 = event;
+        this.updateEvent();
       });
   }
 
@@ -66,7 +70,7 @@ export class EventComponent implements OnInit {
     this.eventService.getEvents()
       .subscribe((events) => {
         console.log("das", events);
-        return events;
+        this.events = events;
       });
   }
 
@@ -74,6 +78,22 @@ export class EventComponent implements OnInit {
     this.eventService.createEvent(this.newEvent)
       .subscribe((events) => {
         console.log("new", events)
+      });
+  }
+
+  updateEvent() {
+    this.event1.title = "Geile Event";
+    this.eventService.updateEvent(this.event1)
+      .subscribe((event) => {
+        console.log("updated event", event);
+        console.log("updated event", this.event1);
+      });
+  }
+
+  deleteEvent() {
+    this.eventService.deleteEvent(12)
+      .subscribe((event) => {
+
       });
   }
 

@@ -26,7 +26,7 @@ module.exports.policies = {
     'find-speakers': true,
     'create': "isAuthenticated",
     'update': "isAuthenticated",
-    'delete': "isAuthenticated"
+    'destroy': "isAuthenticated"
   },
 
   FeedbackController: {

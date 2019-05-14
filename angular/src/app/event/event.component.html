@@ -1,4 +1,5 @@
-<a href="/event">Event</a>
+<mat-card>
+<a routerLink="/event">Event</a>
 <p>
   First there is a routing list, to see where you are and to go back!
   <a href="/event">Event</a>
@@ -6,4 +7,8 @@
 <p>
   Next there is a button to create new events
 </p>
-<app-event-list></app-event-list>
+<button mat-raised-button color="primary" routerLink="/event/event-form">Event hinzufügen</button>
+
+<!--<button mat-raised-button color="warn" (click)="deleteEvent()">Delete</button>-->
+<app-event-list [events]="events"></app-event-list>
+</mat-card>
