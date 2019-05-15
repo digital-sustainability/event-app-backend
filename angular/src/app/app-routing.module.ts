@@ -11,6 +11,7 @@ import { EventComponent } from "./event/event.component";
 import {FeedbackComponent} from "./feedback/feedback.component";
 import {SpeakerComponent} from "./speaker/speaker.component";
 import { EventFormComponent} from "./event/event-form/event-form.component";
+import {SpeakerFormComponent} from "./speaker/speaker-form/speaker-form.component";
 
 const routes: Routes = [
     {
@@ -56,6 +57,12 @@ const routes: Routes = [
         canActivate: [OnlyLoggedInGuard],
         component: SpeakerComponent,
         //data: { state: 'events' }
+    },
+    {
+      path: 'speaker/speaker-form',
+      canActivate: [OnlyLoggedInGuard],
+      component: SpeakerFormComponent,
+      //data: { state: 'events' }
     },
     {
         path: 'feedback',

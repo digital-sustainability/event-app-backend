@@ -32,7 +32,8 @@ module.exports.policies = {
   FeedbackController: {
     'find': true,
     'findOne': true,
-    'create': true
+    'create': true,
+
   },
 
   MessageController: {
@@ -52,7 +53,10 @@ module.exports.policies = {
 
   SpeakerController: {
     'find': true,
-    'findOne': true
+    'findOne': true,
+    'create': "isAuthenticated",
+    'update': "isAuthenticated",
+    'destroy': "isAuthenticated"
   }
 
 };

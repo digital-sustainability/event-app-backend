@@ -1,3 +1,34 @@
-<p>
-  speaker-form works!
-</p>
+<mat-card>
+<a routerLink="/speaker">Speaker</a>
+<a> > </a>
+<a routerLink="/speaker/speaker-form">Speaker-Form</a>
+  <mat-card-title class="marginForTitle">Speaker hinzufügen</mat-card-title>
+  <form (ngSubmit)="onSubmit()" [formGroup]="speakerForm">
+    <mat-form-field class="fullSizeFormField">
+      <input matInput placeholder="Vorname" type="text" formControlName="first_name" required>
+    </mat-form-field>
+    <mat-form-field class="fullSizeFormField">
+      <input matInput placeholder="Nachname" type="text" formControlName="last_name" required>
+    </mat-form-field>
+    <mat-form-field class="fullSizeFormField">
+      <input matInput placeholder="Email" type="text" formControlName="email" required>
+    </mat-form-field>
+    <mat-form-field class="fullSizeFormField">
+      <input matInput placeholder="Position" type="text" formControlName="position" required>
+    </mat-form-field>
+    <mat-form-field class="fullSizeFormField">
+      <input matInput placeholder="Organisation" type="text" formControlName="organization" required>
+    </mat-form-field>
+    <mat-form-field class="fullSizeFormField">
+      <input matInput placeholder="Kurzbiografie" type="text" formControlName="short_bio" required>
+    </mat-form-field>
+    <mat-form-field class="fullSizeFormField">
+      <input matInput placeholder="Photo URL" type="text" formControlName="photo_url" required>
+    </mat-form-field>
+    <div class="fullSizeFormField">
+      <button mat-raised-button color="primary" [disabled]="speakerForm.invalid" class="submit-button">
+        <mat-icon>input</mat-icon> Speaker hinzufügen
+      </button>
+    </div>
+  </form>
+</mat-card>

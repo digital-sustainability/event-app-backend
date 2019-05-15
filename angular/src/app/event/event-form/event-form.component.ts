@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {EventService} from "../../shared/event.service";
+import {MatSnackBar} from "@angular/material";
+import {Router, NavigationExtras} from "@angular/router";
+import {AuthService} from "../../shared/auth/auth.service";
+import {Event} from "../../shared/event/event";
 
 @Component({
   selector: 'app-event-form',
@@ -7,10 +12,16 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./event-form.component.scss']
 })
 export class EventFormComponent implements OnInit {
+  @Input() events: Event[];
 
   eventForm: FormGroup;
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private eventService: EventService,
+    private router: Router,
+    private snackbar: MatSnackBar
+  ) { }
 
   ngOnInit() {
     this.eventForm = new FormGroup({
@@ -39,11 +50,27 @@ export class EventFormComponent implements OnInit {
         Validators.required,
       ]),
       'published': new FormControl('', [
-        Validators.required,
+
       ]),
     });
   }
 
-  onSubmit() {};
+  onSubmit():boolean {
+    if(this.eventForm.invalid) {
+      return false;
+    } else {
+      this.eventService.createEvent(this.eventForm.value)
+        .subscribe((events) => {
+          console.log("new", events)
+          this.router.navigate(['event']);
+        }, (err) => {
+          console.log('Error', err);
+          this.snackbar.open('Event konnte nicht erstellt werden. Überprüfe alle Felder.', '', {
+            duration: 3000,
+            panelClass: 'fail'
+          });
+        });
+      }
+  }
 
 }

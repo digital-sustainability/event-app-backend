@@ -74,13 +74,6 @@ export class EventComponent implements OnInit {
       });
   }
 
-  createNewEvent() {
-    this.eventService.createEvent(this.newEvent)
-      .subscribe((events) => {
-        console.log("new", events)
-      });
-  }
-
   updateEvent() {
     this.event1.title = "Geile Event";
     this.eventService.updateEvent(this.event1)

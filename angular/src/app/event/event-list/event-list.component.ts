@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Event} from "../../shared/event/event";
 
 @Component({
   selector: 'app-event-list',
@@ -8,7 +9,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class EventListComponent implements OnInit {
   @Input() events: Event[];
 
-  displayedColumns: string[] = ['id', 'title', 'description', 'start','end', 'location', 'image_path', 'published'];
+  displayedColumns: string[] = ['id', 'title', 'description', 'start', 'end', 'location', 'image_path', 'published'];
 
   constructor() { }
 

@@ -16,9 +16,9 @@ import { RegisterSuccessfulComponent } from './auth/register-successful/register
 import { RegisterConfirmComponent } from './auth/register-confirm/register-confirm.component';
 import { EditComponent } from './auth/edit/edit.component';
 import { EventFormComponent } from './event/event-form/event-form.component';
-import { PresenationFormComponent } from './presenation-form/presenation-form.component';
+import { PresenationFormComponent } from './presentation/presenation-form/presenation-form.component';
 import { SpeakerFormComponent } from './speaker/speaker-form/speaker-form.component';
-import { SessionFormComponent } from './session-form/session-form.component';
+import { SessionFormComponent } from './session/session-form/session-form.component';
 import { EventComponent } from './event/event.component';
 import { SpeakerComponent } from './speaker/speaker.component';
 import { FeedbackComponent } from './feedback/feedback.component';
@@ -33,6 +33,10 @@ import {
   MatTableModule
 } from "@angular/material";
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { EventDetailComponent } from './event/event-detail/event-detail.component';
+import { SessionComponent } from './session/session.component';
+import { PresentationComponent } from './presentation/presentation.component';
+import { SpeakerListComponent } from './speaker/speaker-list/speaker-list.component';
 
 
 
@@ -57,6 +61,10 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     SpeakerComponent,
     FeedbackComponent,
     EventListComponent,
+    EventDetailComponent,
+    SessionComponent,
+    PresentationComponent,
+    SpeakerListComponent,
   ],
   imports: [
     BrowserModule,
