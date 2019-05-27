@@ -37,6 +37,7 @@ import { EventDetailComponent } from './event/event-detail/event-detail.componen
 import { SessionComponent } from './session/session.component';
 import { PresentationComponent } from './presentation/presentation.component';
 import { SpeakerListComponent } from './speaker/speaker-list/speaker-list.component';
+import { SpeakerDetailComponent } from './speaker/speaker-detail/speaker-detail.component';
 
 
 
@@ -65,6 +66,7 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     SessionComponent,
     PresentationComponent,
     SpeakerListComponent,
+    SpeakerDetailComponent,
   ],
   imports: [
     BrowserModule,

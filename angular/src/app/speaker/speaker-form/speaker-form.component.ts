@@ -27,7 +27,6 @@ export class SpeakerFormComponent implements OnInit {
         Validators.required
       ]),
       'email': new FormControl('', [
-        Validators.required,
       ]),
       'position': new FormControl('', [
         Validators.required
