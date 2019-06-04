@@ -16,16 +16,18 @@ export class SpeakerDetailComponent implements OnInit {
 
   constructor(
     private speakerService: SpeakerService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.speaker_id = params['id'];
       this.speakerService.getSpeakerById(this.speaker_id)
-        .subscribe( (speaker) => {
-          this.speaker= speaker;
+        .subscribe((speaker) => {
+          this.speaker = speaker;
           console.log(this.speaker);
         });
     });
 
+  }
 }

@@ -2,6 +2,9 @@
   Event Detail Ansicht
 </h1>
 <mat-card style="margin: 5%">
+<h1>
+  Event Detail Ansicht <b>"{{event.title}}"</b>
+</h1>
   <mat-list role="list">
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>ID: </b></div>
@@ -47,6 +50,13 @@
       <div style="width: 10%"><b>URL Label: </b></div>
       <div style="width: 90%">{{event.url_label}}</div>
     </mat-list-item>
+    <mat-divider></mat-divider>
   </mat-list>
+  <button style="margin-top: 10px;" mat-raised-button color="primary" routerLink="/session/session-form">Session hinzufügen</button>
 </mat-card>
+
+<mat-card style="margin: 5%">
+  <app-session-list></app-session-list>
+</mat-card>
+
 

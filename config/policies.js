@@ -48,7 +48,10 @@ module.exports.policies = {
 
   SessionController: {
     'find': true,
-    'findOne': true
+    'findOne': true,
+    'create': "isAuthenticated",
+    'update': "isAuthenticated",
+    'destroy': "isAuthenticated"
   },
 
   SpeakerController: {

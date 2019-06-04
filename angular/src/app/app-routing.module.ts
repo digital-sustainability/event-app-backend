@@ -15,6 +15,9 @@ import {SpeakerFormComponent} from "./speaker/speaker-form/speaker-form.componen
 import {EventListComponent} from "./event/event-list/event-list.component";
 import {EventDetailComponent} from "./event/event-detail/event-detail.component";
 import {SpeakerDetailComponent} from "./speaker/speaker-detail/speaker-detail.component";
+import {SessionComponent} from "./session/session.component";
+import {SessionFormComponent} from "./session/session-form/session-form.component";
+import {SessionDetailComponent} from "./session/session-detail/session-detail.component";
 
 const routes: Routes = [
     {
@@ -78,6 +81,24 @@ const routes: Routes = [
         canActivate: [OnlyLoggedInGuard],
         component: SpeakerDetailComponent,
         //data: { state: 'events' }
+    },
+    {
+      path: 'session',
+      canActivate: [OnlyLoggedInGuard],
+      component: SessionComponent,
+      //data: { state: 'events' }
+    },
+    {
+      path: 'session/session-form',
+      canActivate: [OnlyLoggedInGuard],
+      component: SessionFormComponent,
+      //data: { state: 'events' }
+    },
+    {
+      path: 'session/session-detail/:id',
+      canActivate: [OnlyLoggedInGuard],
+      component: SessionDetailComponent,
+      //data: { state: 'events' }
     },
     {
         path: 'feedback',
