@@ -15,8 +15,10 @@ export class SessionService {
     return this.http.get<Session>(environment.apiURL + 'api/' + `session/${id}`);
   };
 
-  getSessions(): Observable<Session[]> {
-    return this.http.get<Session[]>(environment.apiURL + 'api/session');
+  getSessions(getParams?: any): Observable<Session[]> {
+    return this.http.get<Session[]>(environment.apiURL + 'api/session', {
+      params: getParams
+    });
   };
 
   createSession(session: Session): Observable<Session> {

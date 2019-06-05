@@ -23,14 +23,14 @@
   </ng-container>
 
   <!-- Symbol Column -->
-  <ng-container matColumnDef="label_presentation">
+  <ng-container matColumnDef="label_presentations">
     <th mat-header-cell *matHeaderCellDef> Label Präsentation </th>
     <td mat-cell *matCellDef="let element"> {{element.label_presentations}} </td>
   </ng-container>
 
     <ng-container matColumnDef="event_id">
       <th mat-header-cell *matHeaderCellDef> Event ID </th>
-      <td mat-cell *matCellDef="let element"> {{element.event_id}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.event_id.id}} </td>
     </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

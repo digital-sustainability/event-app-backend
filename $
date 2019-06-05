@@ -1,0 +1,19 @@
+Nachtrag CRUD, List, Forms
+
+Siehe vorheriger Commit (wo Zeit fehlt)
+refs #1639 @1.5h
+
+Gestern EinfÃhrung mit Dave ins Admint
+refs #1531 @2h
+
+CRUD FORM LIST
+refs #1531 @3.5
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch admin-tool
+# Your branch is up to date with 'origin/admin-tool'.
+#
+# Changes to be committed:
+#	modified:   angular/src/app/event/event-form/event-form.component.html
+#
