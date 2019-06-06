@@ -40,6 +40,8 @@ import { SpeakerListComponent } from './speaker/speaker-list/speaker-list.compon
 import { SpeakerDetailComponent } from './speaker/speaker-detail/speaker-detail.component';
 import { SessionListComponent } from './session/session-list/session-list.component';
 import { SessionDetailComponent } from './session/session-detail/session-detail.component';
+import { PresentationListComponent } from './presentation/presentation-list/presentation-list.component';
+import { PresentationDetailComponent } from './presentation/presentation-detail/presentation-detail.component';
 
 
 
@@ -71,6 +73,8 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     SpeakerDetailComponent,
     SessionListComponent,
     SessionDetailComponent,
+    PresentationListComponent,
+    PresentationDetailComponent,
   ],
   imports: [
     BrowserModule,

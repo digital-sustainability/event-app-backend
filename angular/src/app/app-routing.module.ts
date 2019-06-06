@@ -18,6 +18,9 @@ import {SpeakerDetailComponent} from "./speaker/speaker-detail/speaker-detail.co
 import {SessionComponent} from "./session/session.component";
 import {SessionFormComponent} from "./session/session-form/session-form.component";
 import {SessionDetailComponent} from "./session/session-detail/session-detail.component";
+import {PresentationComponent} from "./presentation/presentation.component";
+import {PresenationFormComponent} from "./presentation/presenation-form/presenation-form.component";
+import {PresentationDetailComponent} from "./presentation/presentation-detail/presentation-detail.component";
 
 const routes: Routes = [
     {
@@ -83,22 +86,40 @@ const routes: Routes = [
         //data: { state: 'events' }
     },
     {
-      path: 'session',
-      canActivate: [OnlyLoggedInGuard],
-      component: SessionComponent,
-      //data: { state: 'events' }
+        path: 'session',
+        canActivate: [OnlyLoggedInGuard],
+        component: SessionComponent,
+        //data: { state: 'events' }
     },
     {
-      path: 'session/session-form',
-      canActivate: [OnlyLoggedInGuard],
-      component: SessionFormComponent,
-      //data: { state: 'events' }
+        path: 'session/session-form',
+        canActivate: [OnlyLoggedInGuard],
+        component: SessionFormComponent,
+        //data: { state: 'events' }
     },
     {
-      path: 'session/session-detail/:id',
-      canActivate: [OnlyLoggedInGuard],
-      component: SessionDetailComponent,
-      //data: { state: 'events' }
+        path: 'session/session-detail/:id',
+        canActivate: [OnlyLoggedInGuard],
+        component: SessionDetailComponent,
+        //data: { state: 'events' }
+    },
+    {
+        path: 'presentation',
+        canActivate: [OnlyLoggedInGuard],
+        component: PresentationComponent,
+        //data: { state: 'events' }
+    },
+    {
+        path: 'presentation/presentation-form',
+        canActivate: [OnlyLoggedInGuard],
+        component: PresenationFormComponent,
+        //data: { state: 'events' }
+    },
+    {
+        path: 'presentation/presentation-detail/:id',
+        canActivate: [OnlyLoggedInGuard],
+        component: PresentationDetailComponent,
+        //data: { state: 'events' }
     },
     {
         path: 'feedback',

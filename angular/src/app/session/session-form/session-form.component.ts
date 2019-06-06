@@ -29,7 +29,7 @@ export class SessionFormComponent implements OnInit {
       'abstract': new FormControl('', [
         Validators.required
       ]),
-      'label_presentation': new FormControl('', [
+      'label_presentations': new FormControl('', [
         Validators.required
       ]),
       'event_id': new FormControl('', [

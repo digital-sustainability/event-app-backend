@@ -13,7 +13,7 @@
       <div class="listItems">{{session.title}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
-    <mat-list-item role="listitem">
+    <mat-list-item class="longListItemStyle" role="listitem">
       <div class="listDescription"><b>Abstract:</b></div>
       <div class="listItems">{{session.abstract}}</div>
     </mat-list-item>
@@ -30,4 +30,8 @@
     <mat-divider></mat-divider>
       <button style="margin-top: 10px;" mat-raised-button color="primary" routerLink="/presentation/presentation-form">Präsentation hinzufügen</button>
   </mat-list>
+</mat-card>
+
+<mat-card style="margin: 5%">
+  <app-presentation-list [sessionId]="session_id"></app-presentation-list>
 </mat-card>

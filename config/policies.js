@@ -43,7 +43,10 @@ module.exports.policies = {
 
   PresentationController: {
     'find': true,
-    'findOne': true
+    'findOne': true,
+    'create': "isAuthenticated",
+    'update': "isAuthenticated",
+    'destroy': "isAuthenticated"
   },
 
   SessionController: {
