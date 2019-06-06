@@ -12,7 +12,7 @@ export class PresentationListComponent implements OnInit, OnChanges {
   @Input() sessionId;
   presentations: Presentation[];
 
-  displayedColums: string[] = ['id', 'title', 'abstract', 'slides', 'start', 'end', 'room'];
+  displayedColumns: string[] = ['id', 'title', 'abstract', 'slides', 'start', 'end', 'room'];
 
   constructor(private presentationService: PresentationService) { }
 
