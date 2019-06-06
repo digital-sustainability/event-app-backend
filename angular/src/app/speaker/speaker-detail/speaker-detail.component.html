@@ -1,0 +1,46 @@
+<h1>
+  speaker-detail works!
+</h1>
+<mat-card style="margin: 5%">
+  <mat-list role="list">
+    <mat-list-item role="listitem">
+      <div class="listDescription"><b>ID: </b></div>
+      <div class="listItems">{{speaker.id}}</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item role="listitem">
+      <div class="listDescription"><b>Vorname: </b></div>
+      <div class="listItems">{{speaker.first_name}}</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item role="listitem">
+      <div class="listDescription"><b>Nachname:</b></div>
+      <div class="listItems">{{speaker.last_name}}</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item role="listitem">
+      <div class="listDescription"><b>Email:</b></div>
+      <div class="listItems">{{speaker.email}}</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item role="listitem">
+      <div class="listDescription"><b>Position: </b></div>
+      <div class="listItems">{{speaker.position}}</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item role="listitem">
+      <div class="listDescription"><b>Organisation: </b></div>
+      <div class="listItems">{{speaker.organization}}</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item class="longListItemStyle" role="listitem">
+      <div class="listDescription"><b>Kurzbiographie: </b></div>
+      <div class="listItems">{{speaker.short_bio}}</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item role="listitem">
+      <div class="listDescription"><b>Foto URL: </b></div>
+      <div class="listItems">{{speaker.photo_url}}</div>
+    </mat-list-item>
+  </mat-list>
+</mat-card>

@@ -19,9 +19,23 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': { view: 'pages/homepage' },
+  /**
+   * Route every request except of api and cookie calls to Angular's index.html.
+   */
+  'get /*': {
+    view: 'pages/homepage',
+    skipAssets: true,
+    skipRegex: /^(\/api)|(\/__getcookie)/
+  },
 
-  '/event/:id/speaker': {
+  /**
+   * Enable CSRF in security config settings
+   */
+  'get /api/csrf-token': {
+    action: "security/grant-csrf-token"
+  },
+
+  '/api/event/:id/speaker': {
     action: 'event/find-speakers'
   },
 

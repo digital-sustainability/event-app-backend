@@ -1,0 +1,64 @@
+
+<form (ngSubmit)="onSubmit()" [formGroup]="editForm" *ngIf="editForm">
+  <div class="edit-box" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card fxFlex="90" fxFlex.lg="50">
+    <mat-card-title class="edit-box-title">
+      Edit User
+    </mat-card-title>
+    <mat-card-content>
+        <div fxLayout="row wrap" fxLayoutAlign="center center">
+            <div fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
+              <div fxFlex="30" >
+                  <img class="card-img" src="./assets/img/digitale-nachhaltigkeit.png">
+              </div>
+            </div>
+            <mat-form-field class="justifier" fxFlex="100" fxFlex.lg="50">
+              <input matInput placeholder="Firstname" type="text" formControlName="first_name" required>
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="justifier" fxFlex="100" fxFlex.lg="50">
+              <input matInput placeholder="Lastname" type="text" formControlName="last_name" requried>
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="justifier" fxFlex="100" fxFlex.lg="50">
+              <input matInput placeholder="Email" type="text" formControlName="email" required>
+              <mat-icon matSuffix>mail</mat-icon>
+              <mat-error *ngIf="email.invalid">Email ist ungültig</mat-error>
+            </mat-form-field>
+            <mat-form-field class="justifier" fxFlex="100" fxFlex.lg="50">
+              <input matInput placeholder="Street" type="text" formControlName="street" required>
+              <mat-icon matSuffix>place</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="justifier" fxFlex="100" fxFlex.lg="50">
+              <input matInput placeholder="ZIP Code" type="number" formControlName="zip_code" required>
+              <mat-icon matSuffix>place</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="justifier" fxFlex="100" fxFlex.lg="50">
+              <input matInput placeholder="City" type="text" formControlName="city" required>
+              <mat-icon matSuffix>place</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="justifier" fxFlex="100" fxFlex.lg="50">
+                <input matInput placeholder="New password" type="password" formControlName="password" text="password">
+                <mat-hint align="end">(Min 10. Chars): {{password.value.length}} / 10</mat-hint>
+                <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="justifier" fxFlex="100" fxFlex.lg="50">
+              <input matInput placeholder="Repeat new password" type="password" text="Repeat Password" formControlName="confirm_password">
+              <mat-icon matSuffix>lock</mat-icon>
+              <mat-error *ngIf="confirm_password.invalid">Passwords do not match</mat-error>
+          </mat-form-field>
+          <mat-form-field class="justifier" fxFlex="100" fxFlex.lg="50">
+            <input matInput placeholder="Current Password" type="password" text="Repeat Password" formControlName="old_password" required>
+            <mat-icon matSuffix>lock</mat-icon>
+            <mat-error *ngIf="old_password.invalid">Current Password required</mat-error>
+        </mat-form-field>
+        <div fxFlex="100" style="text-align: center">
+            <button mat-raised-button [disabled]="editForm.invalid" class="edit-button">
+              <mat-icon>input</mat-icon> Save
+            </button>
+          </div>
+          </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+</form>
