@@ -67,17 +67,33 @@ export class SpeakerFormComponent implements OnInit {
     if(this.speakerForm.invalid) {
       return false;
     } else {
-      this.speakerService.createSpeaker(this.speakerForm.value)
-        .subscribe((speakers) => {
-          console.log("new", speakers)
-          this.router.navigate(['speaker']);
-        }, (err) => {
-          console.log('Error', err);
-          this.snackbar.open('Speaker konnte nicht erstellt werden. Überprüfe alle Felder.', '', {
-            duration: 3000,
-            panelClass: 'fail'
+      if (this.edit == true) {
+        let speaker = this.speakerForm.value;
+        speaker.id = this.speaker_id;
+        this.speakerService.updateSpeaker(speaker)
+          .subscribe((speakers) => {
+            console.log("new", speakers);
+            this.router.navigate(['speaker']);
+          }, (err) => {
+            console.log('Error', err);
+            this.snackbar.open('Speaker konnte nicht erstellt werden. Überprüfe alle Felder.', '', {
+              duration: 3000,
+              panelClass: 'fail'
+            });
           });
-        });
+      } else {
+        this.speakerService.createSpeaker(this.speakerForm.value)
+          .subscribe((speakers) => {
+            console.log("new", speakers)
+            this.router.navigate(['speaker']);
+          }, (err) => {
+            console.log('Error', err);
+            this.snackbar.open('Speaker konnte nicht erstellt werden. Überprüfe alle Felder.', '', {
+              duration: 3000,
+              panelClass: 'fail'
+            });
+          });
+      }
     }
   }
 

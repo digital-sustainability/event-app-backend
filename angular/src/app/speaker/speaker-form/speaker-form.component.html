@@ -27,7 +27,7 @@
     </mat-form-field>
     <div class="fullSizeFormField">
       <button mat-raised-button color="primary" [disabled]="speakerForm.invalid" class="submit-button">
-        <mat-icon>input</mat-icon> Speaker hinzufügen
+        <mat-icon>input</mat-icon>{{edit? 'Speaker ändern': 'Speaker hinzufügen'}}
       </button>
     </div>
   </form>

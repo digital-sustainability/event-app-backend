@@ -20,7 +20,7 @@ export class EventDetailComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.event_id = params['id'];
+      this.event_id = params['event_id'];
       this.eventService.getEventById(this.event_id)
         .subscribe( (event) => {
           this.event = event;

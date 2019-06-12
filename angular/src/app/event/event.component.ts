@@ -52,17 +52,7 @@ export class EventComponent implements OnInit {
 
   ngOnInit() {
     this.getAllEvents();
-    this.getAnEventById();
     //this.createNewEvent();
-  }
-
-  getAnEventById() {
-    this.eventService.getEventById(1)
-      .subscribe((event) => {
-        console.log("des", event);
-        this.event1 = event;
-        this.updateEvent();
-      });
   }
 
 
@@ -71,22 +61,6 @@ export class EventComponent implements OnInit {
       .subscribe((events) => {
         console.log("das", events);
         this.events = events;
-      });
-  }
-
-  updateEvent() {
-    this.event1.title = "Geile Event";
-    this.eventService.updateEvent(this.event1)
-      .subscribe((event) => {
-        console.log("updated event", event);
-        console.log("updated event", this.event1);
-      });
-  }
-
-  deleteEvent() {
-    this.eventService.deleteEvent(12)
-      .subscribe((event) => {
-
       });
   }
 
