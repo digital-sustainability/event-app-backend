@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SpeakerService} from "../../shared/speaker.service";
 import {MatSnackBar} from "@angular/material";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Speaker} from "../../shared/speaker/speaker";
 
 @Component({
   selector: 'app-speaker-form',
@@ -11,14 +12,21 @@ import {Router} from "@angular/router";
 })
 export class SpeakerFormComponent implements OnInit {
 
+  edit: boolean = false;
+  private sub: any;
+  speaker: Speaker;
+  speaker_id: number;
+
   speakerForm: FormGroup;
 
   constructor(
     private speakerService: SpeakerService,
     private router: Router,
+    private route: ActivatedRoute,
     private snackbar: MatSnackBar) { }
 
   ngOnInit() {
+
     this.speakerForm = new FormGroup({
       'first_name': new FormControl('', [
         Validators.required
@@ -41,7 +49,19 @@ export class SpeakerFormComponent implements OnInit {
         Validators.required
       ]),
     });
+
+    this.sub = this.route.params.subscribe( params => {
+      this.speaker_id = params['id'];
+      this.speakerService.getSpeakerById(this.speaker_id)
+        .subscribe((speaker) => {
+          this.speaker = speaker;
+          console.log(this.speaker);
+          this.edit = true;
+          this.speakerForm.patchValue(this.speaker);
+        });
+    });
   }
+
 
   onSubmit():boolean {
     if(this.speakerForm.invalid) {

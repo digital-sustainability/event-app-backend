@@ -2,60 +2,87 @@
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
 <div class="mat-elevation-z8">
-<table mat-table [dataSource]="dataSource" matSort>
+  <table mat-table [dataSource]="dataSource" matSort>
 
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
 
-  <!-- Position Column -->
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="first_name">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname </th>
-    <td mat-cell *matCellDef="let element">  <a [routerLink]="['/speaker/speaker-detail', element.id]">{{element.first_name}}</a> </td>
-  </ng-container>
-
-  <!-- Weight Column -->
-  <ng-container matColumnDef="last_name">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nachname </th>
-    <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="email">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-  </ng-container>
-
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Position </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="organization">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Organisation </th>
-      <td mat-cell *matCellDef="let element"> {{element.organization}} </td>
+    <ng-container matColumnDef="first_name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname </th>
+      <td mat-cell *matCellDef="let element">  <a [routerLink]="['/speaker/speaker-detail', element.id]">{{element.first_name}}</a> </td>
     </ng-container>
 
     <!-- Weight Column -->
-    <ng-container matColumnDef="image_path">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Bild URL </th>
-      <td mat-cell *matCellDef="let element"> {{element.image_path}} </td>
+    <ng-container matColumnDef="last_name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nachname </th>
+      <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
     </ng-container>
 
     <!-- Symbol Column -->
-    <ng-container matColumnDef="short_bio">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Kurzbiografie </th>
-      <td mat-cell *matCellDef="let element"> {{element.short_bio}} </td>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
     </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Position </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="organization">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Organisation </th>
+        <td mat-cell *matCellDef="let element"> {{element.organization}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="image_path">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Bild URL </th>
+        <td mat-cell *matCellDef="let element"> {{element.image_path}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="short_bio">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Kurzbiografie </th>
+        <td mat-cell *matCellDef="let element"> {{element.short_bio}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="details">
+        <th mat-header-cell *matHeaderCellDef> Details </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" [routerLink]="['/speaker/speaker-detail', element.id]">
+              <mat-icon class="mat-18">reorder</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef> Update </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="accent" [routerLink]="['/speaker/speaker-detail', element.id]">
+              <mat-icon class="mat-18">system_update</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="warn" (click)="deleteSpeakerById(element.id)">
+              <mat-icon class="mat-18">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>

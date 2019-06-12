@@ -11,12 +11,14 @@ export class PresentationListComponent implements OnInit, OnChanges {
 
   @Input() sessionId;
   presentations: Presentation[];
+  presentation: Presentation;
 
-  displayedColumns: string[] = ['id', 'title', 'abstract', 'slides', 'start', 'end', 'room'];
+  displayedColumns: string[] = ['id', 'title', 'abstract', 'slides', 'start', 'end', 'room', 'details', 'update', 'delete'];
 
   constructor(private presentationService: PresentationService) { }
 
   ngOnInit() {
+    this.getAllPresentations();
   }
 
   getAllPresentations() {
@@ -30,9 +32,19 @@ export class PresentationListComponent implements OnInit, OnChanges {
   };
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes.sessionId && changes.sessionId.currentValue !== changes.eventId.previousValue) {
+    if(changes.sessionId && changes.sessionId.currentValue !== changes.sessionId.previousValue) {
       this.getAllPresentations();
     }
+  }
+
+  // todo: confirmation before deleting something
+  deletePresentationById(id) {
+    this.presentationService.deletePresentation(id)
+      .subscribe((presentation) => {
+        this.presentation = presentation;
+        this.ngOnInit();
+        console.log("deleted", this.presentations);
+      })
   }
 
 

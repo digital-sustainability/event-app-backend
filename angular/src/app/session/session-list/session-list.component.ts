@@ -13,8 +13,9 @@ export class SessionListComponent implements OnInit, OnChanges {
 
   @Input() eventId;
   sessions: Session[];
+  session: Session;
 
-  displayedColumns: string[] = ['id', 'title', 'abstract', 'label_presentations', 'event_id'];
+  displayedColumns: string[] = ['id', 'title', 'abstract', 'label_presentations', 'event_id', 'details', 'update', 'delete'];
 
   constructor(private sessionService: SessionService,
               private router: Router) { }
@@ -37,7 +38,16 @@ export class SessionListComponent implements OnInit, OnChanges {
     if(changes.eventId && changes.eventId.currentValue !== changes.eventId.previousValue) {
       this.getAllSessions();
     }
+  }
 
+  // todo: confirmation before deleting something
+  deleteSessionById(id) {
+    this.sessionService.deleteSession(id)
+      .subscribe((session) => {
+        this.session = session;
+        this.ngOnInit();
+        console.log("deleted", this.sessions)
+      })
   }
 
 }
