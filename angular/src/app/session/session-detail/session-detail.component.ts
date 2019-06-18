@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Session} from "../../shared/session/session";
 import {SessionService} from "../../shared/session.service";
@@ -8,7 +8,7 @@ import {SessionService} from "../../shared/session.service";
   templateUrl: './session-detail.component.html',
   styleUrls: ['./session-detail.component.scss']
 })
-export class SessionDetailComponent implements OnInit {
+export class SessionDetailComponent implements OnInit, OnDestroy {
 
   session_id: number;
   session: Session;
@@ -21,7 +21,7 @@ export class SessionDetailComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.session_id = params['id'];
+      this.session_id = params['session_id'];
       this.sessionService.getSessionById(this.session_id)
         .subscribe((session) => {
           this.session = session;
@@ -29,5 +29,9 @@ export class SessionDetailComponent implements OnInit {
         });
     });
 
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

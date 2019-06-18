@@ -21,6 +21,10 @@ import {SessionDetailComponent} from "./session/session-detail/session-detail.co
 import {PresentationComponent} from "./presentation/presentation.component";
 import {PresenationFormComponent} from "./presentation/presenation-form/presenation-form.component";
 import {PresentationDetailComponent} from "./presentation/presentation-detail/presentation-detail.component";
+import {EventCreateComponent} from "./event/event-create/event-create.component";
+import {EventEditComponent} from "./event/event-edit/event-edit.component";
+import {SpeakerCreateComponent} from "./speaker/speaker-create/speaker-create.component";
+import {SpeakerEditComponent} from "./speaker/speaker-edit/speaker-edit.component";
 
 const routes: Routes = [
   {
@@ -57,7 +61,7 @@ const routes: Routes = [
   {
     path: 'speaker/create',
     canActivate: [OnlyLoggedInGuard],
-    component: SpeakerFormComponent,
+    component: SpeakerCreateComponent,
   },
   {
     path: 'speaker/:id',
@@ -67,7 +71,7 @@ const routes: Routes = [
   {
     path: 'speaker/:id/edit',
     canActivate: [OnlyLoggedInGuard],
-    component: SpeakerFormComponent,
+    component: SpeakerEditComponent,
   },
   {
     path: 'event',
@@ -77,7 +81,8 @@ const routes: Routes = [
   {
     path: 'event/create',
     canActivate: [OnlyLoggedInGuard],
-    component: EventFormComponent,
+    component: EventCreateComponent,
+
     //data: { state: 'events' }
   },
   {
@@ -89,19 +94,19 @@ const routes: Routes = [
   {
     path: 'event/:event_id/edit',
     canActivate: [OnlyLoggedInGuard],
-    component: EventFormComponent,
-    //data: { state: 'events' }
-  },
-  {
-    path: 'event/:event_id/sessions/:session_id',
-    canActivate: [OnlyLoggedInGuard],
-    component: SessionDetailComponent,
+    component: EventEditComponent,
     //data: { state: 'events' }
   },
   {
     path: 'event/:event_id/sessions/create',
     canActivate: [OnlyLoggedInGuard],
     component: SessionFormComponent,
+    //data: { state: 'events' }
+  },
+  {
+    path: 'event/:event_id/sessions/:session_id',
+    canActivate: [OnlyLoggedInGuard],
+    component: SessionDetailComponent,
     //data: { state: 'events' }
   },
   {

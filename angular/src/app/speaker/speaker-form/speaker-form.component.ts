@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {SpeakerService} from "../../shared/speaker.service";
-import {MatSnackBar} from "@angular/material";
-import {ActivatedRoute, Router} from "@angular/router";
 import {Speaker} from "../../shared/speaker/speaker";
 
 @Component({
@@ -12,18 +9,13 @@ import {Speaker} from "../../shared/speaker/speaker";
 })
 export class SpeakerFormComponent implements OnInit {
 
-  edit: boolean = false;
-  private sub: any;
-  speaker: Speaker;
-  speaker_id: number;
+  @Output() submit: EventEmitter<Speaker> = new EventEmitter<Speaker>();
+  @Input() speaker: Speaker;
+  @Input() buttonTitle: string;
 
   speakerForm: FormGroup;
 
-  constructor(
-    private speakerService: SpeakerService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private snackbar: MatSnackBar) { }
+  constructor() { }
 
   ngOnInit() {
 
@@ -49,51 +41,34 @@ export class SpeakerFormComponent implements OnInit {
         Validators.required
       ]),
     });
-
-    this.sub = this.route.params.subscribe( params => {
-      this.speaker_id = params['id'];
-      this.speakerService.getSpeakerById(this.speaker_id)
-        .subscribe((speaker) => {
-          this.speaker = speaker;
-          console.log(this.speaker);
-          this.edit = true;
-          this.speakerForm.patchValue(this.speaker);
-        });
-    });
   }
 
 
-  onSubmit():boolean {
+  initInputs() {
+    this.speakerForm.get('first_name').setValue(this.speaker.first_name);
+    this.speakerForm.get('last_name').setValue(this.speaker.last_name);
+    this.speakerForm.get('email').setValue(this.speaker.email);
+    this.speakerForm.get('position').setValue(this.speaker.position);
+    this.speakerForm.get('organization').setValue(this.speaker.organization);
+    this.speakerForm.get('short_bio').setValue(this.speaker.short_bio);
+    this.speakerForm.get('photo_url').setValue(this.speaker.photo_url);
+
+
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes.speaker && changes.speaker.currentValue &&
+      changes.speaker.previousValue !== changes.speaker.currentValue) {
+      this.initInputs();
+    }
+  }
+
+
+  onSubmit() {
     if(this.speakerForm.invalid) {
       return false;
     } else {
-      if (this.edit == true) {
-        let speaker = this.speakerForm.value;
-        speaker.id = this.speaker_id;
-        this.speakerService.updateSpeaker(speaker)
-          .subscribe((speakers) => {
-            console.log("new", speakers);
-            this.router.navigate(['speaker']);
-          }, (err) => {
-            console.log('Error', err);
-            this.snackbar.open('Speaker konnte nicht erstellt werden. Überprüfe alle Felder.', '', {
-              duration: 3000,
-              panelClass: 'fail'
-            });
-          });
-      } else {
-        this.speakerService.createSpeaker(this.speakerForm.value)
-          .subscribe((speakers) => {
-            console.log("new", speakers)
-            this.router.navigate(['speaker']);
-          }, (err) => {
-            console.log('Error', err);
-            this.snackbar.open('Speaker konnte nicht erstellt werden. Überprüfe alle Felder.', '', {
-              duration: 3000,
-              panelClass: 'fail'
-            });
-          });
-      }
+      this.submit.emit(this.speakerForm.value);
     }
   }
 

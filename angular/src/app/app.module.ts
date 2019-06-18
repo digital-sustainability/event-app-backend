@@ -25,7 +25,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { EventListComponent } from './event/event-list/event-list.component';
 import {
   DateAdapter,
-  MatDatepicker, MatDatepickerModule,
+  MatDatepicker, MatDatepickerModule, MatDialogModule,
   MatInputModule, MatNativeDateModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
@@ -42,6 +42,15 @@ import { SessionListComponent } from './session/session-list/session-list.compon
 import { SessionDetailComponent } from './session/session-detail/session-detail.component';
 import { PresentationListComponent } from './presentation/presentation-list/presentation-list.component';
 import { PresentationDetailComponent } from './presentation/presentation-detail/presentation-detail.component';
+import { EventCreateComponent } from './event/event-create/event-create.component';
+import { EventEditComponent } from './event/event-edit/event-edit.component';
+import { PresentationEditComponent } from './presentation/presentation-edit/presentation-edit.component';
+import { PresentationCreateComponent } from './presentation/presentation-create/presentation-create.component';
+import { SessionEditComponent } from './session/session-edit/session-edit.component';
+import { SessionCreateComponent } from './session/session-create/session-create.component';
+import { SpeakerEditComponent } from './speaker/speaker-edit/speaker-edit.component';
+import { SpeakerCreateComponent } from './speaker/speaker-create/speaker-create.component';
+import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.component';
 
 
 
@@ -75,6 +84,15 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     SessionDetailComponent,
     PresentationListComponent,
     PresentationDetailComponent,
+    EventCreateComponent,
+    EventEditComponent,
+    PresentationEditComponent,
+    PresentationCreateComponent,
+    SessionEditComponent,
+    SessionCreateComponent,
+    SpeakerEditComponent,
+    SpeakerCreateComponent,
+    DeleteDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,7 +108,8 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     MatProgressSpinnerModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule
   ],
   providers: [
     {
@@ -100,6 +119,7 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     },
     {provide: APP_INITIALIZER, useFactory: appInitFactory, deps: [AuthService], multi: true}
   ],
+  entryComponents: [DeleteDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

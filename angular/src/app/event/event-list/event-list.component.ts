@@ -2,6 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Event} from "../../shared/event/event";
 import {Router} from "@angular/router";
 import {EventService} from "../../shared/event.service";
+import {Speaker} from "../../shared/speaker/speaker";
+import {DeleteDialogComponent} from "../../shared/delete-dialog/delete-dialog.component";
+import {MatDialog, MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-event-list',
@@ -17,7 +20,9 @@ export class EventListComponent implements OnInit {
   id: number;
 
   constructor(private router: Router,
-              private eventService: EventService) { }
+              private eventService: EventService,
+              private snackbar: MatSnackBar,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     this.getAllEvents();
@@ -32,20 +37,36 @@ export class EventListComponent implements OnInit {
   }
 
   // todo: confirmation before deleting something
-  deleteEventById(id) {
+  private deleteEventById(id) {
     this.eventService.deleteEvent(id)
       .subscribe((event) => {
         this.event = event;
         this.ngOnInit();
-        console.log("deleted", this.events)
-      })
+        console.log("deleted", this.events);
+        this.snackbar.open('Event erfolgreich gelöscht.', '', {
+          duration: 3000,
+          panelClass: 'success'
+        });
+      }, (err) => {
+        this.snackbar.open('Event konnte nicht gelöscht werden.', '', {
+          duration: 3000,
+          panelClass: 'fail'
+        });
+      });
   }
 
+  openDeleteDialog(event: Event) {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      data: {title: `${event.title}`}
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.deleteEventById(event.id);
+      }
+    });
+  }
 
-/*  goToDetailEvent(id) {
-    this.router.navigate(['/event-detail', id])
-  }*/
 
 
 

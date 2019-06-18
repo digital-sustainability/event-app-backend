@@ -1,7 +1,8 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Speaker} from "../../shared/speaker/speaker";
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from '@angular/material';
 import {SpeakerService} from "../../shared/speaker.service";
+import {DeleteDialogComponent} from "../../shared/delete-dialog/delete-dialog.component";
 
 
 
@@ -25,7 +26,9 @@ export class SpeakerListComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['id', 'first_name', 'last_name', 'email', 'position', 'organization', 'short_bio','details', 'update', 'delete'];
 
-  constructor(private speakerService: SpeakerService) {
+  constructor(private speakerService: SpeakerService,
+              private dialog: MatDialog,
+              private snackbar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -59,13 +62,34 @@ export class SpeakerListComponent implements OnInit, AfterViewInit {
   }
 
   // todo: confirmation before deleting something
-  deleteSpeakerById(id) {
+  private deleteSpeakerById(id) {
     this.speakerService.deleteSpeaker(id)
       .subscribe((speaker) => {
         this.speaker = speaker;
         this.ngOnInit();
-        console.log("deleted", this.speakers)
+        console.log("deleted", this.speakers);
+        this.snackbar.open('Speaker erfolgreich gelöscht.', '', {
+          duration: 3000,
+          panelClass: 'success'
+        });
+      }, (err) => {
+        this.snackbar.open('Speaker konnte nicht gelöscht werden.', '', {
+          duration: 3000,
+          panelClass: 'fail'
+        });
       })
+  }
+
+  openDeleteDialog(speaker: Speaker) {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      data: {title: `${speaker.first_name} ${speaker.last_name}`}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+     if(result) {
+       this.deleteSpeakerById(speaker.id);
+     }
+    });
   }
 
 
