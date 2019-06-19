@@ -1,3 +1,52 @@
-<p>
-  presentation-detail works!
-</p>
+<mat-card>
+<a routerLink="../../../">Event</a>
+<a> > </a>
+<a routerLink="../../">Eventdetail</a>
+<a> > </a>
+<a routerLink="">Sessiondetail</a>
+<a> > </a>
+<a routerLink="">{{presentation.title}}</a>
+<h1>
+  Session Detail Ansicht
+</h1>
+<mat-card style="margin: 5%">
+  <mat-list role="list">
+    <mat-list-item role="listitem">
+      <div class="listDescription"><b>ID: </b></div>
+      <div class="listItems">{{presentation.id}}</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item role="listitem">
+      <div class="listDescription"><b>Titel: </b></div>
+      <div class="listItems">{{presentation.title}}</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item role="listitem">
+      <div class="listDescription"><b>Abstract: </b></div>
+      <div class="listItems">{{presentation.abstract}}</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item class="longListItemStyle" role="listitem">
+      <div class="listDescription"><b>Slides: </b></div>
+      <div class="listItems">{{presentation.slides}}</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item role="listitem">
+      <div class="listDescription"><b>Start: </b></div>
+      <div class="listItems">{{presentation.start}}</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item role="listitem">
+      <div class="listDescription"><b>Ende: </b></div>
+      <div class="listItems">{{presentation.end}}</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item role="listitem">
+      <div class="listDescription"><b>Raum: </b></div>
+      <div class="listItems">{{presentation.room}}</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+      <button style="margin-top: 10px;" mat-raised-button color="primary" routerLink="/presentation/presentation-form">Präsentation hinzufügen</button>
+  </mat-list>
+</mat-card>
+</mat-card>

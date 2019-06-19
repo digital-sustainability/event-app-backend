@@ -1,10 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Event} from "../../shared/event/event";
 import {Router} from "@angular/router";
 import {EventService} from "../../shared/event.service";
-import {Speaker} from "../../shared/speaker/speaker";
 import {DeleteDialogComponent} from "../../shared/delete-dialog/delete-dialog.component";
-import {MatDialog, MatSnackBar} from "@angular/material";
+import {MatDialog, MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from "@angular/material";
 
 @Component({
   selector: 'app-event-list',
@@ -14,6 +13,13 @@ import {MatDialog, MatSnackBar} from "@angular/material";
 export class EventListComponent implements OnInit {
   events: Event[];
   event: Event;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  dataSource: MatTableDataSource<Event>;
+
+  event_id: number;
 
   displayedColumns: string[] = ['id', 'title', 'description', 'start', 'end', 'location', 'image_path', 'published', 'details', 'update', 'delete'];
 
@@ -28,11 +34,28 @@ export class EventListComponent implements OnInit {
     this.getAllEvents();
   }
 
+  ngAfterViewInit(): void {
+    // todo: check why paginator and sort is not working
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   getAllEvents() {
     this.eventService.getEvents()
       .subscribe((events) => {
         console.log("das", events);
         this.events = events;
+        this.dataSource = new MatTableDataSource(this.events);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       });
   }
 

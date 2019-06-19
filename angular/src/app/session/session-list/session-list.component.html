@@ -1,5 +1,9 @@
 <h1>Sessions des ausgewählten Events</h1>
-<table mat-table [dataSource]="sessions" class="mat-elevation-z8">
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+<div class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort>
 
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
@@ -13,7 +17,7 @@
   <!-- Name Column -->
   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef> Titel </th>
-    <td mat-cell *matCellDef="let element"> <a [routerLink]="['sessions/', element.id]">{{element.title}}</a> </td>
+    <td mat-cell *matCellDef="let element">{{element.title}}</td>
   </ng-container>
 
   <!-- Weight Column -->
@@ -36,7 +40,7 @@
     <ng-container matColumnDef="details">
       <th mat-header-cell *matHeaderCellDef> Details </th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button color="primary" [routerLink]="['/session/session-detail', element.id]">
+        <button mat-icon-button color="primary" [routerLink]="['sessions/', element.id]">
             <mat-icon class="mat-18">reorder</mat-icon>
         </button>
       </td>
@@ -63,3 +67,5 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

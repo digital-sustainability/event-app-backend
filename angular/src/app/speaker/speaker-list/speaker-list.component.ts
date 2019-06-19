@@ -84,7 +84,6 @@ export class SpeakerListComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       data: {title: `${speaker.first_name} ${speaker.last_name}`}
     });
-
     dialogRef.afterClosed().subscribe(result => {
      if(result) {
        this.deleteSpeakerById(speaker.id);

@@ -1,16 +1,12 @@
 <mat-card>
-           <a routerLink="/speaker">Speaker</a>
-           <p>
-             First there is a routing list, to see where you are and to go back!
-             <a href="/speaker">Speaker</a>
-           </p>
-           <p>
-             Next there is a button to create new events
-           </p>
-           <mat-card style="margin: 5%;">
-           <button mat-raised-button color="primary" routerLink="/speaker/create">Speaker hinzufügen</button>
-           <div><app-speaker-list></app-speaker-list></div>
-           <!--<button mat-raised-button color="warn" (click)="deleteEvent()">Delete</button>-->
+ <a routerLink="/speaker">Speaker</a>
+<h1>
+  Speakerübersicht
+</h1>
+ <mat-card style="margin: 5%;">
+ <button mat-raised-button color="primary" routerLink="/speaker/create">Speaker hinzufügen</button>
+ <div><app-speaker-list></app-speaker-list></div>
+ <!--<button mat-raised-button color="warn" (click)="deleteEvent()">Delete</button>-->
 
-           </mat-card>
-           </mat-card>
+ </mat-card>
+ </mat-card>

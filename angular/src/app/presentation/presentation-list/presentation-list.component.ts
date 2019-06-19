@@ -1,6 +1,9 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {PresentationService} from "../../shared/presentation.service";
 import {Presentation} from "../../shared/presenation/presentation";
+import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
+import {Speaker} from "../../shared/speaker/speaker";
+import {DeleteDialogComponent} from "../../shared/delete-dialog/delete-dialog.component";
 
 @Component({
   selector: 'app-presentation-list',
@@ -13,12 +16,32 @@ export class PresentationListComponent implements OnInit, OnChanges {
   presentations: Presentation[];
   presentation: Presentation;
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  dataSource: MatTableDataSource<Presentation>;
+
   displayedColumns: string[] = ['id', 'title', 'abstract', 'slides', 'start', 'end', 'room', 'details', 'update', 'delete'];
 
-  constructor(private presentationService: PresentationService) { }
+  constructor(private presentationService: PresentationService,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     this.getAllPresentations();
+  }
+
+  ngAfterViewInit(): void {
+    // todo: check why paginator and sort is not working
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   getAllPresentations() {
@@ -27,6 +50,9 @@ export class PresentationListComponent implements OnInit, OnChanges {
     })
       .subscribe((presentations) => {
         this.presentations = presentations;
+        this.dataSource = new MatTableDataSource(this.presentations);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
         console.log('presentations:', this.presentations)
       })
   };
@@ -47,7 +73,16 @@ export class PresentationListComponent implements OnInit, OnChanges {
       })
   }
 
-
+  openDeleteDialog(presentation: Presentation) {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      data: {title: `${presentation.title}`}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.deletePresentationById(presentation.id);
+      }
+    });
+  }
 
 
 
