@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {EventService} from "../../shared/event.service";
 import {ActivatedRoute} from "@angular/router";
 import {Event} from "../../shared/event/event";
@@ -8,7 +8,7 @@ import {Event} from "../../shared/event/event";
   templateUrl: './event-detail.component.html',
   styleUrls: ['./event-detail.component.scss']
 })
-export class EventDetailComponent implements OnInit {
+export class EventDetailComponent implements OnInit, OnDestroy {
 
   event_id: number;
   event: Event;
@@ -27,7 +27,10 @@ export class EventDetailComponent implements OnInit {
           console.log(this.event);
         });
     });
+  }
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

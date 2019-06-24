@@ -1,3 +1,11 @@
-<p>
-  session-edit works!
-</p>
+<mat-card>
+<a routerLink="../../../../../">Events</a>
+<a> > </a>
+<a routerLink="../../../../">Eventdetail</a>
+<a> > </a>
+<a routerLink="../../">Sessiondetail</a>
+<a> > </a>
+<a routerLink="">Session anpassen</a>
+  <mat-card-title class="marginForTitle">Event anpassen</mat-card-title>
+  <app-session-form [session]="session" (submit)="submit($event)" buttonTitle="Event anpassen"></app-session-form>
+</mat-card>

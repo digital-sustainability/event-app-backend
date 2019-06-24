@@ -25,6 +25,10 @@ import {EventCreateComponent} from "./event/event-create/event-create.component"
 import {EventEditComponent} from "./event/event-edit/event-edit.component";
 import {SpeakerCreateComponent} from "./speaker/speaker-create/speaker-create.component";
 import {SpeakerEditComponent} from "./speaker/speaker-edit/speaker-edit.component";
+import {SessionCreateComponent} from "./session/session-create/session-create.component";
+import {SessionEditComponent} from "./session/session-edit/session-edit.component";
+import {PresentationEditComponent} from "./presentation/presentation-edit/presentation-edit.component";
+import {PresentationCreateComponent} from "./presentation/presentation-create/presentation-create.component";
 
 const routes: Routes = [
   {
@@ -100,7 +104,7 @@ const routes: Routes = [
   {
     path: 'event/:event_id/sessions/create',
     canActivate: [OnlyLoggedInGuard],
-    component: SessionFormComponent,
+    component: SessionCreateComponent,
     //data: { state: 'events' }
   },
   {
@@ -112,7 +116,7 @@ const routes: Routes = [
   {
     path: 'event/:event_id/sessions/:session_id/edit',
     canActivate: [OnlyLoggedInGuard],
-    component: SessionFormComponent,
+    component: SessionEditComponent,
     //data: { state: 'events' }
   },
   {
@@ -124,13 +128,13 @@ const routes: Routes = [
   {
     path: 'event/:event_id/sessions/:session_id/presentations/:presentation_id/edit',
     canActivate: [OnlyLoggedInGuard],
-    component: PresenationFormComponent,
+    component: PresentationEditComponent,
     //data: { state: 'events' }
   },
   {
     path: 'event/:event_id/sessions/:session_id/presentations/create',
     canActivate: [OnlyLoggedInGuard],
-    component: PresenationFormComponent,
+    component: PresentationCreateComponent,
     //data: { state: 'events' }
   },
 

@@ -1,3 +1,13 @@
-<p>
-  presentation-create works!
-</p>
+<mat-card>
+  <a routerLink="../../../../../">Event</a>
+  <a> > </a>
+  <a routerLink="../../../../">Eventdetail</a>
+  <mat-card>
+  <a routerLink="../../">Sessiondetail</a>
+  <a> > </a>
+  <a routerLink="">Präsentation hinzufügen</a>
+  <h1>
+    Präsentation erfassen
+  </h1>
+  <app-presenation-form (submit)="submit($event)" buttonTitle="Präsenation hinzufügen"></app-presenation-form>
+</mat-card>

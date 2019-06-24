@@ -19,6 +19,9 @@ export class SessionDetailComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute) {
   }
 
+  /**
+   *
+   */
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.session_id = params['session_id'];

@@ -23,7 +23,7 @@ export class PresentationDetailComponent implements OnInit, OnDestroy {
       this.presentationService.getPresenationById(this.presentation_id)
         .subscribe((presentation) => {
           this.presentation = presentation;
-          console.log(this.presentation);
+          console.log("dude", this.presentation);
         });
     });
   }
@@ -31,5 +31,4 @@ export class PresentationDetailComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
-
 }

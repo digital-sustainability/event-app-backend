@@ -1,11 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Presentation} from "../../shared/presenation/presentation";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {MatSnackBar} from "@angular/material";
-import {Router} from "@angular/router";
-import {AuthService} from "../../shared/auth/auth.service";
-import {EventService} from "../../shared/event.service";
-import {PresentationService} from "../../shared/presentation.service";
 
 @Component({
   selector: 'app-presenation-form',
@@ -14,16 +9,14 @@ import {PresentationService} from "../../shared/presentation.service";
 })
 export class PresenationFormComponent implements OnInit {
 
+  @Output() submit: EventEmitter<Event> = new EventEmitter<Event>();
+  @Input() buttonTitle: string;
 
-  presentation: Presentation;
+  @Input() presentation: Presentation;
 
   presentationForm: FormGroup;
 
   constructor(
-    private authService: AuthService,
-    private presentationService: PresentationService,
-    private router: Router,
-    private snackbar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -55,22 +48,29 @@ export class PresenationFormComponent implements OnInit {
     });
   }
 
-  onSubmit():boolean {
-    if(this.presentationForm.invalid) {
-      return false;
-    } else {
-      this.presentationService.createPresentation(this.presentationForm.value)
-        .subscribe((presentation) => {
-          console.log("new", presentation)
-          this.router.navigate(['session-detail']);
-        }, (err) => {
-          console.log('Error', err);
-          this.snackbar.open('Präsentation konnte nicht erstellt werden. Überprüfe alle Felder.', '', {
-            duration: 3000,
-            panelClass: 'fail'
-          });
-        });
+  initInputs() {
+    this.presentationForm.get('title').setValue(this.presentation.title);
+    this.presentationForm.get('abstract').setValue(this.presentation.abstract);
+    this.presentationForm.get('start').setValue(this.presentation.start);
+    this.presentationForm.get('end').setValue(this.presentation.end);
+    this.presentationForm.get('slides').setValue(this.presentation.slides);
+    this.presentationForm.get('access_token').setValue(this.presentation.access_token);
+    this.presentationForm.get('room').setValue(this.presentation.room);
+    this.presentationForm.get('session_id').setValue(this.presentation.session_id);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes.presentation && changes.presentation.currentValue &&
+      changes.presentation.previousValue !== changes.presentation.currentValue) {
+      this.initInputs();
     }
   }
 
+  onSubmit() {
+    if(this.presentationForm.invalid) {
+      return false;
+    } else {
+      this.submit.emit(this.presentationForm.value);
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SessionService} from "../../shared/session.service";
 import {Session} from "../../shared/session/session";
@@ -11,15 +11,17 @@ import {config} from "rxjs/index";
   templateUrl: './session-form.component.html',
   styleUrls: ['./session-form.component.scss']
 })
-export class SessionFormComponent implements OnInit {
+export class SessionFormComponent implements OnInit, OnChanges {
+
+  @Output() submit: EventEmitter<Event> = new EventEmitter<Event>();
+  @Input() session: Session;
+  @Input() buttonTitle: string;
 
   sessions: Session[];
 
   sessionForm: FormGroup;
 
-  constructor(private sessionService: SessionService,
-              private router: Router,
-              private snackbar: MatSnackBar) { }
+  constructor() { }
 
   ngOnInit() {
     this.sessionForm = new FormGroup( {
@@ -38,7 +40,31 @@ export class SessionFormComponent implements OnInit {
     });
   }
 
-  onSubmit():boolean {
+  initInputs() {
+    this.sessionForm.get('title').setValue(this.session.title);
+    this.sessionForm.get('abstract').setValue(this.session.abstract);
+    this.sessionForm.get('label_presentations').setValue(this.session.label_presentations);
+    this.sessionForm.get('event_id').setValue(this.session.event_id);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.session && changes.session.currentValue &&
+      changes.session.previousValue !== changes.session.currentValue) {
+      this.initInputs();
+    }
+  }
+
+    onSubmit()
+    {
+      if (this.sessionForm.invalid) {
+        return false;
+      } else {
+        this.submit.emit(this.sessionForm.value);
+      }
+    }
+}
+
+/*  onSubmit():boolean {
     if(this.sessionForm.invalid) {
       return false;
     } else {
@@ -54,6 +80,7 @@ export class SessionFormComponent implements OnInit {
           });
         });
     }
-  }
+  }*/
 
-}
+
+

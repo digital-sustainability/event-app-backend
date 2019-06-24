@@ -2,7 +2,8 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@an
 import {SessionService} from "../../shared/session.service";
 import {Session} from "../../shared/session/session";
 import {Router} from "@angular/router";
-import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
+import {MatDialog, MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from "@angular/material";
+import {DeleteDialogComponent} from "../../shared/delete-dialog/delete-dialog.component";
 
 @Component({
   selector: 'app-session-list',
@@ -24,7 +25,9 @@ export class SessionListComponent implements OnInit, OnChanges {
   displayedColumns: string[] = ['id', 'title', 'abstract', 'label_presentations', 'event_id', 'details', 'update', 'delete'];
 
   constructor(private sessionService: SessionService,
-              private router: Router) { }
+              private router: Router,
+              private snackbar: MatSnackBar,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -70,7 +73,28 @@ export class SessionListComponent implements OnInit, OnChanges {
         this.session = session;
         this.ngOnInit();
         console.log("deleted", this.sessions)
-      })
+        this.snackbar.open('Session erfolgreich gelöscht.', '', {
+          duration: 3000,
+          panelClass: 'success'
+        });
+      }, (err) => {
+        this.snackbar.open('Session konnte nicht gelöscht werden.', '', {
+          duration: 3000,
+          panelClass: 'fail'
+        });
+      });
+  }
+
+  openDeleteDialog(session: Session) {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      data: {title: `${session.title}`}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.deleteSessionById(session.id);
+      }
+    });
   }
 
 }

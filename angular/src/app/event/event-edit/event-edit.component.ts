@@ -43,7 +43,7 @@ export class EventEditComponent implements OnInit {
         this.router.navigate(['event']);
       }, (err) => {
         console.log('Error', err);
-        this.snackbar.open('Event konnte nicht erstellt werden. Überprüfe alle Felder.', '', {
+        this.snackbar.open('Event konnte nicht geändert werden. Überprüfe alle Felder.', '', {
           duration: 3000,
           panelClass: 'fail'
         });

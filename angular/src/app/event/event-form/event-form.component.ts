@@ -69,7 +69,6 @@ export class EventFormComponent implements OnInit, OnChanges {
     }
   }
 
-
   onSubmit() {
     if(this.eventForm.invalid) {
       return false;

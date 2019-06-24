@@ -1,62 +1,32 @@
-<mat-card>
-<a routerLink="/event">Event</a>
-<a> > </a>
-<a routerLink="/event/event-form">Event-Form</a>
-  <mat-card-title class="marginForTitle">Präsentation hinzufügen</mat-card-title>
-  <form (ngSubmit)="onSubmit()" [formGroup]="presentationForm">
-    <mat-form-field class="fullSizeFormField">
-      <input matInput placeholder="Titel" type="text" formControlName="title" required>
-    </mat-form-field>
-    <mat-form-field class="fullSizeFormField">
-      <input matInput placeholder="Abstract" type="text" formControlName="abstract" required>
-    </mat-form-field>
-    <!--
-    <mat-form-field>
-      <input matInput [matDatepicker]="pickerStart" placeholder="Startzeit" formControlName="start" required>
-      <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
-      <mat-datepicker #pickerStart ></mat-datepicker>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput [matDatepicker]="pickerEnd" placeholder="Endzeit" formControlName="end" required>
-      <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
-      <mat-datepicker #pickerEnd></mat-datepicker>
-    </mat-form-field>
-    -->
-    <mat-form-field>
-      <input matInput placeholder="Start" type="datetime-local" formControlName="start" required>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Ende" type="datetime-local" formControlName="end" required>
-    </mat-form-field>
-    <mat-form-field class="fullSizeFormField">
-      <input matInput placeholder="Slides" type="text" formControlName="slides" required>
-    </mat-form-field>
-    <mat-form-field class="fullSizeFormField">
-      <input matInput placeholder="Access Token" type="text" formControlName="access_token" required>
-    </mat-form-field>
-    <mat-form-field class="fullSizeFormField">
-      <input matInput placeholder="Raum" type="text" formControlName="room" required>
-    </mat-form-field>
-    <mat-form-field class="fullSizeFormField">
-      <input matInput placeholder="Session ID" type="text" formControlName="session_id" required>
-    </mat-form-field>
-    <!--
-    <mat-form-field>
-      <mat-label>Publiziert</mat-label>
-      <mat-select [formControl]="eventForm.controls['published']" [required]="true">
-        <mat-option value="true">Ja</mat-option>
-        <mat-option value="false">Nein</mat-option>
-      </mat-select>
-      <!--<input matInput placeholder="Veröffentlicht" type="boolean" formControlName="published" required>
-    </mat-form-field>
-    -->
-    <div class="fullSizeFormField">
-      <button mat-raised-button color="primary" [disabled]="presentationForm.invalid" class="submit-button">
-        <mat-icon>input</mat-icon> Präsentation hinzufügen
-      </button>
-    </div>
-    <!--comment for vollständigkeit commits"-->
-
-
-  </form>
-</mat-card>
+<form (ngSubmit)="onSubmit()" [formGroup]="presentationForm">
+  <mat-form-field class="fullSizeFormField">
+    <input matInput placeholder="Titel" type="text" formControlName="title" required>
+  </mat-form-field>
+  <mat-form-field class="fullSizeFormField">
+    <input matInput placeholder="Abstract" type="text" formControlName="abstract" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Start" type="datetime-local" formControlName="start" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Ende" type="datetime-local" formControlName="end" required>
+  </mat-form-field>
+  <mat-form-field class="fullSizeFormField">
+    <input matInput placeholder="Slides" type="text" formControlName="slides" required>
+  </mat-form-field>
+  <mat-form-field class="fullSizeFormField">
+    <input matInput placeholder="Access Token" type="text" formControlName="access_token" required>
+  </mat-form-field>
+  <mat-form-field class="fullSizeFormField">
+    <input matInput placeholder="Raum" type="text" formControlName="room" required>
+  </mat-form-field>
+  <mat-form-field class="fullSizeFormField">
+    <input matInput placeholder="Session ID" type="text" formControlName="session_id" required>
+  </mat-form-field>
+  <div class="fullSizeFormField">
+    <button mat-raised-button color="primary" [disabled]="presentationForm.invalid" class="submit-button">
+      <mat-icon>input</mat-icon> Präsentation hinzufügen
+    </button>
+  </div>
+  <!--comment for vollständigkeit commits"-->
+</form>

@@ -1,19 +1,19 @@
 <mat-card>
-<a routerLink="../../../">Event</a>
+<a routerLink="../../../../../">Event</a>
 <a> > </a>
-<a routerLink="../../">Eventdetail</a>
+<a routerLink="../../../../">Eventdetail</a>
 <a> > </a>
-<a routerLink="">Sessiondetail</a>
+<a routerLink="../../">Sessiondetail</a>
 <a> > </a>
-<a routerLink="">{{presentation.title}}</a>
+<a>Präsentationdetail</a>
 <h1>
-  Session Detail Ansicht
+  Präsentation Detail Ansicht
 </h1>
 <mat-card style="margin: 5%">
-  <mat-list role="list">
+  <mat-list role="list" *ngIf="presentation">
     <mat-list-item role="listitem">
       <div class="listDescription"><b>ID: </b></div>
-      <div class="listItems">{{presentation.id}}</div>
+      <div class="listItems">{{presentation?.id}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item role="listitem">
@@ -46,7 +46,6 @@
       <div class="listItems">{{presentation.room}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
-      <button style="margin-top: 10px;" mat-raised-button color="primary" routerLink="/presentation/presentation-form">Präsentation hinzufügen</button>
   </mat-list>
 </mat-card>
 </mat-card>

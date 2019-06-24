@@ -15,7 +15,7 @@ export class PresentationService {
   constructor(private http: HttpClient) { }
 
   getPresenationById(id: number): Observable<Presentation> {
-    return this.http.get<Presentation>(environment.apiURL + 'api/' + `event/${id}`);
+    return this.http.get<Presentation>(environment.apiURL + 'api/' + `presentation/${id}`);
   };
 
   getPresentations(getParams?: any): Observable<Presentation[]> {

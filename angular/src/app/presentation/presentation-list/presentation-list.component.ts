@@ -1,8 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {PresentationService} from "../../shared/presentation.service";
 import {Presentation} from "../../shared/presenation/presentation";
-import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
-import {Speaker} from "../../shared/speaker/speaker";
+import {MatDialog, MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from "@angular/material";
 import {DeleteDialogComponent} from "../../shared/delete-dialog/delete-dialog.component";
 
 @Component({
@@ -24,10 +23,10 @@ export class PresentationListComponent implements OnInit, OnChanges {
   displayedColumns: string[] = ['id', 'title', 'abstract', 'slides', 'start', 'end', 'room', 'details', 'update', 'delete'];
 
   constructor(private presentationService: PresentationService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private snackbar: MatSnackBar) { }
 
   ngOnInit() {
-    this.getAllPresentations();
   }
 
   ngAfterViewInit(): void {
@@ -70,7 +69,16 @@ export class PresentationListComponent implements OnInit, OnChanges {
         this.presentation = presentation;
         this.ngOnInit();
         console.log("deleted", this.presentations);
-      })
+        this.snackbar.open('Präsentation erfolgreich gelöscht.', '', {
+          duration: 3000,
+          panelClass: 'success'
+        });
+      }, (err) => {
+        this.snackbar.open('Präsentation konnte nicht gelöscht werden.', '', {
+          duration: 3000,
+          panelClass: 'fail'
+        });
+      });
   }
 
   openDeleteDialog(presentation: Presentation) {

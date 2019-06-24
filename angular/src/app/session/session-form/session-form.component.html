@@ -1,26 +1,19 @@
-<mat-card>
-<a routerLink="../../">Event-Detail</a>
-<a> > </a>
-<a routerLink="">Session-Form</a>
-  <mat-card-title class="marginForTitle">Session hinzufügen</mat-card-title>
-  <form (ngSubmit)="onSubmit()" [formGroup]="sessionForm">
-    <mat-form-field class="fullSizeFormField">
-      <input matInput placeholder="Titel" type="text" formControlName="title" required>
-    </mat-form-field>
-    <mat-form-field class="fullSizeFormField">
-      <input matInput placeholder="Abstract" type="text" formControlName="abstract" required>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Label Präsenation" type="text" formControlName="label_presentations" required>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Event ID" type="text" formControlName="event_id" required>
-    </mat-form-field>
-    <div class="fullSizeFormField">
-      <button mat-raised-button color="primary" [disabled]="sessionForm.invalid" class="submit-button">
-        <mat-icon>input</mat-icon> Session hinzufügen
-      </button>
-    </div>
-
-  </form>
-</mat-card>
+<form (ngSubmit)="onSubmit()" [formGroup]="sessionForm">
+  <mat-form-field class="fullSizeFormField">
+    <input matInput placeholder="Titel" type="text" formControlName="title" required>
+  </mat-form-field>
+  <mat-form-field class="fullSizeFormField">
+    <input matInput placeholder="Abstract" type="text" formControlName="abstract" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Label Präsenation" type="text" formControlName="label_presentations" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Event ID" type="text" formControlName="event_id" required>
+  </mat-form-field>
+  <div class="fullSizeFormField">
+    <button mat-raised-button color="primary" [disabled]="sessionForm.invalid" class="submit-button">
+      <mat-icon>input</mat-icon> Session hinzufügen
+    </button>
+  </div>
+</form>
