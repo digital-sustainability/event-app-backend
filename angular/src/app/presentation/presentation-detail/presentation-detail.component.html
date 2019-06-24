@@ -5,7 +5,7 @@
 <a> > </a>
 <a routerLink="../../">Sessiondetail</a>
 <a> > </a>
-<a>Präsentationdetail</a>
+<a>{{presentation.title}}</a>
 <h1>
   Präsentation Detail Ansicht
 </h1>
@@ -46,6 +46,11 @@
       <div class="listItems">{{presentation.room}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
+    <mat-list-item>
+      <button mat-icon-button color="accent" [routerLink]="['edit/']">
+          <mat-icon class="mat-18">system_update</mat-icon>
+      </button>
+    </mat-list-item>
   </mat-list>
 </mat-card>
 </mat-card>

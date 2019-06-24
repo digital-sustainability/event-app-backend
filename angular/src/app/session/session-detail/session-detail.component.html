@@ -3,7 +3,7 @@
 <a> > </a>
 <a routerLink="../../">Eventdetail</a>
 <a> > </a>
-<a routerLink="">{{session.title}}</a>
+<a>{{session.title}}</a>
 <h1>
   Session Detail Ansicht
 </h1>
@@ -34,7 +34,13 @@
         <div class="listItems">{{session.event_id.id}}</div>
       </mat-list-item>
       <mat-divider></mat-divider>
-        <button style="margin-top: 10px;" mat-raised-button color="primary" routerLink="/presentation/presentation-form">Präsentation hinzufügen</button>
+      <mat-list-item>
+        <button mat-icon-button color="accent" [routerLink]="['edit/']">
+            <mat-icon class="mat-18">system_update</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <button style="margin-top: 10px;" mat-raised-button color="primary" routerLink="presentations/create">Präsentation hinzufügen</button>
     </mat-list>
   </mat-card>
 

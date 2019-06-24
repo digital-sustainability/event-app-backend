@@ -1,6 +1,10 @@
-<h1>
-  speaker-detail works!
-</h1>
+<mat-card>
+<a routerLink="../"> Speaker </a>
+<a> > </a>
+<a>{{speaker.first_name}} {{speaker.last_name}}</a>
+  <h1>
+  Speaker Detail
+  </h1>
 <mat-card style="margin: 5%">
   <mat-list role="list">
     <mat-list-item role="listitem">
@@ -42,5 +46,13 @@
       <div class="listDescription"><b>Foto URL: </b></div>
       <div class="listItems">{{speaker.photo_url}}</div>
     </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <button mat-icon-button color="accent" [routerLink]="['edit/']">
+          <mat-icon class="mat-18">system_update</mat-icon>
+      </button>
+    </mat-list-item>
   </mat-list>
 </mat-card>
+</mat-card>
+

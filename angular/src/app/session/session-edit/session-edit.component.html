@@ -1,11 +1,13 @@
 <mat-card>
-<a routerLink="../../../../../">Events</a>
-<a> > </a>
-<a routerLink="../../../../">Eventdetail</a>
-<a> > </a>
-<a routerLink="../../">Sessiondetail</a>
-<a> > </a>
-<a routerLink="">Session anpassen</a>
-  <mat-card-title class="marginForTitle">Event anpassen</mat-card-title>
+  <a routerLink="../../../../">Events</a>
+  <a> > </a>
+  <a routerLink="../../../">Eventdetail</a>
+  <a> > </a>
+  <a routerLink="../">Sessiondetail</a>
+  <a> > </a>
+  <a>{{session.title}} anpassen</a>
+  <h1>
+  Session anpassen
+  </h1>
   <app-session-form [session]="session" (submit)="submit($event)" buttonTitle="Event anpassen"></app-session-form>
 </mat-card>

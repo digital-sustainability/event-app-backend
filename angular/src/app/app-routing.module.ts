@@ -120,6 +120,12 @@ const routes: Routes = [
     //data: { state: 'events' }
   },
   {
+    path: 'event/:event_id/sessions/:session_id/presentations/create',
+    canActivate: [OnlyLoggedInGuard],
+    component: PresentationCreateComponent,
+    //data: { state: 'events' }
+  },
+  {
     path: 'event/:event_id/sessions/:session_id/presentations/:presentation_id',
     canActivate: [OnlyLoggedInGuard],
     component: PresentationDetailComponent,
@@ -131,12 +137,7 @@ const routes: Routes = [
     component: PresentationEditComponent,
     //data: { state: 'events' }
   },
-  {
-    path: 'event/:event_id/sessions/:session_id/presentations/create',
-    canActivate: [OnlyLoggedInGuard],
-    component: PresentationCreateComponent,
-    //data: { state: 'events' }
-  },
+
 
 ];
 
