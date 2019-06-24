@@ -3,8 +3,8 @@
 <a> > </a>
 <a routerLink="../">{{event?.title}}</a>
 <a> > </a>
-<a>Event anpassen</a>
-  <mat-card-title class="marginForTitle">Event anpassen</mat-card-title>
+<a>{{event?.title}} anpassen</a>
+<h1>Event anpassen</h1>
   <app-event-form [event]="event" (submit)="submit($event)" buttonTitle="Event anpassen"></app-event-form>
   </mat-card>
 
