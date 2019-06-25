@@ -35,9 +35,6 @@ export class EventListComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    // todo: check why paginator and sort is not working
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {

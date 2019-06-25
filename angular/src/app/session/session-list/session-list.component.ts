@@ -1,9 +1,10 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {SessionService} from "../../shared/session.service";
 import {Session} from "../../shared/session/session";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog, MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from "@angular/material";
 import {DeleteDialogComponent} from "../../shared/delete-dialog/delete-dialog.component";
+import {EventService} from "../../shared/event.service";
 
 @Component({
   selector: 'app-session-list',
@@ -16,6 +17,7 @@ export class SessionListComponent implements OnInit, OnChanges {
   @Input() eventId;
   sessions: Session[];
   session: Session;
+  event: Event;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -27,15 +29,15 @@ export class SessionListComponent implements OnInit, OnChanges {
   constructor(private sessionService: SessionService,
               private router: Router,
               private snackbar: MatSnackBar,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private route: ActivatedRoute,
+              private eventService: EventService) { }
 
   ngOnInit() {
+    this.getEventForRouting();
   }
 
   ngAfterViewInit(): void {
-    // todo: check why paginator and sort is not working
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {
@@ -60,6 +62,15 @@ export class SessionListComponent implements OnInit, OnChanges {
       })
   }
 
+  getEventForRouting() {
+    this.route.params.subscribe( (params) => {
+      this.eventService.getEventById(params["event_id"])
+        .subscribe( (event: any) => {
+          this.event = event;
+        })
+    })
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if(changes.eventId && changes.eventId.currentValue !== changes.eventId.previousValue) {
       this.getAllSessions();
@@ -72,7 +83,8 @@ export class SessionListComponent implements OnInit, OnChanges {
       .subscribe((session) => {
         this.session = session;
         this.ngOnInit();
-        console.log("deleted", this.sessions)
+        console.log("deleted", this.sessions);
+        this.getAllSessions();
         this.snackbar.open('Session erfolgreich gelöscht.', '', {
           duration: 3000,
           panelClass: 'success'
@@ -89,7 +101,6 @@ export class SessionListComponent implements OnInit, OnChanges {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       data: {title: `${session.title}`}
     });
-
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
         this.deleteSessionById(session.id);

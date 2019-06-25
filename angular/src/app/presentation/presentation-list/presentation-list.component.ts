@@ -3,6 +3,9 @@ import {PresentationService} from "../../shared/presentation.service";
 import {Presentation} from "../../shared/presenation/presentation";
 import {MatDialog, MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from "@angular/material";
 import {DeleteDialogComponent} from "../../shared/delete-dialog/delete-dialog.component";
+import {SessionService} from "../../shared/session.service";
+import {ActivatedRoute} from "@angular/router";
+import {Session} from "../../shared/session/session";
 
 @Component({
   selector: 'app-presentation-list',
@@ -14,6 +17,7 @@ export class PresentationListComponent implements OnInit, OnChanges {
   @Input() sessionId;
   presentations: Presentation[];
   presentation: Presentation;
+  session: Session;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -24,15 +28,24 @@ export class PresentationListComponent implements OnInit, OnChanges {
 
   constructor(private presentationService: PresentationService,
               private dialog: MatDialog,
-              private snackbar: MatSnackBar) { }
+              private snackbar: MatSnackBar,
+              private sessionService: SessionService,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.getSessionForRouting();
+  }
+
+  getSessionForRouting() {
+    this.route.params.subscribe( (params) => {
+      this.sessionService.getSessionById(params["session_id"])
+        .subscribe( (session: any) => {
+          this.session = session;
+        })
+    })
   }
 
   ngAfterViewInit(): void {
-    // todo: check why paginator and sort is not working
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {
@@ -69,6 +82,7 @@ export class PresentationListComponent implements OnInit, OnChanges {
         this.presentation = presentation;
         this.ngOnInit();
         console.log("deleted", this.presentations);
+        this.getAllPresentations();
         this.snackbar.open('Präsentation erfolgreich gelöscht.', '', {
           duration: 3000,
           panelClass: 'success'

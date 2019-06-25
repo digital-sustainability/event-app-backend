@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {Speaker} from "../../shared/speaker/speaker";
 import {MatDialog, MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from '@angular/material';
 import {SpeakerService} from "../../shared/speaker.service";
@@ -11,7 +11,7 @@ import {DeleteDialogComponent} from "../../shared/delete-dialog/delete-dialog.co
   templateUrl: './speaker-list.component.html',
   styleUrls: ['./speaker-list.component.scss']
 })
-export class SpeakerListComponent implements OnInit, AfterViewInit {
+export class SpeakerListComponent implements OnInit, AfterViewInit, OnChanges {
 
   speakers: Speaker[];
   speaker: Speaker;
@@ -35,10 +35,11 @@ export class SpeakerListComponent implements OnInit, AfterViewInit {
     this.getAllSpeakers();
   }
 
+  ngOnChanges() {
+    this.getAllSpeakers();
+  }
+
   ngAfterViewInit(): void {
-    // todo: check why paginator and sort is not working
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {

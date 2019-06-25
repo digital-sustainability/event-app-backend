@@ -22,6 +22,10 @@ export class EventCreateComponent implements OnInit {
       .subscribe((events) => {
         console.log("new", events)
         this.router.navigate(['event']);
+        this.snackbar.open('Event wurde erfolgreich erstellt', '', {
+          duration: 3000,
+          panelClass: 'fail'
+        });
       }, (err) => {
         console.log('Error', err);
         this.snackbar.open('Event konnte nicht erstellt werden. Überprüfe alle Felder.', '', {

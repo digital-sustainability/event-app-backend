@@ -41,9 +41,13 @@ export class SpeakerEditComponent implements OnInit {
       .subscribe( (speakers) => {
         console.log("new", speakers);
         this.router.navigate(['speaker']);
+        this.snackbar.open('Speaker wurde erfolgreich geändert.', '', {
+          duration: 3000,
+          panelClass: 'fail'
+        });
       }, (err) => {
         console.log('Error', err);
-        this.snackbar.open('Speaker konnte nicht erstellt werden. Überprüfe alle Felder.', '', {
+        this.snackbar.open('Speaker konnte nicht geändert werden. Überprüfe alle Felder.', '', {
           duration: 3000,
           panelClass: 'fail'
         });

@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SessionService} from "../../shared/session.service";
 import {Session} from "../../shared/session/session";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material";
 import {config} from "rxjs/index";
 
@@ -13,7 +13,7 @@ import {config} from "rxjs/index";
 })
 export class SessionFormComponent implements OnInit, OnChanges {
 
-  @Output() submit: EventEmitter<Event> = new EventEmitter<Event>();
+  @Output() sessionSubmit: EventEmitter<Event> = new EventEmitter<Event>();
   @Input() session: Session;
   @Input() buttonTitle: string;
 
@@ -21,7 +21,7 @@ export class SessionFormComponent implements OnInit, OnChanges {
 
   sessionForm: FormGroup;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.sessionForm = new FormGroup( {
@@ -37,6 +37,12 @@ export class SessionFormComponent implements OnInit, OnChanges {
       'event_id': new FormControl('', [
         Validators.required
       ])
+    });
+
+    this.route.params.subscribe( (params) => {
+      this.sessionForm.patchValue({
+        event_id: params["event_id"]
+      });
     });
   }
 
@@ -59,28 +65,11 @@ export class SessionFormComponent implements OnInit, OnChanges {
       if (this.sessionForm.invalid) {
         return false;
       } else {
-        this.submit.emit(this.sessionForm.value);
+        this.sessionSubmit.emit(this.sessionForm.value);
       }
     }
 }
 
-/*  onSubmit():boolean {
-    if(this.sessionForm.invalid) {
-      return false;
-    } else {
-      this.sessionService.createSession(this.sessionForm.value)
-        .subscribe( (sessions) => {
-          console.log('new', sessions);
-          this.router.navigate(['/event/event-detail']);
-        }, (err) => {
-          console.log('Error', err);
-          this.snackbar.open('Session konnte nicht erstellt werden. Überprüfe alle Felder.', '',{
-            duration: 3000,
-            panelClass: 'fail'
-          });
-        });
-    }
-  }*/
 
 
 

@@ -4,6 +4,8 @@ import {Session} from "../../shared/session/session";
 import {MatSnackBar} from "@angular/material";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SessionService} from "../../shared/session.service";
+import {EventService} from "../../shared/event.service";
+import {Event} from "../../shared/event/event";
 
 @Component({
   selector: 'app-session-edit',
@@ -15,11 +17,13 @@ export class SessionEditComponent implements OnInit {
   private sub: Subscription;
   private session_id: number;
   private session: Session;
+  event: Event;
 
   constructor(private route: ActivatedRoute,
               private sessionService: SessionService,
               private router: Router,
-              private snackbar: MatSnackBar) { }
+              private snackbar: MatSnackBar,
+              private eventService: EventService) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe( params => {
@@ -31,16 +35,36 @@ export class SessionEditComponent implements OnInit {
           console.log(this.session);
         });
     });
+    this.getEventAndSessionForRouting();
+  }
 
+  getEventAndSessionForRouting() {
+    this.route.params.subscribe( (params) => {
+      this.eventService.getEventById(params["event_id"])
+        .subscribe( (event: any) => {
+          this.event = event;
+        })
+      this.sessionService.getSessionById(params["session_id"])
+        .subscribe( (session: any) => {
+          this.session = session;
+        })
+    })
   }
 
   submit(formData) {
     let session = formData;
     session.id = this.session_id;
+    session.event_id = session.event_id.id;
     this.sessionService.updateSession(session)
       .subscribe( (sessions) => {
         console.log("new", sessions);
-        this.router.navigate(['../']);
+        this.router.navigate(['../'], {
+          relativeTo: this.route
+        });
+        this.snackbar.open('Session wurde erfolgreich geändert.', '', {
+          duration: 3000,
+          panelClass: 'success'
+        });
       }, (err) => {
         console.log('Error', err);
         this.snackbar.open('Session konnte nicht geändert werden. Überprüfe alle Felder.', '', {

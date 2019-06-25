@@ -1,11 +1,11 @@
 <mat-card>
 <a routerLink="../../../">Event</a>
 <a> > </a>
-<a routerLink="../../">Eventdetail</a>
+<a routerLink="../../">{{event?.title}}</a>
 <a> > </a>
 <a>Session hinzufügen</a>
 <h1>
   Session erfassen
 </h1>
-<app-session-form (submit)="submit($event)" buttonTitle="Session hinzufügen"></app-session-form>
+<app-session-form (sessionSubmit)="submit($event)" buttonTitle="Session hinzufügen"></app-session-form>
 </mat-card>

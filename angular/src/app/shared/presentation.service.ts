@@ -33,6 +33,6 @@ export class PresentationService {
   }
 
   deletePresentation(id: number): Observable<Presentation> {
-    return this.http.delete<Presentation>(environment.apiURL + 'api/' + `event/${id}`);
+    return this.http.delete<Presentation>(environment.apiURL + 'api/' + `presentation/${id}`);
   }
 }

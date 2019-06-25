@@ -10,7 +10,7 @@ import {Event} from "../../shared/event/event";
 export class EventFormComponent implements OnInit, OnChanges {
 
 
-  @Output() submit: EventEmitter<Event> = new EventEmitter<Event>();
+  @Output() eventSubmit: EventEmitter<Event> = new EventEmitter<Event>();
   @Input() event: Event;
   @Input() buttonTitle: string;
 
@@ -73,7 +73,7 @@ export class EventFormComponent implements OnInit, OnChanges {
     if(this.eventForm.invalid) {
       return false;
     } else {
-      this.submit.emit(this.eventForm.value);
+      this.eventSubmit.emit(this.eventForm.value);
     }
   }
 

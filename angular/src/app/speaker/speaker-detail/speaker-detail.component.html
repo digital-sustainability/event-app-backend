@@ -1,7 +1,7 @@
 <mat-card>
 <a routerLink="../"> Speaker </a>
 <a> > </a>
-<a>{{speaker.first_name}} {{speaker.last_name}}</a>
+<a>{{speaker?.first_name}} {{speaker?.last_name}}</a>
   <h1>
   Speaker Detail
   </h1>
@@ -9,42 +9,42 @@
   <mat-list role="list">
     <mat-list-item role="listitem">
       <div class="listDescription"><b>ID: </b></div>
-      <div class="listItems">{{speaker.id}}</div>
+      <div class="listItems">{{speaker?.id}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item role="listitem">
       <div class="listDescription"><b>Vorname: </b></div>
-      <div class="listItems">{{speaker.first_name}}</div>
+      <div class="listItems">{{speaker?.first_name}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item role="listitem">
       <div class="listDescription"><b>Nachname:</b></div>
-      <div class="listItems">{{speaker.last_name}}</div>
+      <div class="listItems">{{speaker?.last_name}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item role="listitem">
       <div class="listDescription"><b>Email:</b></div>
-      <div class="listItems">{{speaker.email}}</div>
+      <div class="listItems">{{speaker?.email}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item role="listitem">
       <div class="listDescription"><b>Position: </b></div>
-      <div class="listItems">{{speaker.position}}</div>
+      <div class="listItems">{{speaker?.position}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item role="listitem">
       <div class="listDescription"><b>Organisation: </b></div>
-      <div class="listItems">{{speaker.organization}}</div>
+      <div class="listItems">{{speaker?.organization}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item class="longListItemStyle" role="listitem">
       <div class="listDescription"><b>Kurzbiographie: </b></div>
-      <div class="listItems">{{speaker.short_bio}}</div>
+      <div class="listItems">{{speaker?.short_bio}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item role="listitem">
       <div class="listDescription"><b>Foto URL: </b></div>
-      <div class="listItems">{{speaker.photo_url}}</div>
+      <div class="listItems">{{speaker?.photo_url}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item>

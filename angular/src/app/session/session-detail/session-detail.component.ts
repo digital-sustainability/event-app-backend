@@ -2,6 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Session} from "../../shared/session/session";
 import {SessionService} from "../../shared/session.service";
+import {EventService} from "../../shared/event.service";
+import {Event} from "../../shared/event/event";
 
 @Component({
   selector: 'app-session-detail',
@@ -13,10 +15,12 @@ export class SessionDetailComponent implements OnInit, OnDestroy {
   session_id: number;
   session: Session;
   private sub: any;
+  event: Event;
 
   constructor(
     private sessionService: SessionService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private eventService: EventService) {
   }
 
   /**
@@ -31,6 +35,12 @@ export class SessionDetailComponent implements OnInit, OnDestroy {
           console.log(this.session);
         });
     });
+    this.route.params.subscribe( (params) => {
+      this.eventService.getEventById(params["event_id"])
+        .subscribe( (event: any) => {
+          this.event = event;
+        })
+    })
 
   }
 

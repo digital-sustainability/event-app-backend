@@ -9,7 +9,7 @@ import {Speaker} from "../../shared/speaker/speaker";
 })
 export class SpeakerFormComponent implements OnInit {
 
-  @Output() submit: EventEmitter<Speaker> = new EventEmitter<Speaker>();
+  @Output() speakerSubmit: EventEmitter<Speaker> = new EventEmitter<Speaker>();
   @Input() speaker: Speaker;
   @Input() buttonTitle: string;
 
@@ -68,7 +68,7 @@ export class SpeakerFormComponent implements OnInit {
     if(this.speakerForm.invalid) {
       return false;
     } else {
-      this.submit.emit(this.speakerForm.value);
+      this.speakerSubmit.emit(this.speakerForm.value);
     }
   }
 

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Presentation} from "../../shared/presenation/presentation";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-presenation-form',
@@ -9,14 +10,14 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class PresenationFormComponent implements OnInit {
 
-  @Output() submit: EventEmitter<Event> = new EventEmitter<Event>();
+  @Output() presentationSubmit: EventEmitter<Event> = new EventEmitter<Event>();
   @Input() buttonTitle: string;
 
   @Input() presentation: Presentation;
 
   presentationForm: FormGroup;
 
-  constructor(
+  constructor(private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -46,6 +47,12 @@ export class PresenationFormComponent implements OnInit {
         Validators.required
       ])
     });
+
+    this.route.params.subscribe( (params) => {
+      this.presentationForm.patchValue({
+        session_id: params["session_id"]
+      });
+    });
   }
 
   initInputs() {
@@ -70,7 +77,7 @@ export class PresenationFormComponent implements OnInit {
     if(this.presentationForm.invalid) {
       return false;
     } else {
-      this.submit.emit(this.presentationForm.value);
+      this.presentationSubmit.emit(this.presentationForm.value);
     }
   }
 }

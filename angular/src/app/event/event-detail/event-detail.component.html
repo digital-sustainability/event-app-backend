@@ -1,58 +1,58 @@
 <mat-card>
 <a routerLink="../">Event</a>
 <a> > </a>
-<a>{{event.title}}</a>
+<a>{{event?.title}}</a>
 <h1>
   Event Detail Ansicht
 </h1>
 <mat-card style="margin: 5%">
 <h1>
-  Event Detail Ansicht <b>"{{event.title}}"</b>
+  Event Detail Ansicht <b>"{{event?.title}}"</b>
 </h1>
   <mat-list role="list">
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>ID: </b></div>
-      <div style="width: 90%">{{event.id}}</div>
+      <div style="width: 90%">{{event?.id}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>Titel: </b></div>
-      <div style="width: 90%">{{event.title}}</div>
+      <div style="width: 90%">{{event?.title}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>Beschreibung:</b></div>
-      <div style="width: 90%">{{event.description}}</div>
+      <div style="width: 90%">{{event?.description}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>Ort:</b></div>
-      <div style="width: 90%">{{event.location}}</div>
+      <div style="width: 90%">{{event?.location}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>Beginn: </b></div>
-      <div style="width: 90%">{{event.start}}</div>
+      <div style="width: 90%">{{event?.start}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>Ende: </b></div>
-      <div style="width: 90%">{{event.end}}</div>
+      <div style="width: 90%">{{event?.end}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>Bildadresse: </b></div>
-      <div style="width: 90%">{{event.image_path}}</div>
+      <div style="width: 90%">{{event?.image_path}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>URL: </b></div>
-      <div style="width: 90%">{{event.url}}</div>
+      <div style="width: 90%">{{event?.url}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>URL Label: </b></div>
-      <div style="width: 90%">{{event.url_label}}</div>
+      <div style="width: 90%">{{event?.url_label}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item>

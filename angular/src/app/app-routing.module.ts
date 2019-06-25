@@ -33,9 +33,8 @@ import {PresentationCreateComponent} from "./presentation/presentation-create/pr
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: EventComponent,
     pathMatch: 'full',
-    data: {state: 'home'}
   },
   {
     path: 'login',

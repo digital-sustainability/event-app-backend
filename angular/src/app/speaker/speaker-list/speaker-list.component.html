@@ -10,48 +10,48 @@
     <!-- Position Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      <td mat-cell *matCellDef="let element"> {{element?.id}} </td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="first_name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname </th>
-      <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
+      <td mat-cell *matCellDef="let element"> {{element?.first_name}} </td>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="last_name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Nachname </th>
-      <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
+      <td mat-cell *matCellDef="let element"> {{element?.last_name}} </td>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="email">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      <td mat-cell *matCellDef="let element"> {{element?.email}} </td>
     </ng-container>
 
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Position </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        <td mat-cell *matCellDef="let element"> {{element?.position}} </td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="organization">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Organisation </th>
-        <td mat-cell *matCellDef="let element"> {{element.organization}} </td>
+        <td mat-cell *matCellDef="let element"> {{element?.organization}} </td>
       </ng-container>
 
       <!-- Weight Column -->
       <ng-container matColumnDef="image_path">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Bild URL </th>
-        <td mat-cell *matCellDef="let element"> {{element.image_path}} </td>
+        <td mat-cell *matCellDef="let element"> {{element?.image_path}} </td>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="short_bio">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Kurzbiografie </th>
-        <td mat-cell *matCellDef="let element"> {{element.short_bio}} </td>
+        <td mat-cell *matCellDef="let element"> {{element?.short_bio}} </td>
       </ng-container>
 
       <ng-container matColumnDef="details">
