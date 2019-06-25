@@ -16,7 +16,7 @@ export class SessionEditComponent implements OnInit {
 
   private sub: Subscription;
   private session_id: number;
-  private session: Session;
+  session: Session;
   event: Event;
 
   constructor(private route: ActivatedRoute,

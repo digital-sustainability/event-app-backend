@@ -14,7 +14,7 @@ export class EventEditComponent implements OnInit {
 
   private sub: Subscription;
   private event_id: number;
-  private event: Event;
+  event: Event;
 
   constructor(private route: ActivatedRoute,
               private eventService: EventService,

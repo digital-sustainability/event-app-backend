@@ -14,7 +14,7 @@ export class SpeakerEditComponent implements OnInit {
 
   private sub: Subscription;
   private speaker_id: number;
-  private speaker: Speaker;
+  speaker: Speaker;
 
   constructor(private route: ActivatedRoute,
               private speakerService: SpeakerService,

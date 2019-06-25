@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {EventService} from "../../shared/event.service";
 import {SessionService} from "../../shared/session.service";
 import {Session} from "../../shared/session/session";
+import {Event} from "../../shared/event/event";
 
 @Component({
   selector: 'app-presentation-create',

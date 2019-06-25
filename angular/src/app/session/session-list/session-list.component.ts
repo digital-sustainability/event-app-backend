@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog, MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from "@angular/material";
 import {DeleteDialogComponent} from "../../shared/delete-dialog/delete-dialog.component";
 import {EventService} from "../../shared/event.service";
+import {Event} from "../../shared/event/event";
 
 @Component({
   selector: 'app-session-list',

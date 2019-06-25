@@ -18,7 +18,7 @@ export class PresentationEditComponent implements OnInit {
 
   private sub: Subscription;
   private presentation_id: number;
-  private presentation: Presentation;
+  presentation: Presentation;
   event: Event;
   session:Session;
 

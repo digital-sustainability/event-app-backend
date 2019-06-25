@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {EventService} from "../../shared/event.service";
 import {SessionService} from "../../shared/session.service";
 import {Session} from "../../shared/session/session";
+import {Event} from "../../shared/event/event";
 
 @Component({
   selector: 'app-presentation-detail',
@@ -34,22 +35,22 @@ export class PresentationDetailComponent implements OnInit, OnDestroy {
         });
     });
     this.getEventAndSessionForRouting();
-  }
+  };
 
   getEventAndSessionForRouting() {
     this.route.params.subscribe( (params) => {
       this.eventService.getEventById(params["event_id"])
         .subscribe( (event: any) => {
           this.event = event;
-        })
+        });
       this.sessionService.getSessionById(params["session_id"])
         .subscribe( (session: any) => {
           this.session = session;
-        })
-    })
-  }
+        });
+    });
+  };
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-  }
+  };
 }
