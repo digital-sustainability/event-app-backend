@@ -18,6 +18,9 @@ export class EventFormComponent implements OnInit, OnChanges {
 
   constructor() { }
 
+  /**
+   * Creates the form with its validations
+   */
   ngOnInit() {
     this.eventForm = new FormGroup({
       'title': new FormControl('', [
@@ -50,6 +53,9 @@ export class EventFormComponent implements OnInit, OnChanges {
     });
   }
 
+  /**
+   * Gets the Inputs for the Form for Edit
+   */
   initInputs() {
     this.eventForm.get('title').setValue(this.event.title);
     this.eventForm.get('description').setValue(this.event.description);
@@ -62,6 +68,11 @@ export class EventFormComponent implements OnInit, OnChanges {
     this.eventForm.get('published').setValue(this.event.published);
   }
 
+  /**
+   * If the Event is not the same anymore then update the values of the Form
+   *
+   * @param {SimpleChanges} changes
+   */
   ngOnChanges(changes: SimpleChanges): void {
     if(changes.event && changes.event.currentValue &&
       changes.event.previousValue !== changes.event.currentValue) {
@@ -69,6 +80,12 @@ export class EventFormComponent implements OnInit, OnChanges {
     }
   }
 
+  /**
+   * Checks if the EventForm is valid or not
+   * Submit the data if the EventForm is valid
+   *
+   * @returns {boolean}
+   */
   onSubmit() {
     if(this.eventForm.invalid) {
       return false;

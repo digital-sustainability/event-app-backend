@@ -1,60 +1,73 @@
 <mat-card>
+<!-- Navigation on top of the site -->
 <a routerLink="../">Event</a>
 <a> > </a>
 <a>{{event?.title}}</a>
+<!-- Site Title -->
 <h1>
   Event Detail Ansicht
 </h1>
 <mat-card style="margin: 5%">
+<!-- Card Title -->
 <h1>
   Event Detail Ansicht <b>"{{event?.title}}"</b>
 </h1>
   <mat-list role="list">
+    <!-- Event ID -->
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>ID: </b></div>
       <div style="width: 90%">{{event?.id}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
+    <!-- Event Title -->
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>Titel: </b></div>
       <div style="width: 90%">{{event?.title}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
+    <!-- Event Description -->
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>Beschreibung:</b></div>
       <div style="width: 90%">{{event?.description}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
+    <!-- Event Location -->
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>Ort:</b></div>
       <div style="width: 90%">{{event?.location}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
+    <!-- Event Start, only works in Chrome -->
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>Beginn: </b></div>
       <div style="width: 90%">{{event?.start}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
+    <!-- Event End, only works in Chrome -->
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>Ende: </b></div>
       <div style="width: 90%">{{event?.end}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
+    <!-- Image Path, points on a side, where the image can be gotten -->
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>Bildadresse: </b></div>
       <div style="width: 90%">{{event?.image_path}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
+    <!-- URL of the Event -->
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>URL: </b></div>
       <div style="width: 90%">{{event?.url}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
+    <!-- Event URL Label -->
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>URL Label: </b></div>
       <div style="width: 90%">{{event?.url_label}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
+    <!-- Button that directs to the Event Edit Component where the Event can be edited -->
     <mat-list-item>
       <button mat-icon-button color="accent" [routerLink]="['edit/']">
           <mat-icon class="mat-18">system_update</mat-icon>
@@ -62,9 +75,12 @@
     </mat-list-item>
     <mat-divider></mat-divider>
   </mat-list>
+  <!-- Button that directs to the Event Create Component to add new Events -->
   <button style="margin-top: 10px;" mat-raised-button color="primary" routerLink="sessions/create">Session hinzufügen</button>
 </mat-card>
 
+<!-- Shows a list of all sessions of this Event, directs to the Session-List Component
+      passes the event_id -->
 <mat-card style="margin: 5%">
   <app-session-list [eventId]="event_id"></app-session-list>
 </mat-card>

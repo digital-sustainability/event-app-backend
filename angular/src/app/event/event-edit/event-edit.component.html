@@ -1,11 +1,14 @@
 <mat-card>
-<a routerLink="../../">Events</a>
-<a> > </a>
-<a routerLink="../">{{event?.title}}</a>
-<a> > </a>
-<a>{{event?.title}} anpassen</a>
-<h1>Event anpassen</h1>
+  <!-- Navigation on top of the Site -->
+  <a routerLink="../../">Events</a>
+  <a> > </a>
+  <a routerLink="../">{{event?.title}}</a>
+  <a> > </a>
+  <a>{{event?.title}} anpassen</a>
+  <!-- Site Title -->
+  <h1>Event anpassen</h1>
+  <!-- Get's the data of the chosen Event and fills it in the Event Form -->
   <app-event-form [event]="event" (eventSubmit)="submit($event)" buttonTitle="Event anpassen"></app-event-form>
-  </mat-card>
+</mat-card>
 
 

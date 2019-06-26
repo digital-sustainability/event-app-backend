@@ -17,6 +17,14 @@ export class EventCreateComponent implements OnInit {
 
   ngOnInit() {}
 
+  /**
+   * Writes the formData into the database
+   * Opens a Snackbar for success and fail where it shows if the speaker was created
+   * or there was an Error and the data could not be written in the database
+   * @param formData
+   *
+   * uses the EventService, the Router and the MatSnackBar
+   */
   submit(formData: any) {
     this.eventService.createEvent(formData)
       .subscribe((events) => {

@@ -20,6 +20,11 @@ export class PresenationFormComponent implements OnInit {
   constructor(private route: ActivatedRoute
   ) { }
 
+  /**
+   * Generates the FormGroup with its validations
+   *
+   * Gets the session ID from the URL
+   */
   ngOnInit() {
     this.presentationForm = new FormGroup({
       'title': new FormControl('', [
@@ -55,6 +60,9 @@ export class PresenationFormComponent implements OnInit {
     });
   }
 
+  /**
+   * Gets the Elements for the PresentationEdit Component
+   */
   initInputs() {
     this.presentationForm.get('title').setValue(this.presentation.title);
     this.presentationForm.get('abstract').setValue(this.presentation.abstract);
@@ -66,6 +74,11 @@ export class PresenationFormComponent implements OnInit {
     this.presentationForm.get('session_id').setValue(this.presentation.session_id);
   }
 
+  /**
+   * Changes the Values of the Form if the Presentation changes
+   *
+   * @param {SimpleChanges} changes
+   */
   ngOnChanges(changes: SimpleChanges): void {
     if(changes.presentation && changes.presentation.currentValue &&
       changes.presentation.previousValue !== changes.presentation.currentValue) {
@@ -73,6 +86,11 @@ export class PresenationFormComponent implements OnInit {
     }
   }
 
+  /**
+   * Submits the data if the Form is valid
+   *
+   * @returns {boolean}
+   */
   onSubmit() {
     if(this.presentationForm.invalid) {
       return false;

@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/index";
 import { environment } from "../../environments/environment";
-import {PresenationFormComponent} from "../presentation/presenation-form/presenation-form.component";
-import {observableToBeFn} from "rxjs/internal/testing/TestScheduler";
 import {Presentation} from "./presenation/presentation";
 
 

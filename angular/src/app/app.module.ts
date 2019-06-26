@@ -24,7 +24,7 @@ import { SpeakerComponent } from './speaker/speaker.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { EventListComponent } from './event/event-list/event-list.component';
 import {
-  DateAdapter,
+  DateAdapter, MatAutocomplete, MatAutocompleteModule,
   MatDatepicker, MatDatepickerModule, MatDialogModule,
   MatInputModule, MatNativeDateModule,
   MatPaginatorModule,
@@ -51,6 +51,7 @@ import { SessionCreateComponent } from './session/session-create/session-create.
 import { SpeakerEditComponent } from './speaker/speaker-edit/speaker-edit.component';
 import { SpeakerCreateComponent } from './speaker/speaker-create/speaker-create.component';
 import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.component';
+import { PresentationSpeakerComponent } from './presentation-speaker/presentation-speaker.component';
 
 
 
@@ -93,6 +94,7 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     SpeakerEditComponent,
     SpeakerCreateComponent,
     DeleteDialogComponent,
+    PresentationSpeakerComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,7 +111,8 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
-    MatDialogModule
+    MatDialogModule,
+    MatAutocompleteModule
   ],
   providers: [
     {

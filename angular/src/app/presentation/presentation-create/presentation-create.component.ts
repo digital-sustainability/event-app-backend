@@ -28,6 +28,9 @@ export class PresentationCreateComponent implements OnInit {
     this.getEventAndSessionForRouting();
   }
 
+  /**
+   * Gets the Session and Event ID from the URL for the Navigation
+   */
   getEventAndSessionForRouting() {
     this.route.params.subscribe( (params) => {
       this.eventService.getEventById(params["event_id"])
@@ -41,6 +44,15 @@ export class PresentationCreateComponent implements OnInit {
     })
   }
 
+  /**
+   * Creates a new Presentation with the formData
+   *
+   * Opens a MatSnackBar to show if the Presentation was created successfully or failed
+   *
+   * Navigates to the Presentation List
+   *
+   * @param formData
+   */
   submit(formData: any) {
     this.presentationService.createPresentation(formData)
       .subscribe((presentations) => {

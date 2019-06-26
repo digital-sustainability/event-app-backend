@@ -1,10 +1,13 @@
 <mat-card>
+<!-- Navigation on top of the site -->
 <a routerLink="../">Event</a>
 <a> > </a>
 <a>Event hinzufügen</a>
+<!-- Title of Site -->
 <h1>
   Event erfassen
 </h1>
+<!-- Navigates to the Speakerform with the fields, that a speaker can be created -->
 <app-event-form (eventSubmit)="submit($event)" buttonTitle="Event hinzufügen"></app-event-form>
 </mat-card>
 

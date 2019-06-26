@@ -1,4 +1,5 @@
 <mat-card>
+  <!-- Navigation on top of the site -->
   <a routerLink="../../../../../../">Event</a>
   <a> > </a>
   <a routerLink="../../../../../">{{event.title}}</a>
@@ -8,8 +9,10 @@
   <a routerLink="../">{{presentation.title}}</a>
   <a> > </a>
   <a>{{presentation.title}} anpasssen</a>
+  <!-- Site Title -->
   <h1>
   Präsentation anpassen
   </h1>
+  <!-- Opens the PresentationForm with the data of the selected Presentation -->
   <app-presenation-form [presentation]="presentation" (presentationSubmit)="submit($event)" buttonTitle="Präsentation anpassen"></app-presenation-form>
 </mat-card>

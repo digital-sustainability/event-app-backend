@@ -29,6 +29,11 @@ export class PresentationEditComponent implements OnInit {
               private eventService: EventService,
               private sessionService: SessionService) { }
 
+  /**
+   * Gets the presentation by its ID
+   *
+   * Uses Presentation Service
+    */
   ngOnInit() {
     this.sub = this.route.params.subscribe( params => {
       this.presentation_id = params['presentation_id'];
@@ -42,6 +47,11 @@ export class PresentationEditComponent implements OnInit {
     this.getEventAndSessionForRouting();
   }
 
+  /**
+   * Get the Event and Session ID from the URL for the Navigation
+   *
+   * Uses Event and Session Service
+   */
   getEventAndSessionForRouting() {
     this.route.params.subscribe( (params) => {
       this.eventService.getEventById(params["event_id"])
@@ -55,6 +65,16 @@ export class PresentationEditComponent implements OnInit {
     })
   }
 
+  /**
+   * Writes the Data of the selected Presentation in the Form and tracks changes
+   *
+   * Updates the data when submitted
+   *
+   * Opens a MatSnackBar to show if the Presentation was changed successfully or the editing failed
+   *
+   * Uses presentationService, Router
+   * @param formData
+   */
   submit(formData) {
     let presentation = formData;
     presentation.id = this.presentation_id;

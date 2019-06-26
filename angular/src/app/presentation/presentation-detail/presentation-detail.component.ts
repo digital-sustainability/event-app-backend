@@ -25,6 +25,9 @@ export class PresentationDetailComponent implements OnInit, OnDestroy {
               private eventService: EventService,
               private sessionService: SessionService) { }
 
+  /**
+   * Gets the presentation by its ID
+    */
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.presentation_id = params['presentation_id'];
@@ -37,6 +40,9 @@ export class PresentationDetailComponent implements OnInit, OnDestroy {
     this.getEventAndSessionForRouting();
   };
 
+  /**
+   * Gets the Event and Session ID from the URL for the Navigation
+   */
   getEventAndSessionForRouting() {
     this.route.params.subscribe( (params) => {
       this.eventService.getEventById(params["event_id"])
@@ -50,6 +56,9 @@ export class PresentationDetailComponent implements OnInit, OnDestroy {
     });
   };
 
+  /**
+   * Unsubscribe from the presentation
+   */
   ngOnDestroy() {
     this.sub.unsubscribe();
   };

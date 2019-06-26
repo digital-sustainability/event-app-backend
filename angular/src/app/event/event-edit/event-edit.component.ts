@@ -21,6 +21,11 @@ export class EventEditComponent implements OnInit {
               private router: Router,
               private snackbar: MatSnackBar) { }
 
+  /**
+   * Gets an Event by its ID
+   *
+   * Uses EventService and ActivatedRoute
+    */
   ngOnInit() {
     this.sub = this.route.params.subscribe( params => {
       this.event_id = params['event_id'];
@@ -34,6 +39,15 @@ export class EventEditComponent implements OnInit {
 
   }
 
+  /**
+   * Writes the elements of the chosen Event in the Event Form
+   * Updates the Event when the Form is changed
+   * Opens a Snackbar that shows if the Event could be changed successfully or the editing failed
+   *
+   * Uses the EventService, the MatSnackBar and the Router
+   *
+   * @param formData
+   */
   submit(formData) {
     let event = formData;
     event.id = this.event_id;

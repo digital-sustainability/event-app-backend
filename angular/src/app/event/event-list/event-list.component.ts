@@ -34,9 +34,12 @@ export class EventListComponent implements OnInit {
     this.getAllEvents();
   }
 
-  ngAfterViewInit(): void {
-  }
-
+  /**
+   * Filters the Events
+   * Ignores higher case letters
+   *
+   * @param {string} filterValue
+   */
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -45,6 +48,12 @@ export class EventListComponent implements OnInit {
     }
   }
 
+  /**
+   * Get all the Events that exists
+   *
+   * Uses the EventService and creates the MatTableDataSource
+   * for the table view
+   */
   getAllEvents() {
     this.eventService.getEvents()
       .subscribe((events) => {
@@ -56,7 +65,15 @@ export class EventListComponent implements OnInit {
       });
   }
 
-  // todo: confirmation before deleting something
+  /**
+   * Deletes the Event if someone clicks on delete and presses
+   * yes on the Dialog
+   *
+   * Opens a Snackbar that shows if the Event has been deleted successfully or
+   * there was an error
+   *
+   * @param id
+   */
   private deleteEventById(id) {
     this.eventService.deleteEvent(id)
       .subscribe((event) => {
@@ -75,11 +92,15 @@ export class EventListComponent implements OnInit {
       });
   }
 
+  /**
+   * Opens a dialog to check if the user is sure to delete this Event
+   *
+   * @param {Event} event
+   */
   openDeleteDialog(event: Event) {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       data: {title: `${event.title}`}
     });
-
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
         this.deleteEventById(event.id);

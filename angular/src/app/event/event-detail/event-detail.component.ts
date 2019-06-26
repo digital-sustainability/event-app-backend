@@ -18,6 +18,10 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     private eventService: EventService,
     private route: ActivatedRoute) { }
 
+  /**
+   * Gets an Event by it's ID
+   * Uses the EventService and the ActivatedRoute
+    */
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.event_id = params['event_id'];
@@ -29,6 +33,9 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * Unsubscribe from the Events
+   */
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
