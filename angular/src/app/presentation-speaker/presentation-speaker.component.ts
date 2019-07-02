@@ -19,7 +19,7 @@ export class PresentationSpeakerComponent {
 
   @Input() presentation: Presentation;
   speakers: Speaker[] = [];
-  private speakerForm = new FormControl();
+  speakerForm = new FormControl();
   filteredSpeakers: Observable<Speaker[] | string[]>;
 
   visible = true;
@@ -62,9 +62,9 @@ export class PresentationSpeakerComponent {
       const value = event.value;
 
       // Add our fruit
-      if ((value || '').trim()) {
+/*      if ((value || '').trim()) {
         this.speakers.push(value);
-      }
+      }*/
 
       // Reset the input value
       if (input) {
