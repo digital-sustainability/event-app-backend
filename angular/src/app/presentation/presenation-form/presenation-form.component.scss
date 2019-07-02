@@ -18,3 +18,8 @@
 .mat-card-title {
   margin-top: 10px !important;
 }
+
+mat-form-field[hidden] {
+  display: none;
+}
+

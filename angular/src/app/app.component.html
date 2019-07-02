@@ -2,7 +2,7 @@
 <mat-toolbar color="primary">
   <span>Welcome to {{title}}<span *ngIf="authenticatedUser">&nbsp;{{ authenticatedUser.first_name }} {{authenticatedUser.last_name}}</span>!</span>
   <div fxFlex="1 1 auto"></div>
-  <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+  <!--<a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>-->
   <!-- <a *ngIf="!authenticated" mat-button routerLink="/register" routerLinkActive="active">Register</a> -->
   <a *ngIf="!authenticated" mat-button routerLink="/login" routerLinkActive="active">Login</a>
   <a *ngIf="!authenticated" mat-button routerLink="/register" routerLinkActive="active">Register</a>

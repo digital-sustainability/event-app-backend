@@ -1,0 +1,9 @@
+<mat-card>
+<a routerLink="../../">Speaker</a>
+<a> > </a>
+<a routerLink="../">{{speaker?.first_name}} {{speaker?.last_name}}</a>
+<a> > </a>
+<a>{{speaker?.first_name}} {{speaker?.last_name}} anpassen</a>
+  <mat-card-title class="marginForTitle">Speaker anpassen</mat-card-title>
+  <app-speaker-form [speaker]="speaker" (speakerSubmit)="submit($event)" buttonTitle="Speaker anpassen"></app-speaker-form>
+  </mat-card>

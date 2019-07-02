@@ -1,9 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {EventService} from "../../shared/event.service";
-import {MatSnackBar} from "@angular/material";
-import {Router, NavigationExtras} from "@angular/router";
-import {AuthService} from "../../shared/auth/auth.service";
 import {Event} from "../../shared/event/event";
 
 @Component({
@@ -11,18 +7,20 @@ import {Event} from "../../shared/event/event";
   templateUrl: './event-form.component.html',
   styleUrls: ['./event-form.component.scss']
 })
-export class EventFormComponent implements OnInit {
-  @Input() events: Event[];
+export class EventFormComponent implements OnInit, OnChanges {
+
+
+  @Output() eventSubmit: EventEmitter<Event> = new EventEmitter<Event>();
+  @Input() event: Event;
+  @Input() buttonTitle: string;
 
   eventForm: FormGroup;
 
-  constructor(
-    private authService: AuthService,
-    private eventService: EventService,
-    private router: Router,
-    private snackbar: MatSnackBar
-  ) { }
+  constructor() { }
 
+  /**
+   * Creates the form with its validations
+   */
   ngOnInit() {
     this.eventForm = new FormGroup({
       'title': new FormControl('', [
@@ -55,22 +53,45 @@ export class EventFormComponent implements OnInit {
     });
   }
 
-  onSubmit():boolean {
+  /**
+   * Gets the Inputs for the Form for Edit
+   */
+  initInputs() {
+    this.eventForm.get('title').setValue(this.event.title);
+    this.eventForm.get('description').setValue(this.event.description);
+    this.eventForm.get('start').setValue(this.event.start);
+    this.eventForm.get('end').setValue(this.event.end);
+    this.eventForm.get('location').setValue(this.event.location);
+    this.eventForm.get('image_path').setValue(this.event.image_path);
+    this.eventForm.get('url').setValue(this.event.url);
+    this.eventForm.get('url_label').setValue(this.event.url_label);
+    this.eventForm.get('published').setValue(this.event.published);
+  }
+
+  /**
+   * If the Event is not the same anymore then update the values of the Form
+   *
+   * @param {SimpleChanges} changes
+   */
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes.event && changes.event.currentValue &&
+      changes.event.previousValue !== changes.event.currentValue) {
+      this.initInputs();
+    }
+  }
+
+  /**
+   * Checks if the EventForm is valid or not
+   * Submit the data if the EventForm is valid
+   *
+   * @returns {boolean}
+   */
+  onSubmit() {
     if(this.eventForm.invalid) {
       return false;
     } else {
-      this.eventService.createEvent(this.eventForm.value)
-        .subscribe((events) => {
-          console.log("new", events)
-          this.router.navigate(['event']);
-        }, (err) => {
-          console.log('Error', err);
-          this.snackbar.open('Event konnte nicht erstellt werden. Überprüfe alle Felder.', '', {
-            duration: 3000,
-            panelClass: 'fail'
-          });
-        });
-      }
+      this.eventSubmit.emit(this.eventForm.value);
+    }
   }
 
 }
