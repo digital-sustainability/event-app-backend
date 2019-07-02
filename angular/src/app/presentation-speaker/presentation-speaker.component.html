@@ -6,13 +6,13 @@
       [selectable]="selectable"
       [removable]="removable"
       (removed)="remove(speaker)">
-      {{speaker.first_name}} {{speaker.last_name}} , {{speaker.organization}}
+      {{speaker.first_name}} {{speaker.last_name}}, {{speaker.organization}}
       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
     </mat-chip>
     <input
       placeholder="Neuer Speaker hinzufügen"
       #fruitInput
-      [formControl]="fruitCtrl"
+      [formControl]="speakerForm"
       [matAutocomplete]="auto"
       [matChipInputFor]="chipList"
       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
@@ -20,8 +20,9 @@
       (matChipInputTokenEnd)="add($event)">
   </mat-chip-list>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-    <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-      {{fruit}}
+    <mat-option *ngFor="let speaker of filteredSpeakers | async" [value]="speaker"
+   >
+      {{speaker.first_name}} {{speaker.last_name}}, {{speaker.organization}}
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>

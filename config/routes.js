@@ -28,6 +28,8 @@ module.exports.routes = {
     skipRegex: /^(\/api)|(\/__getcookie)/
   },
 
+  'post /api/presentationSpeaker/destroy': 'presentationspeaker/destroy',
+
   /**
    * Enable CSRF in security config settings
    */

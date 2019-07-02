@@ -29,7 +29,7 @@ export class PresentationSpeakerService {
     return this.http.patch<PresentationSpeaker>(environment.apiURL + `api/presentationSpeaker/${presentationSpeaker.id}`, presentationSpeaker);
   };
 
-  deletePresentationSpeaker(id: number): Observable<PresentationSpeaker> {
-    return this.http.delete<PresentationSpeaker>(environment.apiURL + 'api/' + `presentationSpeaker/${id}`);
+  deletePresentationSpeaker(value: any): Observable<PresentationSpeaker> {
+    return this.http.post<PresentationSpeaker>(environment.apiURL + 'api/' + `presentationSpeaker/destroy`, value);
   };
 }

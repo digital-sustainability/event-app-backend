@@ -76,26 +76,40 @@ export class PresentationEditComponent implements OnInit {
    * @param formData
    */
   submit(formData) {
+    let presentation = this.preparePresentation(formData);
+    this.presentationService.updatePresentation(presentation)
+      .subscribe( (presentation) => {
+        this.successCallback(presentation);
+      }, (err) => {
+        this.errorCallback(err);
+      });
+  }
+
+  preparePresentation(formData) {
     let presentation = formData;
     presentation.id = this.presentation_id;
     presentation.session_id = presentation.session_id.id;
-    this.presentationService.updatePresentation(presentation)
-      .subscribe( (presentations) => {
-        console.log("new", presentations);
-        this.router.navigate(['../../'], {
-          relativeTo: this.route
-        });
-        this.snackbar.open('Präsentation wurde erfolgreich geändert.', '', {
-          duration: 3000,
-          panelClass: 'fail'
-        });
-      }, (err) => {
-        console.log('Error', err);
-        this.snackbar.open('Präsentation konnte nicht geändert werden. Überprüfe alle Felder.', '', {
-          duration: 3000,
-          panelClass: 'fail'
-        });
-      });
+    return presentation;
   }
+
+  successCallback(presentation) {
+    console.log("new", presentation);
+    this.router.navigate(['../../'], {
+      relativeTo: this.route
+    });
+    this.snackbar.open('Präsentation wurde erfolgreich geändert.', '', {
+      duration: 3000,
+      panelClass: 'success'
+    });
+  }
+
+  errorCallback(err) {
+    console.log('Error', err);
+    this.snackbar.open('Präsentation konnte nicht geändert werden. Überprüfe alle Felder.', '', {
+      duration: 3000,
+      panelClass: 'fail'
+    });
+  }
+
 
 }

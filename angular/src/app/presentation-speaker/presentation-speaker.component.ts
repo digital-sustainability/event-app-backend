@@ -7,6 +7,8 @@ import {map, startWith} from 'rxjs/operators';
 import {Presentation} from "../shared/presenation/presentation";
 import {Speaker} from "../shared/speaker/speaker";
 import {SpeakerService} from "../shared/speaker.service";
+import {PresentationSpeakerService} from "../shared/presentation-speaker.service";
+import {DeleteDialogComponent} from "../shared/delete-dialog/delete-dialog.component";
 
 @Component({
   selector: 'app-presentation-speaker',
@@ -16,9 +18,9 @@ import {SpeakerService} from "../shared/speaker.service";
 export class PresentationSpeakerComponent {
 
   @Input() presentation: Presentation;
-  speakers: Speaker[];
+  speakers: Speaker[] = [];
   private speakerForm = new FormControl();
-  filteredSpeakers: Observable<Speaker[]>;
+  filteredSpeakers: Observable<Speaker[] | string[]>;
 
   visible = true;
   selectable = true;
@@ -33,15 +35,9 @@ export class PresentationSpeakerComponent {
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
-  constructor(private speakerService: SpeakerService) {
-    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
-      startWith(null),
-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
-
-    this.filteredSpeakers = this.speakerForm.valueChanges.pipe(
-      startWith(null),
-      map((speaker: string | null) => speaker ? this._filter(speaker) : this.speakers.slice())
-    );
+  constructor(private speakerService: SpeakerService,
+              private presentationSpeakerService: PresentationSpeakerService,) {
+    this.getAllSpeakers();
 
   }
 
@@ -49,8 +45,12 @@ export class PresentationSpeakerComponent {
     this.speakerService.getSpeakers()
       .subscribe((speakers) => {
         console.log("alle Speakers", speakers);
-        this.speakers = speakers;
+        //this.speakers = speakers;
         console.log("speakers", this.speakers);
+        this.filteredSpeakers = this.speakerForm.valueChanges.pipe(
+          startWith(null),
+          map((value: string | null) => value ? this._filter(speakers, value) : speakers.slice())
+        );
       })
   }
 
@@ -63,7 +63,7 @@ export class PresentationSpeakerComponent {
 
       // Add our fruit
       if ((value || '').trim()) {
-        this.fruits.push(value.trim());
+        this.speakers.push(value);
       }
 
       // Reset the input value
@@ -71,27 +71,45 @@ export class PresentationSpeakerComponent {
         input.value = '';
       }
 
-      this.fruitCtrl.setValue(null);
+      this.speakerForm.setValue(null);
     }
   }
 
-  remove(fruit: string): void {
-    const index = this.fruits.indexOf(fruit);
+  remove(speaker: Speaker): void {
+      this.presentationSpeakerService.deletePresentationSpeaker({
+        presentation_id: this.presentation.id,
+        speaker_id: speaker.id
+      }).subscribe((presentationSpeaker) => {
+        let index = this.presentation.speakers.indexOf(speaker);
+        this.presentation.speakers.splice(index, 1);
+        console.log('delete presentationspeaker', presentationSpeaker);
+      })
 
-    if (index >= 0) {
-      this.fruits.splice(index, 1);
-    }
+
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.fruits.push(event.option.viewValue);
+    this.presentation.speakers.push(event.option.value);
     this.fruitInput.nativeElement.value = '';
-    this.fruitCtrl.setValue(null);
+    this.speakerForm.setValue(null);
+    this.presentationSpeakerService.createPresentationSpeaker({
+      id: undefined,
+      presentation_id: this.presentation.id,
+      speaker_id: event.option.value.id
+    }).subscribe( (presentationSpeaker) => {
+      console.log('new speakerpresentation', presentationSpeaker);
+    })
+
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
+  private _filter(speakers: Speaker[], value: any): Speaker[] {
+    if(!value.toLowerCase){
+      return [value];
+    }
+    const filterValue = (<string>value).toLowerCase();
+    return speakers.filter(speaker => {
+      let concat = speaker.first_name + " " + speaker.last_name + " " + (speaker.organization? speaker.organization : "");
+      return concat.toLowerCase().includes(filterValue);
+    })
   }
 }
