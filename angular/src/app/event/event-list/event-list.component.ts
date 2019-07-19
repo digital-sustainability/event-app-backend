@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {Event} from "../../shared/event/event";
 import {Router} from "@angular/router";
 import {EventService} from "../../shared/event.service";
@@ -10,7 +10,7 @@ import {MatDialog, MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from 
   templateUrl: './event-list.component.html',
   styleUrls: ['./event-list.component.scss']
 })
-export class EventListComponent implements OnInit {
+export class EventListComponent implements OnInit, OnChanges {
   events: Event[];
   event: Event;
 
@@ -31,6 +31,10 @@ export class EventListComponent implements OnInit {
               private dialog: MatDialog) { }
 
   ngOnInit() {
+    this.getAllEvents();
+  }
+
+  ngOnChanges() {
     this.getAllEvents();
   }
 

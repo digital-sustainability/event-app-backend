@@ -37,7 +37,7 @@ export class SpeakerListComponent implements OnInit, AfterViewInit, OnChanges {
 
   ngOnChanges() {
     this.getAllSpeakers();
-  }
+  };
 
   ngAfterViewInit(): void {
   }
