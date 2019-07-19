@@ -3,53 +3,53 @@
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
 <div class="mat-elevation-z8">
-<table mat-table [dataSource]="dataSource">
+<table mat-table [dataSource]="dataSource" matSort>
 
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
   <!-- Position Column -->
   <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
     <td mat-cell *matCellDef="let element"> {{element.id}} </td>
   </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef> Titel </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Titel </th>
     <td mat-cell *matCellDef="let element">{{element.title}}</td>
   </ng-container>
 
   <!-- Weight Column -->
   <ng-container matColumnDef="abstract">
-    <th mat-header-cell *matHeaderCellDef> Abstract </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Abstract </th>
     <td mat-cell *matCellDef="let element"> {{element.abstract}} </td>
   </ng-container>
 
   <!-- Symbol Column -->
   <ng-container matColumnDef="slides">
-    <th mat-header-cell *matHeaderCellDef> Slides </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Slides </th>
     <td mat-cell *matCellDef="let element"> {{element.slides}} </td>
   </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="start">
-      <th mat-header-cell *matHeaderCellDef> Start </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Start </th>
       <td mat-cell *matCellDef="let element"> {{element.start}} </td>
     </ng-container>
 
       <ng-container matColumnDef="end">
-        <th mat-header-cell *matHeaderCellDef> Ende </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ende </th>
         <td mat-cell *matCellDef="let element"> {{element.end}} </td>
       </ng-container>
 
     <ng-container matColumnDef="access_token">
-      <th mat-header-cell *matHeaderCellDef> Access Token </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Access Token </th>
       <td mat-cell *matCellDef="let element"> {{element.access_token}} </td>
     </ng-container>
 
     <ng-container matColumnDef="room">
-      <th mat-header-cell *matHeaderCellDef> Room </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Room </th>
       <td mat-cell *matCellDef="let element"> {{element.room}} </td>
     </ng-container>
 
