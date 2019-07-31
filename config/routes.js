@@ -40,7 +40,7 @@ module.exports.routes = {
   '/api/event/:id/speaker': {
     action: 'event/find-speakers'
   },
-  '/event/schedule': {
+  '/api/event/schedule': {
     action: 'event/get-by-date'
   },
 
