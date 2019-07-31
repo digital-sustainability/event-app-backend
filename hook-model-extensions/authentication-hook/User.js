@@ -2,6 +2,13 @@
 module.exports = {
 
     attributes: {
+        email: {
+            type: 'string',
+            isEmail: true,
+            unique: true,
+            required: true,
+            regex: /^.+@inf\.unibe\.ch$/i
+          },
         phone: {
             type: 'string',
             allowNull: true
