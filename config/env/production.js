@@ -47,8 +47,14 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     default: {
+
       adapter: 'sails-mysql',
       url: process.env.DATABASE_URL,
+      /**
+       * Set DATABASE URL via environment variable on production
+       */
+      /*adapter: 'sails-mysql',
+      url: process.env.DATABASE_URL,*/
       //--------------------------------------------------------------------------
       //  /\   To avoid checking it in to version control, you might opt to set
       //  ||   sensitive credentials like `url` using an environment variable.
@@ -101,7 +107,7 @@ module.exports = {
     * choose to keep this enabled.)                                            *
     *                                                                          *
     ***************************************************************************/
-    // cascadeOnDestroy: false,
+    cascadeOnDestroy: false,
 
   },
 
@@ -118,7 +124,8 @@ module.exports = {
   *                                                                         *
   ***************************************************************************/
   blueprints: {
-    shortcuts: false,
+    actions: false,
+    shortcuts: false
   },
 
 
@@ -151,7 +158,7 @@ module.exports = {
       // allowOrigins: [
       //   'https://example.com',
       // ]
-    },
+    }
 
   },
 
@@ -221,7 +228,7 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     cookie: {
-      // secure: true,
+      secure: true,
       maxAge: 24 * 60 * 60 * 1000,  // 24 hours
     },
 
@@ -251,8 +258,8 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     onlyAllowOrigins: [
-       'http://event-app.fdn-dev.iwi.unibe.ch',
-       'https://event-app.fdn-dev.iwi.unibe.ch'
+       'https://event-app.fdn-dev.iwi.unibe.ch',
+       'https://event-app.fdn.iwi.unibe.ch'
     ],
 
 
@@ -322,7 +329,7 @@ module.exports = {
     * (https://sailsjs.com/config/http)                                        *
     *                                                                          *
     ***************************************************************************/
-    // trustProxy: true,
+    trustProxy: true
 
   },
 
@@ -371,8 +378,13 @@ module.exports = {
   *                                                                         *
   ***************************************************************************/
   custom: {
-    baseUrl: 'https://example.com',
-    internalEmailAddress: 'support@example.com',
+    baseUrl: 'https://event-app.fdn.iwi.unibe.ch',
+    internalEmailAddress: 'support@fdn.iwi.unibe.ch',
+
+    mail: {
+      apiKey: process.env.SENDGRID_API_KEY,
+      templateId: process.env.SENDGRID_TEMPLATE_ID
+    }
 
     // mailgunDomain: 'mg.example.com',
     // mailgunSecret: 'key-prod_fake_bd32301385130a0bafe030c',

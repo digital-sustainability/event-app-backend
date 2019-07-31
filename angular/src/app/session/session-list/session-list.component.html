@@ -1,0 +1,71 @@
+<h1>Sessions vom Event: <b>{{event?.title}}</b></h1>
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+<div class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort>
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+    <td mat-cell *matCellDef="let element"> {{element?.id}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Titel </th>
+    <td mat-cell *matCellDef="let element">{{element?.title}}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="abstract">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Abstract </th>
+    <td mat-cell *matCellDef="let element"> {{element?.abstract}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="label_presentations">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Label Präsentation </th>
+    <td mat-cell *matCellDef="let element"> {{element?.label_presentations}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="event_id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Event ID </th>
+    <td mat-cell *matCellDef="let element"> {{element?.event_id.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="details">
+    <th mat-header-cell *matHeaderCellDef> Details </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="primary" [routerLink]="['sessions/', element.id]">
+          <mat-icon class="mat-18">reorder</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+  <!-- todo: add the update functionality -->
+  <ng-container matColumnDef="update">
+    <th mat-header-cell *matHeaderCellDef> Update </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="accent" [routerLink]="['sessions/' + element.id + '/edit']">
+          <mat-icon class="mat-18">system_update</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef> Delete </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="warn" (click)="openDeleteDialog(element)">
+          <mat-icon class="mat-18">delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

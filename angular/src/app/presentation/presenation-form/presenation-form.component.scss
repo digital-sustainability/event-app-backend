@@ -1,0 +1,25 @@
+.mat-form-field {
+  padding: 0 10px;
+
+}
+
+.fullSizeFormField {
+  width: 100%;
+}
+
+.checkboxStyle {
+  margin-left: 15px;
+}
+
+.submit-button {
+  margin-top: 20px;
+}
+
+.mat-card-title {
+  margin-top: 10px !important;
+}
+
+mat-form-field[hidden] {
+  display: none;
+}
+

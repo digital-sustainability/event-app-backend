@@ -18,18 +18,23 @@ module.exports.policies = {
   ***************************************************************************/
 
   '*': false,
+  'security/grant-csrf-token': true,
 
   EventController: {
     'find': true,
     'findOne': true,
     'find-speakers': true,
-    'get-by-date': true
+    'get-by-date': true,
+    'create': "isAuthenticated",
+    'update': "isAuthenticated",
+    'destroy': "isAuthenticated"
   },
 
   FeedbackController: {
     'find': true,
     'findOne': true,
-    'create': true
+    'create': true,
+
   },
 
   MessageController: {
@@ -39,17 +44,34 @@ module.exports.policies = {
 
   PresentationController: {
     'find': true,
-    'findOne': true
+    'findOne': true,
+    'create': "isAuthenticated",
+    'update': "isAuthenticated",
+    'destroy': "isAuthenticated"
   },
 
   SessionController: {
     'find': true,
-    'findOne': true
+    'findOne': true,
+    'create': "isAuthenticated",
+    'update': "isAuthenticated",
+    'destroy': "isAuthenticated"
   },
 
   SpeakerController: {
     'find': true,
-    'findOne': true
+    'findOne': true,
+    'create': "isAuthenticated",
+    'update': "isAuthenticated",
+    'destroy': "isAuthenticated"
+  },
+
+  PresentationSpeakerController: {
+    'find': true,
+    'findOne': true,
+    'create': "isAuthenticated",
+    'update': "isAuthenticated",
+    'destroy': "isAuthenticated"
   }
 
 };

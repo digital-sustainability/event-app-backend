@@ -1,0 +1,20 @@
+<div fxLayout="column" fxLayoutAlign="center center" style="min-height: calc(100vh - 64px)">
+  <div *ngIf="loading">
+      <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="!loading && confirmSuccess">
+    <h1 class="mat-display-1">Email erfolgreich bestätigt!
+      <mat-icon>thumb_up</mat-icon>
+    </h1>
+    <p>Du bist nun dazu berechtigt, dich der
+      <b>Crowdfin</b> Community anzuschliessen.</p>
+  </div>
+  <a mat-raised-button *ngIf="!loading && confirmSuccess" color="accent" routerLink="/login" routerLinkActive="active">Login</a>
+  <div *ngIf="!loading && !confirmSuccess">
+    <h1 class="mat-display-1">Email konnte nicht bestätigt werden!
+      <mat-icon>thumb_down</mat-icon>
+    </h1>
+    <p>Überprüfe bitte, ob du den richtigen Link aufgerufen hast oder kontaktiere den Support.</p>
+  </div>
+  <a mat-raised-button *ngIf="!loading && !confirmSuccess" color="accent" routerLink="/support" routerLinkActive="active">Support</a>
+</div>

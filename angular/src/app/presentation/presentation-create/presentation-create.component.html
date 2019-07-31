@@ -1,0 +1,16 @@
+<mat-card>
+  <!-- Navigation on the top of the site -->
+  <a routerLink="../../../../../">Event</a>
+  <a> > </a>
+  <a routerLink="../../../../">{{event?.title}}</a>
+  <a> > </a>
+  <a routerLink="../../">{{session?.title}}</a>
+  <a> > </a>
+  <a>Präsentation hinzufügen</a>
+  <!-- Site Title --->
+  <h1>
+    Präsentation erfassen
+  </h1>
+  <!-- Opens the Form and allows to create new Presentations -->
+  <app-presenation-form (presentationSubmit)="submit($event)" buttonTitle="Präsenation hinzufügen"></app-presenation-form>
+</mat-card>
