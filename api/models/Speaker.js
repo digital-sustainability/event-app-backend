@@ -59,5 +59,13 @@ module.exports = {
     }
   },
 
+  beforeCreate: function(valuesToSet, proceed) {
+    // Handle empty unique strings
+    if(!valuesToSet.email) {
+      valuesToSet.email = null;
+    }
+    proceed();
+  }
+
 };
 
