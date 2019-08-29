@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 module.exports = {
 
     friendlyName: 'Get by date',
@@ -18,14 +20,17 @@ module.exports = {
     exits: { },
 
     fn: async function (inputs, exits) {
+        // Workaround for wrong frontend call
+        // TODO FIX Frontend request
+        const yesterday = moment().subtract(1, 'days').format('YYYY-MM-DD HH:mm:ss');
         let filteredEvents;
         if (inputs.archive) {
             filteredEvents = await Event.find({
-                where: { end: { '<': inputs.date } }
+                where: { end: { '<': yesterday} }
             })
         } else {
             filteredEvents = await Event.find({
-                where: { end: { '>=': inputs.date } }
+                where: { end: { '>=': yesterday } }
             })
         }
         return exits.success(filteredEvents);
