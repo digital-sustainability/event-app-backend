@@ -32,8 +32,8 @@ export class PresentationSpeakerComponent {
   fruits: string[] = ['Lemon'];
   allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
 
-  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  @ViewChild('fruitInput', { static: true }) fruitInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', { static: true }) matAutocomplete: MatAutocomplete;
 
   constructor(private speakerService: SpeakerService,
               private presentationSpeakerService: PresentationSpeakerService,) {

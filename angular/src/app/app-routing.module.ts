@@ -136,6 +136,11 @@ const routes: Routes = [
     component: PresentationEditComponent,
     //data: { state: 'events' }
   },
+  {
+    path: 'feedback',
+    canActivate: [OnlyLoggedInGuard],
+    component: FeedbackComponent
+  }
 
 
 ];

@@ -16,8 +16,8 @@ export class SpeakerListComponent implements OnInit, AfterViewInit, OnChanges {
   speakers: Speaker[];
   speaker: Speaker;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   dataSource: MatTableDataSource<Speaker>;
 

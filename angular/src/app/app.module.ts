@@ -52,8 +52,8 @@ import { SpeakerEditComponent } from './speaker/speaker-edit/speaker-edit.compon
 import { SpeakerCreateComponent } from './speaker/speaker-create/speaker-create.component';
 import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.component';
 import { PresentationSpeakerComponent } from './presentation-speaker/presentation-speaker.component';
-
-
+import { MomentModule } from 'ngx-moment';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 export function appInitFactory(authService: AuthService): () => Promise<any> {
   return () => authService.checkLogin().toPromise();
@@ -112,7 +112,9 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     MatNativeDateModule,
     MatCheckboxModule,
     MatDialogModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MomentModule,
+    MatTableExporterModule
   ],
   providers: [
     {

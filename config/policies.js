@@ -31,8 +31,8 @@ module.exports.policies = {
   },
 
   FeedbackController: {
-    'find': true,
-    'findOne': true,
+    'find': 'isAuthenticated',
+    'findOne': 'isAuthenticated',
     'create': true,
 
   },
