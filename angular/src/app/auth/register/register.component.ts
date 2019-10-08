@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../shared/user/user';
 import { AuthService } from "../../shared/auth/auth.service";
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { NavigationExtras, Router } from '@angular/router';
 
 @Component({

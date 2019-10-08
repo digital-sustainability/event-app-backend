@@ -3,7 +3,7 @@ import {Subscription} from "rxjs/index";
 import {Presentation} from "../../shared/presenation/presentation";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PresentationService} from "../../shared/presentation.service";
-import {MatSnackBar} from "@angular/material";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import {EventService} from "../../shared/event.service";
 import {SessionService} from "../../shared/session.service";
 import {Event} from "../../shared/event/event";

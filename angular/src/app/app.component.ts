@@ -4,7 +4,7 @@ import { SailsService } from 'angular2-sails';
 import { AuthService } from './shared/auth/auth.service';
 import { User } from './shared/user/user';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',

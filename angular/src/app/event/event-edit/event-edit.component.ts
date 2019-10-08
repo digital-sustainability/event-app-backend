@@ -3,7 +3,7 @@ import {Subscription} from "rxjs/index";
 import {ActivatedRoute, Router} from "@angular/router";
 import {EventService} from "../../shared/event.service";
 import {Event} from "../../shared/event/event";
-import {MatSnackBar} from "@angular/material";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-event-edit',

@@ -23,15 +23,15 @@ import { EventComponent } from './event/event.component';
 import { SpeakerComponent } from './speaker/speaker.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { EventListComponent } from './event/event-list/event-list.component';
-import {
-  DateAdapter, MatAutocomplete, MatAutocompleteModule,
-  MatDatepicker, MatDatepickerModule, MatDialogModule,
-  MatInputModule, MatNativeDateModule,
-  MatPaginatorModule,
-  MatProgressSpinnerModule,
-  MatSortModule,
-  MatTableModule
-} from "@angular/material";
+import { MatAutocomplete, MatAutocompleteModule } from "@angular/material/autocomplete";
+import { DateAdapter, MatNativeDateModule } from "@angular/material/core";
+import { MatDatepicker, MatDatepickerModule } from "@angular/material/datepicker";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatInputModule } from "@angular/material/input";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatSortModule } from "@angular/material/sort";
+import { MatTableModule } from "@angular/material/table";
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { EventDetailComponent } from './event/event-detail/event-detail.component';
 import { SessionComponent } from './session/session.component';

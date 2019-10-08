@@ -1,7 +1,11 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {PresentationService} from "../../shared/presentation.service";
 import {Presentation} from "../../shared/presenation/presentation";
-import {MatDialog, MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from "@angular/material";
+import { MatDialog } from "@angular/material/dialog";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
 import {DeleteDialogComponent} from "../../shared/delete-dialog/delete-dialog.component";
 import {SessionService} from "../../shared/session.service";
 import {ActivatedRoute} from "@angular/router";

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SessionService} from "../../shared/session.service";
-import {MatSnackBar} from "@angular/material";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import {ActivatedRoute, Router} from "@angular/router";
 import {EventService} from "../../shared/event.service";
 import {Event} from "../../shared/event/event";

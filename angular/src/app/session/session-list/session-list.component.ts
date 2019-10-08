@@ -2,7 +2,11 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@an
 import {SessionService} from "../../shared/session.service";
 import {Session} from "../../shared/session/session";
 import {ActivatedRoute, Router} from "@angular/router";
-import {MatDialog, MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from "@angular/material";
+import { MatDialog } from "@angular/material/dialog";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
 import {DeleteDialogComponent} from "../../shared/delete-dialog/delete-dialog.component";
 import {EventService} from "../../shared/event.service";
 import {Event} from "../../shared/event/event";

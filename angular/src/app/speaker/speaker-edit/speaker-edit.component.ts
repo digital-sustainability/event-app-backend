@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Subscription} from "rxjs/index";
-import {MatSnackBar} from "@angular/material";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Speaker} from "../../shared/speaker/speaker";
 import {SpeakerService} from "../../shared/speaker.service";

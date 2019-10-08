@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../../shared/auth/auth.service';
 import { User } from '../../shared/user/user';
 import { Router, ActivatedRoute } from '@angular/router';

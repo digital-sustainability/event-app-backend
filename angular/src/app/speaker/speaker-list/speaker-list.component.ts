@@ -1,6 +1,10 @@
 import {AfterViewInit, Component, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {Speaker} from "../../shared/speaker/speaker";
-import {MatDialog, MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import {SpeakerService} from "../../shared/speaker.service";
 import {DeleteDialogComponent} from "../../shared/delete-dialog/delete-dialog.component";
 

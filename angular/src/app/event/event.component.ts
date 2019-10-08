@@ -4,7 +4,8 @@ import { AuthService} from "../shared/auth/auth.service";
 import {EventService} from "../shared/event.service";
 import { Event} from "../shared/event/event";
 import DateTimeFormat = Intl.DateTimeFormat;
-import {MatPaginator, MatTableDataSource} from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import {Observable} from "rxjs/index";
 
 /*comment for timestamp*/

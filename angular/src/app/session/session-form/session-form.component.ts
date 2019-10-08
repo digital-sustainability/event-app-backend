@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SessionService} from "../../shared/session.service";
 import {Session} from "../../shared/session/session";
 import {ActivatedRoute, Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import {config} from "rxjs/index";
 
 @Component({

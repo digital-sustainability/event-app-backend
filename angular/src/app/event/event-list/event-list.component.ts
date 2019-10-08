@@ -3,7 +3,11 @@ import {Event} from "../../shared/event/event";
 import {Router} from "@angular/router";
 import {EventService} from "../../shared/event.service";
 import {DeleteDialogComponent} from "../../shared/delete-dialog/delete-dialog.component";
-import {MatDialog, MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from "@angular/material";
+import { MatDialog } from "@angular/material/dialog";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
 
 @Component({
   selector: 'app-event-list',
