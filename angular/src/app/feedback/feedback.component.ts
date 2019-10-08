@@ -35,7 +35,6 @@ export class FeedbackComponent implements OnInit {
   ngOnInit() {
     this.feedbackService.find()
       .subscribe((joinedFeedbacks) => {
-        console.log(joinedFeedbacks);
         this.joinedFeedbacks = joinedFeedbacks;
         this.dataSource = new MatTableDataSource(this.joinedFeedbacks);
         this.dataSource.paginator = this.paginator;

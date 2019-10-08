@@ -11,13 +11,13 @@ body {
     max-width: 1280px;
     width: 90%;
 }
-  
+
 @media only screen and (min-width: 601px) {
     .container {
         width: 85%;
     }
 }
-  
+
 @media only screen and (min-width: 993px) {
     .container {
         width: 70%;
@@ -35,7 +35,7 @@ body {
     }
 
     .mat-button.active .mat-button-focus-overlay {
-        opacity: 1;
+        opacity: 0.25;
     }
 }
 

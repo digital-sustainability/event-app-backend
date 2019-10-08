@@ -4,7 +4,6 @@ import { User } from '../../shared/user/user';
 import { NavigationExtras, Router } from '../../../../node_modules/@angular/router';
 import { AuthService } from '../../shared/auth/auth.service';
 import { MatSnackBar } from '../../../../node_modules/@angular/material';
-import { initChangeDetectorIfExisting } from '../../../../node_modules/@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-edit',
@@ -14,7 +13,7 @@ import { initChangeDetectorIfExisting } from '../../../../node_modules/@angular/
 export class EditComponent implements OnInit {
 
   editForm: FormGroup;
-  
+
   constructor(private authService: AuthService,
     private router: Router,
     private snackbar: MatSnackBar) { }

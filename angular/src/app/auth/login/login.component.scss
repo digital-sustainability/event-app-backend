@@ -1,11 +1,15 @@
-@import 'variables';
+@import "variables";
 
 .login-box {
-    min-height: calc(100vh - 64px);
- }
+  min-height: calc(100vh - 64px);
+}
 
- .login-box-title {
-  margin: -24px -24px 20px !important;
+mat-card {
+  overflow: hidden;
+}
+
+.login-box-title {
+  margin: -16px -16px 20px !important;
   align-content: center;
   align-items: center;
   display: flex;
@@ -13,7 +17,7 @@
   padding: 20px;
   background: $accent-color;
 }
- 
- .mat-form-field {
-   padding: 0 10px;
- }
+
+.mat-form-field {
+  padding: 0 10px;
+}
