@@ -5,6 +5,7 @@ import { AuthService } from './shared/auth/auth.service';
 import { User } from './shared/user/user';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DateTimeAdapter } from 'ng-pick-datetime';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,10 @@ export class AppComponent {
   constructor(private _sailsService: SailsService,
     private authService: AuthService,
     private router: Router,
-    private snackbar: MatSnackBar){}
+    private snackbar: MatSnackBar,
+    dateTimeAdapter: DateTimeAdapter<any>){
+      dateTimeAdapter.setLocale('de-DE');
+    }
 
   ngOnInit() {
      //Init Sails service and request CSRF Token and check login
