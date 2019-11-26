@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators, ReactiveFormsModule} from "@angular/forms";
 import {Event} from "../../shared/event/event";
 
 @Component({
@@ -15,6 +15,7 @@ export class EventFormComponent implements OnInit, OnChanges {
   @Input() buttonTitle: string;
 
   eventForm: FormGroup;
+  htmlContent: string;
 
   constructor() { }
 

@@ -54,6 +54,8 @@ import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.comp
 import { PresentationSpeakerComponent } from './presentation-speaker/presentation-speaker.component';
 import { MomentModule } from 'ngx-moment';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { FormsModule } from '@angular/forms';
 
 export function appInitFactory(authService: AuthService): () => Promise<any> {
   return () => authService.checkLogin().toPromise();
@@ -114,7 +116,9 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     MatDialogModule,
     MatAutocompleteModule,
     MomentModule,
-    MatTableExporterModule
+    MatTableExporterModule,
+    AngularEditorModule,
+    FormsModule
   ],
   providers: [
     {

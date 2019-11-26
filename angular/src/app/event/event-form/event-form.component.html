@@ -1,4 +1,5 @@
 <!-- This EventForm is used for the Create and Edit Component-->
+<angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="htmlContent"></angular-editor>
 <form (ngSubmit)="onSubmit()" [formGroup]="eventForm">
   <!-- Event Title Formfield -->
   <mat-form-field class="fullSizeFormField">
