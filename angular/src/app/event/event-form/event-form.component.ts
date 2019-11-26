@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import {FormControl, FormGroup, Validators, ReactiveFormsModule} from "@angular/forms";
 import {Event} from "../../shared/event/event";
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-event-form',
@@ -15,7 +16,31 @@ export class EventFormComponent implements OnInit, OnChanges {
   @Input() buttonTitle: string;
 
   eventForm: FormGroup;
-  htmlContent: string;
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: 'auto',
+    minHeight: '0',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: 'Enter text here...',
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '',
+    fonts: [],
+    uploadUrl: 'v1/image',
+    sanitize: true,
+    toolbarPosition: 'top',
+      toolbarHiddenButtons: [
+      ['heading', 'fontName', 'fontSize', 'color'],
+      ['link', 'unlink', 'insertImage', 'insertVideo']
+    ]
+  };
 
   constructor() { }
 
