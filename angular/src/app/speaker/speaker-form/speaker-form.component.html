@@ -17,6 +17,10 @@
   <mat-form-field class="fullSizeFormField">
     <input matInput placeholder="Kurzbiografie" type="text" formControlName="short_bio" required>
   </mat-form-field>
+  <!-- Speaker Formatted Short Bio -->
+  <div class="fullSizeFormField">
+    <angular-editor placeholder="Formatierte Kurzbiografie" formControlName="formatted_short_bio" [config]="editorConfig"></angular-editor>
+  </div>
   <mat-form-field class="fullSizeFormField">
     <input matInput placeholder="Photo URL" type="text" formControlName="photo_url" required>
   </mat-form-field>

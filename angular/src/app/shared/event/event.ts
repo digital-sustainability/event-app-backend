@@ -4,6 +4,7 @@ export interface Event {
   id: number;
   title: string;
   description: string;
+  formatted_description: string;
   start: any;
   end: any;
   location: string;

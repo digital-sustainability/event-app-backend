@@ -6,5 +6,6 @@ export interface Speaker {
   position: string;
   organization: string;
   short_bio: string;
+  formatted_short_bio: string;
   photo_url: string;
 }

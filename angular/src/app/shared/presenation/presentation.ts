@@ -4,6 +4,7 @@ export interface Presentation {
   id: number;
   title: string;
   abstract: string;
+  formatted_abstract: string;
   slides: string;
   start: any;
   end: any;

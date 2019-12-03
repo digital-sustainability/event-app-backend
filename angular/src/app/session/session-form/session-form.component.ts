@@ -5,6 +5,7 @@ import {Session} from "../../shared/session/session";
 import {ActivatedRoute, Router} from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import {config} from "rxjs/index";
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-session-form',
@@ -21,6 +22,31 @@ export class SessionFormComponent implements OnInit, OnChanges {
 
   sessionForm: FormGroup;
 
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: 'auto',
+    minHeight: '0',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: 'Enter text here...',
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '',
+    fonts: [],
+    uploadUrl: 'v1/image',
+    sanitize: true,
+    toolbarPosition: 'top',
+      toolbarHiddenButtons: [
+      ['fontName'],
+      ['link', 'unlink', 'insertImage', 'insertVideo']
+    ]
+  };
+
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -29,6 +55,9 @@ export class SessionFormComponent implements OnInit, OnChanges {
         Validators.required
       ]),
       'abstract': new FormControl('', [
+        Validators.required
+      ]),
+      'formatted_abstract': new FormControl('', [
         Validators.required
       ]),
       'label_presentations': new FormControl('', [
@@ -49,6 +78,7 @@ export class SessionFormComponent implements OnInit, OnChanges {
   initInputs() {
     this.sessionForm.get('title').setValue(this.session.title);
     this.sessionForm.get('abstract').setValue(this.session.abstract);
+    this.sessionForm.get('formatted_abstract').setValue(this.session.formatted_abstract);
     this.sessionForm.get('label_presentations').setValue(this.session.label_presentations);
     this.sessionForm.get('event_id').setValue(this.session.event_id);
   }

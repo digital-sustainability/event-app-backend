@@ -8,6 +8,10 @@
   <mat-form-field class="fullSizeFormField">
     <input matInput placeholder="Abstract" type="text" formControlName="abstract" required>
   </mat-form-field>
+  <!-- Presentation Formatted Abstract -->
+  <div class="fullSizeFormField">
+    <angular-editor placeholder="Formatiertes Abstract" formControlName="formatted_abstract" [config]="editorConfig"></angular-editor>
+  </div>
   <!-- Presentation Start, only works on Chrome -->
   <mat-form-field>
     <input matInput placeholder="Start" type="datetime-local" formControlName="start" required>

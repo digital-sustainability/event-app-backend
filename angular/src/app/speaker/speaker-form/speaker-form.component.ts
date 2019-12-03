@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Speaker} from "../../shared/speaker/speaker";
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-speaker-form',
@@ -14,6 +15,31 @@ export class SpeakerFormComponent implements OnInit {
   @Input() buttonTitle: string;
 
   speakerForm: FormGroup;
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: 'auto',
+    minHeight: '0',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: 'Enter text here...',
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '',
+    fonts: [],
+    uploadUrl: 'v1/image',
+    sanitize: true,
+    toolbarPosition: 'top',
+      toolbarHiddenButtons: [
+      ['fontName'],
+      ['link', 'unlink', 'insertImage', 'insertVideo']
+    ]
+  };
 
   constructor() { }
 
@@ -37,6 +63,9 @@ export class SpeakerFormComponent implements OnInit {
       'short_bio': new FormControl('', [
         Validators.required
       ]),
+      'formatted_short_bio': new FormControl('', [
+        Validators.required
+      ]),
       'photo_url': new FormControl('', [
         Validators.required
       ]),
@@ -51,9 +80,8 @@ export class SpeakerFormComponent implements OnInit {
     this.speakerForm.get('position').setValue(this.speaker.position);
     this.speakerForm.get('organization').setValue(this.speaker.organization);
     this.speakerForm.get('short_bio').setValue(this.speaker.short_bio);
+    this.speakerForm.get('formatted_short_bio').setValue(this.speaker.formatted_short_bio);
     this.speakerForm.get('photo_url').setValue(this.speaker.photo_url);
-
-
   }
 
   ngOnChanges(changes: SimpleChanges): void {

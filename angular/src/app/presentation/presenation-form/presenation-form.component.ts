@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@an
 import {Presentation} from "../../shared/presenation/presentation";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-presenation-form',
@@ -17,6 +18,31 @@ export class PresenationFormComponent implements OnInit {
 
   presentationForm: FormGroup;
 
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: 'auto',
+    minHeight: '0',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: 'Enter text here...',
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '',
+    fonts: [],
+    uploadUrl: 'v1/image',
+    sanitize: true,
+    toolbarPosition: 'top',
+      toolbarHiddenButtons: [
+      ['fontName'],
+      ['link', 'unlink', 'insertImage', 'insertVideo']
+    ]
+  };
+
   constructor(private route: ActivatedRoute
   ) { }
 
@@ -31,6 +57,9 @@ export class PresenationFormComponent implements OnInit {
         Validators.required
       ]),
       'abstract': new FormControl('', [
+        Validators.required
+      ]),
+      'formatted_abstract': new FormControl('', [
         Validators.required
       ]),
       'start': new FormControl('', [
@@ -66,6 +95,7 @@ export class PresenationFormComponent implements OnInit {
   initInputs() {
     this.presentationForm.get('title').setValue(this.presentation.title);
     this.presentationForm.get('abstract').setValue(this.presentation.abstract);
+    this.presentationForm.get('formatted_abstract').setValue(this.presentation.formatted_abstract);
     this.presentationForm.get('start').setValue(this.presentation.start);
     this.presentationForm.get('end').setValue(this.presentation.end);
     this.presentationForm.get('slides').setValue(this.presentation.slides);

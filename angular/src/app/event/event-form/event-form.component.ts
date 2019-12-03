@@ -37,7 +37,7 @@ export class EventFormComponent implements OnInit, OnChanges {
     sanitize: true,
     toolbarPosition: 'top',
       toolbarHiddenButtons: [
-      ['heading', 'fontName', 'fontSize', 'color'],
+      ['fontName'],
       ['link', 'unlink', 'insertImage', 'insertVideo']
     ]
   };
@@ -53,6 +53,9 @@ export class EventFormComponent implements OnInit, OnChanges {
         Validators.required
       ]),
       'description': new FormControl('', [
+        Validators.required
+      ]),
+      'formatted_description': new FormControl('', [
         Validators.required
       ]),
       'start': new FormControl('', [
@@ -85,6 +88,7 @@ export class EventFormComponent implements OnInit, OnChanges {
   initInputs() {
     this.eventForm.get('title').setValue(this.event.title);
     this.eventForm.get('description').setValue(this.event.description);
+    this.eventForm.get('formatted_description').setValue(this.event.formatted_description);
     this.eventForm.get('start').setValue(this.event.start);
     this.eventForm.get('end').setValue(this.event.end);
     this.eventForm.get('location').setValue(this.event.location);

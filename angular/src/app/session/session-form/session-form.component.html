@@ -5,6 +5,10 @@
   <mat-form-field class="fullSizeFormField">
     <input matInput placeholder="Abstract" type="text" formControlName="abstract" required>
   </mat-form-field>
+  <!-- Session Formatted Abstract -->
+  <div class="fullSizeFormField">
+    <angular-editor placeholder="Formatiertes Abstract" formControlName="formatted_abstract" [config]="editorConfig"></angular-editor>
+  </div>
   <mat-form-field>
     <input matInput placeholder="Label Präsenation" type="text" formControlName="label_presentations" required>
   </mat-form-field>

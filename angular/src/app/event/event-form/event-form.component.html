@@ -4,14 +4,14 @@
   <mat-form-field class="fullSizeFormField">
     <input matInput placeholder="Titel" type="text" formControlName="title" required>
   </mat-form-field>
-  <!-- Event Description Formfield -->
-  <!--<mat-form-field class="fullSizeFormField">
-    <input matInput placeholder="Beschreibung" type="text" formControlName="description" required>
-  </mat-form-field>-->
+  <!-- Event Description -->
+  <mat-form-field class="fullSizeFormField">
+    <textarea matInput placeholder="Beschreibung" type="text" formControlName="description" required></textarea>
+  </mat-form-field>
+  <!-- Event Formatted Description -->
   <div class="fullSizeFormField">
-    <angular-editor placeholder="Beschreibung" formControlName="description" [config]="editorConfig"></angular-editor>
+    <angular-editor placeholder="Formatierte Beschreibung" formControlName="formatted_description" [config]="editorConfig"></angular-editor>
   </div>
-
   <!-- Event Start Formfield, only shows a Calender in Chrome -->
   <mat-form-field>
     <input matInput placeholder="Start" type="datetime-local" formControlName="start" required>

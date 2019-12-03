@@ -19,6 +19,10 @@ module.exports = {
       type: 'string',
       required: true
     },
+    formatted_description: {
+      type: 'string',
+      allowNull: true
+    },
     start: {
       type: 'ref',
       required: true,
