@@ -22,24 +22,25 @@ export class PresenationFormComponent implements OnInit {
     editable: true,
     spellcheck: true,
     height: 'auto',
-    minHeight: '0',
+    minHeight: '150',
     maxHeight: 'auto',
     width: 'auto',
     minWidth: '0',
     translate: 'yes',
     enableToolbar: true,
     showToolbar: true,
-    placeholder: 'Enter text here...',
     defaultParagraphSeparator: '',
     defaultFontName: '',
     defaultFontSize: '',
     fonts: [],
-    uploadUrl: 'v1/image',
     sanitize: true,
     toolbarPosition: 'top',
-      toolbarHiddenButtons: [
+    toolbarHiddenButtons: [
+      ['fontSize', 'backgroundColor'],
+      ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'indent', 'outdent'],
+      ['insertOrderedList', 'insertHorizontalRule'],
       ['fontName'],
-      ['link', 'unlink', 'insertImage', 'insertVideo']
+      ['insertImage', 'insertVideo']
     ]
   };
 
