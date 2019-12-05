@@ -21,9 +21,14 @@
       <mat-divider></mat-divider>
       <mat-list-item class="longListItemStyle" role="listitem">
         <div class="listDescription"><b>Abstract:</b></div>
-        <div class="listItems">{{session?.abstract}}</div>
+        <div class="listItems" [innerHtml]="session?.merged_abstract"></div>
       </mat-list-item>
       <mat-divider></mat-divider>
+      <mat-list-item *ngIf="session?.formatted_abstract" class="longListItemStyle" role="listitem">
+          <div class="listDescription"><b>Unformatiertes Abstract:</b></div>
+          <div class="listItems"> {{session?.abstract}} </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
       <mat-list-item role="listitem">
         <div class="listDescription"><b>Label Präsentation:</b></div>
         <div class="listItems">{{session?.label_presentations}}</div>
@@ -34,14 +39,9 @@
         <div class="listItems">{{session?.event_id.id}}</div>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>
-        <button mat-icon-button color="accent" [routerLink]="['edit/']">
-            <mat-icon class="mat-18">system_update</mat-icon>
-        </button>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <button style="margin-top: 10px;" mat-raised-button color="primary" routerLink="presentations/create">Präsentation hinzufügen</button>
     </mat-list>
+    <button style="margin: 10px 10px 0px 0px;" mat-raised-button color="primary" [routerLink]="['edit/']">Session bearbeiten</button>
+    <button style="margin: 10px 10px 0px 0px;" mat-raised-button color="primary" routerLink="presentations/create">Präsentation hinzufügen</button>
   </mat-card>
 
   <mat-card style="margin: 5%">

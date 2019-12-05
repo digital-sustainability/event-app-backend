@@ -7,5 +7,6 @@ export interface Speaker {
   organization: string;
   short_bio: string;
   formatted_short_bio: string;
+  merged_short_bio?: string;
   photo_url: string;
 }

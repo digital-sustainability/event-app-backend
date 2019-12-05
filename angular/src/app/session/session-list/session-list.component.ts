@@ -29,7 +29,7 @@ export class SessionListComponent implements OnInit, OnChanges {
 
   dataSource: MatTableDataSource<Session>;
 
-  displayedColumns: string[] = ['id', 'title', 'abstract', 'label_presentations', 'event_id', 'details', 'update', 'delete'];
+  displayedColumns: string[] = ['id', 'title', 'abstract', 'label_presentations', 'event_id', 'actions'];
 
   constructor(private sessionService: SessionService,
               private router: Router,
@@ -60,7 +60,9 @@ export class SessionListComponent implements OnInit, OnChanges {
     })
       .subscribe((sessions) => {
         this.sessions = sessions;
-        console.log('sessions:', this.sessions);
+        this.sessions.forEach((session) => {
+          session.merged_abstract = session.formatted_abstract ? session.formatted_abstract : session.abstract;
+        })
         this.dataSource = new MatTableDataSource(this.sessions);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

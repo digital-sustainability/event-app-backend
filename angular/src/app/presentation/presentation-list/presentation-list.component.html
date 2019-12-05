@@ -20,10 +20,10 @@
     <td mat-cell *matCellDef="let element">{{element.title}}</td>
   </ng-container>
 
-  <!-- Weight Column -->
+  <!-- Abstract Column -->
   <ng-container matColumnDef="abstract">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Abstract </th>
-    <td mat-cell *matCellDef="let element"> {{element.abstract}} </td>
+    <td mat-cell *matCellDef="let element" [innerHtml]="element.merged_abstract"></td>
   </ng-container>
 
   <!-- Symbol Column -->
@@ -35,12 +35,12 @@
     <!-- Symbol Column -->
     <ng-container matColumnDef="start">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Start </th>
-      <td mat-cell *matCellDef="let element"> {{element.start}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.start | date:'M.d.yy, H:mm'}} </td>
     </ng-container>
 
       <ng-container matColumnDef="end">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Ende </th>
-        <td mat-cell *matCellDef="let element"> {{element.end}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.end | date:'M.d.yy, H:mm'}} </td>
       </ng-container>
 
     <ng-container matColumnDef="access_token">
@@ -53,32 +53,22 @@
       <td mat-cell *matCellDef="let element"> {{element.room}} </td>
     </ng-container>
 
-      <ng-container matColumnDef="details">
-        <th mat-header-cell *matHeaderCellDef> Details </th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-icon-button color="primary" [routerLink]="['presentations/', element.id]">
-              <mat-icon class="mat-18">reorder</mat-icon>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Aktionen </th>
+      <td mat-cell *matCellDef="let element">
+        <div style="white-space: nowrap;">
+          <button mat-icon-button color="primary" [routerLink]="['presentations/', element.id]" title="Details">
+              <mat-icon class="mat-18">info</mat-icon>
           </button>
-        </td>
-      </ng-container>
-      <!-- todo: add the update functionality -->
-      <ng-container matColumnDef="update">
-        <th mat-header-cell *matHeaderCellDef> Update </th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-icon-button color="accent" [routerLink]="['presentations/' + element.id + '/edit']">
-              <mat-icon class="mat-18">system_update</mat-icon>
+          <button mat-icon-button color="accent" [routerLink]="['presentations/' + element.id + '/edit']" title="Bearbeiten">
+              <mat-icon class="mat-18">edit</mat-icon>
           </button>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef> Delete </th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-icon-button color="warn" (click)="openDeleteDialog(element)">
-              <mat-icon class="mat-18">delete</mat-icon>
+          <button mat-icon-button color="warn" (click)="openDeleteDialog(element)" title="Löschen">
+            <mat-icon class="mat-18">delete</mat-icon>
           </button>
-        </td>
-      </ng-container>
+        </div>
+      </td>
+    </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

@@ -28,25 +28,25 @@
       <!-- Presentation Abstract -->
       <mat-list-item class="longListItemStyle" role="listitem">
         <div class="listDescription"><b>Abstract: </b></div>
-        <div class="listItems">{{presentation?.abstract}}</div>
+        <div class="listItems" [innerHtml]="presentation?.merged_abstract"></div>
       </mat-list-item>
       <mat-divider></mat-divider>
+       <!-- Presentation Unformatted Abstract -->
+       <mat-list-item *ngIf="presentation?.formatted_abstract" class="longListItemStyle" role="listitem">
+          <div class="listDescription"><b>Unformatiertes Abstract: </b></div>
+          <div class="listItems">{{presentation?.abstract}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
       <!-- Presentation SLides -->
       <mat-list-item role="listitem">
         <div class="listDescription"><b>Slides: </b></div>
         <div class="listItems">{{presentation?.slides}}</div>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <!-- Presentation Start, only works on Chrome -->
+      <!-- Presentation Start and End -->
       <mat-list-item role="listitem">
-        <div class="listDescription"><b>Start: </b></div>
-        <div class="listItems">{{presentation?.start}}</div>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <!-- Presentation End, only works on Chrome -->
-      <mat-list-item role="listitem">
-        <div class="listDescription"><b>Ende: </b></div>
-        <div class="listItems">{{presentation?.end}}</div>
+        <div class="listDescription"><b>Zeitraum: </b></div>
+        <div class="listItems"> {{ presentation?.start  | date:'M.d.yy, H:mm' }} - {{ presentation?.end  | date:'M.d.yy, H:mm' }} </div>
       </mat-list-item>
       <mat-divider></mat-divider>
       <!-- Presentation Room -->
@@ -54,14 +54,8 @@
         <div class="listDescription"><b>Raum: </b></div>
         <div class="listItems">{{presentation?.room}}</div>
       </mat-list-item>
-      <mat-divider></mat-divider>
-      <!-- Navigates to Edit Form -->
-      <mat-list-item>
-        <button mat-icon-button color="accent" [routerLink]="['edit/']">
-            <mat-icon class="mat-18">system_update</mat-icon>
-        </button>
-      </mat-list-item>
     </mat-list>
+    <button style="margin: 10px;" mat-raised-button color="primary" [routerLink]="['edit/']">Präsentation bearbeiten</button>
     <!-- Shows Speakers of this Presentation and allows to add new Speakers -->
        <app-presentation-speaker [presentation]="presentation"></app-presentation-speaker>
   </mat-card>

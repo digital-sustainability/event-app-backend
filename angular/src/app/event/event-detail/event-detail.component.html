@@ -28,7 +28,13 @@
     <!-- Event Description -->
     <mat-list-item class="longListItemStyle" role="listitem">
       <div style="width: 10%"><b>Beschreibung:</b></div>
-      <div style="width: 90%">{{event?.description}}</div>
+      <div style="width: 90%" [innerHtml]="event?.merged_description"></div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <!-- Event Unformatted Description, only visible if there is a formatted description (otherwise, the unformatted one is shown above) -->
+    <mat-list-item *ngIf="event?.formatted_description" class="longListItemStyle" role="listitem">
+      <div style="width: 10%"><b>Unformatierte Beschreibung:</b></div>
+      <div style="width: 90%" [innerHtml]="event?.description"></div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <!-- Event Location -->
@@ -37,16 +43,10 @@
       <div style="width: 90%">{{event?.location}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
-    <!-- Event Start, only works in Chrome -->
+    <!-- Event Start and End -->
     <mat-list-item role="listitem">
-      <div style="width: 10%"><b>Beginn: </b></div>
-      <div style="width: 90%">{{event?.start}}</div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <!-- Event End, only works in Chrome -->
-    <mat-list-item role="listitem">
-      <div style="width: 10%"><b>Ende: </b></div>
-      <div style="width: 90%">{{event?.end}}</div>
+      <div style="width: 10%"><b>Zeitraum: </b></div>
+      <div style="width: 90%">{{event?.start | date:'M.d.yy, H:mm'}} - {{event?.end | date:'M.d.yy, H:mm'}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <!-- Image Path, points on a side, where the image can be gotten -->
@@ -66,17 +66,10 @@
       <div style="width: 10%"><b>URL Label: </b></div>
       <div style="width: 90%">{{event?.url_label}}</div>
     </mat-list-item>
-    <mat-divider></mat-divider>
-    <!-- Button that directs to the Event Edit Component where the Event can be edited -->
-    <mat-list-item>
-      <button mat-icon-button color="accent" [routerLink]="['edit/']">
-          <mat-icon class="mat-18">system_update</mat-icon>
-      </button>
-    </mat-list-item>
-    <mat-divider></mat-divider>
   </mat-list>
   <!-- Button that directs to the Event Create Component to add new Events -->
-  <button style="margin-top: 10px;" mat-raised-button color="primary" routerLink="sessions/create">Session hinzufügen</button>
+  <button style="margin: 10px 10px 0px 0px;" mat-raised-button color="primary" [routerLink]="['edit/']">Event bearbeiten</button>
+  <button style="margin: 10px 10px 0px 0px;" mat-raised-button color="primary" routerLink="sessions/create">Session hinzufügen</button>
 </mat-card>
 
 <!-- Shows a list of all sessions of this Event, directs to the Session-List Component

@@ -28,7 +28,7 @@ export class PresentationListComponent implements OnInit, OnChanges {
 
   dataSource: MatTableDataSource<Presentation>;
 
-  displayedColumns: string[] = ['id', 'title', 'abstract', 'slides', 'start', 'end', 'room', 'details', 'update', 'delete'];
+  displayedColumns: string[] = ['id', 'title', 'abstract', 'slides', 'start', 'end', 'room', 'actions'];
 
   constructor(private presentationService: PresentationService,
               private dialog: MatDialog,
@@ -66,6 +66,9 @@ export class PresentationListComponent implements OnInit, OnChanges {
     })
       .subscribe((presentations) => {
         this.presentations = presentations;
+        this.presentations.forEach((presentation) => {
+          presentation.merged_abstract = presentation.formatted_abstract ? presentation.formatted_abstract : presentation.abstract;
+        });
         this.dataSource = new MatTableDataSource(this.presentations);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
