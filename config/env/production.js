@@ -259,8 +259,8 @@ module.exports = {
     ***************************************************************************/
     onlyAllowOrigins: [
        'https://event-app.fdn-dev.iwi.unibe.ch',
-       'https://event-app.fdn.iwi.unibe.ch'
-    ],
+       'https://event-app.fdn.iwi.unibe.ch',
+    ...process.env.SOCKET_ONLY_ALLOW_ORIGINS.split(',')]
 
 
     /***************************************************************************
