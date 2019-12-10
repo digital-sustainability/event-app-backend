@@ -25,10 +25,10 @@
       <td mat-cell *matCellDef="let element"> {{element?.last_name}} </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- e-mail Column -->
     <ng-container matColumnDef="email">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> E-Mail </th>
-      <td mat-cell *matCellDef="let element"> {{element?.email}} </td>
+      <td mat-cell *matCellDef="let element"><a [href]="'mailto:' + element?.email" target="_blank">{{element?.email}}</a></td>
     </ng-container>
 
       <ng-container matColumnDef="position">
@@ -42,17 +42,20 @@
         <td mat-cell *matCellDef="let element"> {{element?.organization}} </td>
       </ng-container>
 
-      <!-- Weight Column -->
-      <ng-container matColumnDef="image_path">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Bild URL </th>
-        <td mat-cell *matCellDef="let element"> {{element?.image_path}} </td>
-      </ng-container>
-
       <!-- Short Bio Column -->
       <ng-container matColumnDef="short_bio">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Kurzbiografie </th>
         <td mat-cell *matCellDef="let element" [innerHtml]="element?.merged_short_bio"></td>
       </ng-container>
+
+      <!-- Image Column -->
+      <ng-container matColumnDef="photo_url">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Bild</th>
+          <td mat-cell *matCellDef="let element">
+            <div><a [href]="element?.photo_url" target="_blank">{{element?.photo_url}}</a></div>
+            <div><img [src]="element?.photo_url" style="max-height: 100px; max-width: 100px;" alt="Vorschau" onerror="this.alt='Vorschau konnte nicht geladen werden';"/></div>
+          </td>
+        </ng-container>
 
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Aktionen </th>

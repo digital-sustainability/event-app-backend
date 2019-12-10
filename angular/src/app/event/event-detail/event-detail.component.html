@@ -46,19 +46,22 @@
     <!-- Event Start and End -->
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>Zeitraum: </b></div>
-      <div style="width: 90%">{{event?.start | date:'M.d.yy, H:mm'}} - {{event?.end | date:'M.d.yy, H:mm'}}</div>
+      <div style="width: 90%">{{event?.start | datePipe: 'LLLL'}} - {{event?.end | datePipe: 'LLLL'}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <!-- Image Path, points on a side, where the image can be gotten -->
     <mat-list-item role="listitem">
-      <div style="width: 10%"><b>Bildadresse: </b></div>
-      <div style="width: 90%">{{event?.image_path}}</div>
+      <div style="width: 10%"><b>Bild: </b></div>
+      <div style="width: 90%;"><a [href]="event?.image_path" target="_blank">{{event?.image_path}}</a></div>
+    </mat-list-item>
+    <mat-list-item class="longListItemStyle" role="listitem">
+      <div style="width: 90%; margin-left: 10%;"><img [src]="event?.image_path" style="height: 100px" alt="Vorschau" onerror="this.alt='Vorschau konnte nicht geladen werden';"></div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <!-- URL of the Event -->
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>URL: </b></div>
-      <div style="width: 90%">{{event?.url}}</div>
+      <div style="width: 90%"><a [href]="event?.url" target="_blank">{{event?.url}}</a></div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <!-- Event URL Label -->

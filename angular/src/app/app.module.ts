@@ -55,6 +55,7 @@ import { PresentationSpeakerComponent } from './presentation-speaker/presentatio
 import { MomentModule } from 'ngx-moment';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { DatePipePipe } from './shared/date-pipe.pipe';
 
 export function appInitFactory(authService: AuthService): () => Promise<any> {
   return () => authService.checkLogin().toPromise();
@@ -96,6 +97,7 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     SpeakerCreateComponent,
     DeleteDialogComponent,
     PresentationSpeakerComponent,
+    DatePipePipe,
   ],
   imports: [
     BrowserModule,

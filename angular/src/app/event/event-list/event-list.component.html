@@ -10,7 +10,7 @@
 
     <!-- Id Column -->
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
       <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
 
@@ -29,13 +29,13 @@
     <!-- Start Column -->
     <ng-container matColumnDef="start">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Start </th>
-      <td mat-cell *matCellDef="let element"> {{ element.start | date:'M.d.yy, H:mm' }} </td>
+      <td mat-cell *matCellDef="let element"> {{ element.start | datePipe:'l LT' }} </td>
     </ng-container>
 
     <!-- End Column -->
     <ng-container matColumnDef="end">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Ende </th>
-      <td mat-cell *matCellDef="let element"> {{ element.end | date:'M.d.yy, H:mm' }} </td>
+      <td mat-cell *matCellDef="let element"> {{ element.end | datePipe:'l LT' }} </td>
     </ng-container>
 
     <!-- Location Column -->
@@ -46,13 +46,16 @@
 
     <!-- Image URL Column -->
     <ng-container matColumnDef="image_path">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Bild URL </th>
-      <td mat-cell *matCellDef="let element"> {{element.image_path}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Bild</th>
+      <td mat-cell *matCellDef="let element">
+        <div><a [href]="element.image_path" target="_blank">{{element.image_path}}</a></div>
+        <div><img [src]="element.image_path" style="max-height: 100px; max-width: 100px;" alt="Vorschau" onerror="this.alt='Vorschau konnte nicht geladen werden';"/></div>
+      </td>
     </ng-container>
 
     <!-- Published Column -->
     <ng-container matColumnDef="published">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Publiziert? </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Publiziert </th>
       <td mat-cell *matCellDef="let element"> {{element.published}} </td>
     </ng-container>
 

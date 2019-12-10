@@ -40,13 +40,13 @@
       <!-- Presentation SLides -->
       <mat-list-item role="listitem">
         <div class="listDescription"><b>Slides: </b></div>
-        <div class="listItems">{{presentation?.slides}}</div>
+        <div class="listItems"><a [href]="presentation?.slides" target="_blank">{{presentation?.slides}}</a></div>
       </mat-list-item>
       <mat-divider></mat-divider>
       <!-- Presentation Start and End -->
       <mat-list-item role="listitem">
         <div class="listDescription"><b>Zeitraum: </b></div>
-        <div class="listItems"> {{ presentation?.start  | date:'M.d.yy, H:mm' }} - {{ presentation?.end  | date:'M.d.yy, H:mm' }} </div>
+        <div class="listItems"> {{ presentation?.start  | datePipe: 'LLLL' }} - {{ presentation?.end  | datePipe: 'LLL' }} </div>
       </mat-list-item>
       <mat-divider></mat-divider>
       <!-- Presentation Room -->

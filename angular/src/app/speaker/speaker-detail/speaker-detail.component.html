@@ -48,8 +48,11 @@
       </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item role="listitem">
-      <div class="listDescription"><b>Foto URL: </b></div>
+      <div class="listDescription"><b>Foto: </b></div>
       <div class="listItems">{{speaker?.photo_url}}</div>
+    </mat-list-item>
+    <mat-list-item class="longListItemStyle" role="listitem">
+      <div style="width: 90%; margin-left: 10%;"><img [src]="speaker?.photo_url" style="height: 100px" alt="Vorschau" onerror="this.alt='Vorschau konnte nicht geladen werden';"></div>
     </mat-list-item>
   </mat-list>
   <button style="margin: 10px 10px 0px 0px;" mat-raised-button color="primary" [routerLink]="['edit/']">Speaker bearbeiten</button>
