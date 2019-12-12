@@ -66,8 +66,12 @@ export class PresenationFormComponent implements OnInit {
   initInputs() {
     this.presentationForm.get('title').setValue(this.presentation.title);
     this.presentationForm.get('abstract').setValue(this.presentation.abstract);
-    this.presentationForm.get('start').setValue(this.presentation.start);
-    this.presentationForm.get('end').setValue(this.presentation.end);
+    const start = new Date(this.presentation.start);
+    start.setTime( start.getTime() + start.getTimezoneOffset() * 60 * 1000 );
+    const end = new Date(this.presentation.end);
+    end.setTime( end.getTime() + end.getTimezoneOffset() * 60 * 1000 );
+    this.presentationForm.get('start').setValue(start);
+    this.presentationForm.get('end').setValue(end);
     this.presentationForm.get('slides').setValue(this.presentation.slides);
     this.presentationForm.get('access_token').setValue(this.presentation.access_token);
     this.presentationForm.get('room').setValue(this.presentation.room);
