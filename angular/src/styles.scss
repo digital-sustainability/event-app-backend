@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import './sass/variables';
+@import "~ng-pick-datetime/assets/style/picker.min.css";
 
 body {
     margin: 0;
@@ -41,4 +42,8 @@ body {
 
 .card-img {
     width: 100%;
+}
+
+.multiline {
+  white-space: pre-wrap;
 }

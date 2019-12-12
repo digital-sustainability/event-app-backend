@@ -3,6 +3,7 @@ export interface Session {
   title: string;
   abstract: string;
   label_presentations: string;
+  room: string;
   event_id: any;
   presentations: string;
 }
