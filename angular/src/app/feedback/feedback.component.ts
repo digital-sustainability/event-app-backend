@@ -21,6 +21,7 @@ export class FeedbackComponent implements OnInit {
     'presentation_title',
     'speakers',
     'handle',
+    'uuid',
     'grade',
     'comment_positive',
     'comment_negative',

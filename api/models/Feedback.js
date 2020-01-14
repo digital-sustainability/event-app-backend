@@ -22,6 +22,10 @@ module.exports = {
       type: 'string',
       required: true
     },
+    uuid: {
+      type: 'string',
+      allowNull: true
+    },
     comment_positive: {
       type: 'string',
       columnType: 'TEXT',

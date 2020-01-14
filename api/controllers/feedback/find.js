@@ -19,7 +19,7 @@ module.exports = {
 
   fn: async function (inputs, exits) {
     var joinQuery = `
-      SELECT grade, handle, comment_positive, comment_negative, feedback.createdAt as createdAt, presentation.title as presentation_title,
+      SELECT grade, handle, uuid, comment_positive, comment_negative, feedback.createdAt as createdAt, presentation.title as presentation_title,
       speaker_concat.speakers as speakers, session.title as session_title, event.title as event_title
       FROM feedback
       INNER JOIN presentation ON feedback.presentation_id = presentation.id
