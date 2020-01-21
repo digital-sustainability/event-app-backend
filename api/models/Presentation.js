@@ -21,6 +21,10 @@ module.exports = {
       columnType: 'TEXT',
       allowNull: true
     },
+    formatted_abstract: {
+      type: 'string',
+      allowNull: true
+    },
     slides: {
       type: 'string',
       required: true

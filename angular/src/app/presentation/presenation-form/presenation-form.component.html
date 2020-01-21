@@ -6,8 +6,12 @@
   </mat-form-field>
   <!-- Presentation Abstract -->
   <mat-form-field class="fullSizeFormField">
-    <textarea matInput placeholder="Abstract" type="text" formControlName="abstract" required></textarea>
+    <textarea matInput placeholder="Unformatiertes Abstract (für ältere App-Versionen und falls kein formatiertes Abstract angegeben wird)" type="text" formControlName="abstract" required></textarea>
   </mat-form-field>
+  <!-- Presentation Formatted Abstract -->
+  <div class="fullSizeFormField htmlEditor">
+    <angular-editor placeholder="Formatiertes Abstract" formControlName="formatted_abstract" [config]="editorConfig"></angular-editor>
+  </div>
   <!-- Presentation Start -->
   <mat-form-field>
     <input matInput [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" formControlName="start" placeholder="Start" required>

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators, ReactiveFormsModule} from "@angular/forms";
 import {Event} from "../../shared/event/event";
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 import * as moment from 'node_modules/moment';
 
 @Component({
@@ -17,6 +18,32 @@ export class EventFormComponent implements OnInit, OnChanges {
 
   eventForm: FormGroup;
 
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: 'auto',
+    minHeight: '150',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '',
+    fonts: [],
+    sanitize: true,
+    toolbarPosition: 'top',
+    toolbarHiddenButtons: [
+      ['fontSize', 'backgroundColor'],
+      ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'indent', 'outdent'],
+      ['insertOrderedList', 'insertHorizontalRule'],
+      ['fontName'],
+      ['insertImage', 'insertVideo']
+    ]
+  };
+
   constructor() { }
 
   /**
@@ -29,6 +56,9 @@ export class EventFormComponent implements OnInit, OnChanges {
       ]),
       'description': new FormControl('', [
         Validators.required
+      ]),
+      'formatted_description': new FormControl('', [
+
       ]),
       'start': new FormControl('', [
         Validators.required,
@@ -60,12 +90,9 @@ export class EventFormComponent implements OnInit, OnChanges {
   initInputs() {
     this.eventForm.get('title').setValue(this.event.title);
     this.eventForm.get('description').setValue(this.event.description);
-    const start = new Date(this.event.start);
-    start.setTime( start.getTime() + start.getTimezoneOffset() * 60 * 1000 );
-    const end = new Date(this.event.end);
-    end.setTime( end.getTime() + end.getTimezoneOffset() * 60 * 1000 );
-    this.eventForm.get('start').setValue(start);
-    this.eventForm.get('end').setValue(end);
+    this.eventForm.get('formatted_description').setValue(this.event.formatted_description);
+    this.eventForm.get('start').setValue(this.event.start);
+    this.eventForm.get('end').setValue(this.event.end);
     this.eventForm.get('location').setValue(this.event.location);
     this.eventForm.get('image_path').setValue(this.event.image_path);
     this.eventForm.get('url').setValue(this.event.url);

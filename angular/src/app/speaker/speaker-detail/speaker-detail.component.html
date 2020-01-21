@@ -23,7 +23,7 @@
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item role="listitem">
-      <div class="listDescription"><b>Email:</b></div>
+      <div class="listDescription"><b>E-Mail:</b></div>
       <div class="listItems">{{speaker?.email}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
@@ -39,20 +39,23 @@
     <mat-divider></mat-divider>
     <mat-list-item class="longListItemStyle" role="listitem">
       <div class="listDescription"><b>Kurzbiographie: </b></div>
-      <div class="listItems">{{speaker?.short_bio}}</div>
+      <div class="listItems multiline" [innerHtml]="speaker?.merged_short_bio"></div>
     </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item *ngIf="speaker?.formatted_short_bio" class="longListItemStyle" role="listitem">
+        <div class="listDescription"><b>Unformatierte Kurzbiographie:</b></div>
+        <div class="listItems multiline">{{speaker?.short_bio}}</div>
+      </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item role="listitem">
-      <div class="listDescription"><b>Foto URL: </b></div>
+      <div class="listDescription"><b>Foto: </b></div>
       <div class="listItems">{{speaker?.photo_url}}</div>
     </mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>
-      <button mat-icon-button color="accent" [routerLink]="['edit/']">
-          <mat-icon class="mat-18">system_update</mat-icon>
-      </button>
+    <mat-list-item class="longListItemStyle" role="listitem">
+      <div style="width: 90%; margin-left: 10%;"><img [src]="speaker?.photo_url" style="height: 100px" alt="Vorschau" onerror="this.alt='Vorschau konnte nicht geladen werden';"></div>
     </mat-list-item>
   </mat-list>
+  <button style="margin: 10px 10px 0px 0px;" mat-raised-button color="primary" [routerLink]="['edit/']">Speaker bearbeiten</button>
 </mat-card>
 </mat-card>
 

@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@an
 import {Presentation} from "../../shared/presenation/presentation";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-presenation-form',
@@ -16,6 +17,32 @@ export class PresenationFormComponent implements OnInit {
   @Input() presentation: Presentation;
 
   presentationForm: FormGroup;
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: 'auto',
+    minHeight: '150',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '',
+    fonts: [],
+    sanitize: true,
+    toolbarPosition: 'top',
+    toolbarHiddenButtons: [
+      ['fontSize', 'backgroundColor'],
+      ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'indent', 'outdent'],
+      ['insertOrderedList', 'insertHorizontalRule'],
+      ['fontName'],
+      ['insertImage', 'insertVideo']
+    ]
+  };
 
   constructor(private route: ActivatedRoute
   ) { }
@@ -32,6 +59,9 @@ export class PresenationFormComponent implements OnInit {
       ]),
       'abstract': new FormControl('', [
         Validators.required
+      ]),
+      'formatted_abstract': new FormControl('', [
+
       ]),
       'start': new FormControl('', [
         Validators.required,
@@ -66,12 +96,9 @@ export class PresenationFormComponent implements OnInit {
   initInputs() {
     this.presentationForm.get('title').setValue(this.presentation.title);
     this.presentationForm.get('abstract').setValue(this.presentation.abstract);
-    const start = new Date(this.presentation.start);
-    start.setTime( start.getTime() + start.getTimezoneOffset() * 60 * 1000 );
-    const end = new Date(this.presentation.end);
-    end.setTime( end.getTime() + end.getTimezoneOffset() * 60 * 1000 );
-    this.presentationForm.get('start').setValue(start);
-    this.presentationForm.get('end').setValue(end);
+    this.presentationForm.get('formatted_abstract').setValue(this.presentation.formatted_abstract);
+    this.presentationForm.get('start').setValue(this.presentation.start);
+    this.presentationForm.get('end').setValue(this.presentation.end);
     this.presentationForm.get('slides').setValue(this.presentation.slides);
     this.presentationForm.get('access_token').setValue(this.presentation.access_token);
     this.presentationForm.get('room').setValue(this.presentation.room);
