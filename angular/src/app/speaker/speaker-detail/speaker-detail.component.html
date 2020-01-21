@@ -39,12 +39,12 @@
     <mat-divider></mat-divider>
     <mat-list-item class="longListItemStyle" role="listitem">
       <div class="listDescription"><b>Kurzbiographie: </b></div>
-      <div class="listItems" [innerHtml]="speaker?.merged_short_bio" class="multiline"></div>
+      <div class="listItems multiline" [innerHtml]="speaker?.merged_short_bio"></div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item *ngIf="speaker?.formatted_short_bio" class="longListItemStyle" role="listitem">
         <div class="listDescription"><b>Unformatierte Kurzbiographie:</b></div>
-        <div class="listItems" class="multiline">{{speaker?.short_bio}}</div>
+        <div class="listItems multiline">{{speaker?.short_bio}}</div>
       </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item role="listitem">
