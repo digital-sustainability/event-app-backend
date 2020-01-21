@@ -24,6 +24,11 @@
         <div class="listItems" [innerHtml]="session?.merged_abstract"></div>
       </mat-list-item>
       <mat-divider></mat-divider>
+      <mat-list-item class="longListItemStyle" role="listitem">
+        <div class="listDescription"><b>Raum:</b></div>
+        <div class="listItems">{{session?.room ? session?.room : '-'}}</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
       <mat-list-item *ngIf="session?.formatted_abstract" class="longListItemStyle" role="listitem">
           <div class="listDescription"><b>Unformatiertes Abstract:</b></div>
           <div class="listItems"> {{session?.abstract}} </div>

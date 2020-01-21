@@ -8,6 +8,7 @@ import {EventService} from "../../shared/event.service";
 import {SessionService} from "../../shared/session.service";
 import {Event} from "../../shared/event/event";
 import {Session} from "../../shared/session/session";
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-presentation-edit',
@@ -86,15 +87,19 @@ export class PresentationEditComponent implements OnInit {
   }
 
   preparePresentation(formData) {
-    let presentation = formData;
+    const presentation = formData;
     presentation.id = this.presentation_id;
     presentation.session_id = presentation.session_id.id;
+
+    presentation.start = moment(presentation.start).format('YYYY-MM-DDTHH:mm:ss'); // don't use UTC in database
+    presentation.end = moment(presentation.end).format('YYYY-MM-DDTHH:mm:ss'); // don't use UTC in database
+
     return presentation;
   }
 
   successCallback(presentation) {
     console.log("new", presentation);
-    this.router.navigate(['../../'], {
+    this.router.navigate(['../'], {
       relativeTo: this.route
     });
     this.snackbar.open('Präsentation wurde erfolgreich geändert.', '', {

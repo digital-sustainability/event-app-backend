@@ -67,7 +67,7 @@
           <button mat-icon-button color="primary" [routerLink]="['/event/', element.id]" title="Details">
             <mat-icon class="mat-18">info</mat-icon>
           </button>
-          <button mat-icon-button color="accent"  [routerLink]="[element.id + '/edit']" title="Bearbeiten">
+          <button mat-icon-button color="accent"  [routerLink]="['/event/' + element.id + '/edit']" title="Bearbeiten">
             <mat-icon class="mat-18">edit</mat-icon>
           </button>
           <button mat-icon-button color="warn" (click)="openDeleteDialog(element)" title="Löschen">

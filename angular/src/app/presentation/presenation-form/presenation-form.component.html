@@ -6,19 +6,21 @@
   </mat-form-field>
   <!-- Presentation Abstract -->
   <mat-form-field class="fullSizeFormField">
-    <input matInput placeholder="Abstract" type="text" formControlName="abstract" required>
+    <textarea matInput placeholder="Abstract" type="text" formControlName="abstract" required></textarea>
   </mat-form-field>
   <!-- Presentation Formatted Abstract -->
   <div class="fullSizeFormField htmlEditor">
     <angular-editor placeholder="Formatiertes Abstract" formControlName="formatted_abstract" [config]="editorConfig"></angular-editor>
   </div>
-  <!-- Presentation Start, only works on Chrome -->
+  <!-- Presentation Start -->
   <mat-form-field>
-    <input matInput placeholder="Start" type="datetime-local" formControlName="start" required>
+    <input matInput [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" formControlName="start" placeholder="Start" required>
+    <owl-date-time #dt1></owl-date-time>
   </mat-form-field>
-  <!-- Presentation End, only works on Chrome -->
+  <!-- Presentation End -->
   <mat-form-field>
-    <input matInput placeholder="Ende" type="datetime-local" formControlName="end" required>
+    <input matInput [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" formControlName="end" placeholder="Ende" required>
+    <owl-date-time #dt2></owl-date-time>
   </mat-form-field>
   <!-- Presentation Slides -->
   <mat-form-field class="fullSizeFormField">

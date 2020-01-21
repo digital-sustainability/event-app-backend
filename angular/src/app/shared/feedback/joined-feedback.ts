@@ -1,6 +1,7 @@
 export interface JoinedFeedback {
   grade: number;
   handle: string;
+  uuid: string;
   comment_positive: string;
   comment_negative: string;
   presentation_title: string;

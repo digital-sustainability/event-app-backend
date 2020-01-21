@@ -27,6 +27,7 @@
     "core-js": "^2.5.4",
     "mat-table-exporter": "^1.2.1",
     "moment": "^2.24.0",
+    "ng-pick-datetime": "^7.0.0",
     "ngx-moment": "^3.4.0",
     "rxjs": "^6.5.3",
     "tslib": "^1.10.0",

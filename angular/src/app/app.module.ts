@@ -56,6 +56,7 @@ import { MomentModule } from 'ngx-moment';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { DatePipePipe } from './shared/date-pipe.pipe';
+import { OwlDateTimeModule, OwlNativeDateTimeModule, OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
 
 export function appInitFactory(authService: AuthService): () => Promise<any> {
   return () => authService.checkLogin().toPromise();
@@ -118,7 +119,9 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     MatAutocompleteModule,
     MomentModule,
     MatTableExporterModule,
-    AngularEditorModule
+    AngularEditorModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule
   ],
   providers: [
     {
@@ -126,7 +129,8 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
       useClass: HttpInterceptorService,
       multi: true
     },
-    {provide: APP_INITIALIZER, useFactory: appInitFactory, deps: [AuthService], multi: true}
+    {provide: APP_INITIALIZER, useFactory: appInitFactory, deps: [AuthService], multi: true},
+    {provide: OWL_DATE_TIME_LOCALE, useValue: 'de'},
   ],
   entryComponents: [DeleteDialogComponent],
   bootstrap: [AppComponent]

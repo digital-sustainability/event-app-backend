@@ -4,6 +4,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {EventService} from "../../shared/event.service";
 import {Event} from "../../shared/event/event";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-event-edit',
@@ -50,7 +52,12 @@ export class EventEditComponent implements OnInit {
    */
   submit(formData) {
     let event = formData;
+
     event.id = this.event_id;
+
+    event.start = moment(event.start).format('YYYY-MM-DDTHH:mm:ss'); // don't use UTC in database
+    event.end = moment(event.end).format('YYYY-MM-DDTHH:mm:ss'); // don't use UTC in database
+
     this.eventService.updateEvent(event)
       .subscribe( (events) => {
         console.log("new", events);

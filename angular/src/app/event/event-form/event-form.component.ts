@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges
 import {FormControl, FormGroup, Validators, ReactiveFormsModule} from "@angular/forms";
 import {Event} from "../../shared/event/event";
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import * as moment from 'node_modules/moment';
 
 @Component({
   selector: 'app-event-form',

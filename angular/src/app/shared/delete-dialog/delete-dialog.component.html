@@ -1,8 +1,10 @@
-<h1 mat-dialog-title>Löschen</h1>
-<div mat-dialog-content>
- Willst du <b>{{data.title}}</b> wirklich löschen? Dies löscht den Eintrag überall.
-</div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Abbrechen</button>
-  <button mat-button color="warn" [mat-dialog-close]="true">Löschen</button>
+<div class="mat-typography">
+  <h1 mat-dialog-title>Löschen</h1>
+  <div mat-dialog-content>
+    Willst du <b>{{data.title}}</b> wirklich löschen? Dies löscht den Eintrag überall.
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Abbrechen</button>
+    <button mat-button color="warn" [mat-dialog-close]="true">Löschen</button>
+  </div>
 </div>
