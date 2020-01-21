@@ -61,7 +61,7 @@ export class PresenationFormComponent implements OnInit {
         Validators.required
       ]),
       'formatted_abstract': new FormControl('', [
-        Validators.required
+
       ]),
       'start': new FormControl('', [
         Validators.required,

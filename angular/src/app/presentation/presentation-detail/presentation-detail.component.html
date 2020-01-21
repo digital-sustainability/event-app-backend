@@ -28,13 +28,13 @@
       <!-- Presentation Abstract -->
       <mat-list-item class="longListItemStyle" role="listitem">
         <div class="listDescription"><b>Abstract: </b></div>
-        <div class="listItems" [innerHtml]="presentation?.merged_abstract"></div>
+        <div class="listItems" [innerHtml]="presentation?.merged_abstract" class="multiline"></div>
       </mat-list-item>
       <mat-divider></mat-divider>
        <!-- Presentation Unformatted Abstract -->
        <mat-list-item *ngIf="presentation?.formatted_abstract" class="longListItemStyle" role="listitem">
           <div class="listDescription"><b>Unformatiertes Abstract: </b></div>
-          <div class="listItems">{{presentation?.abstract}}</div>
+          <div class="listItems" class="multiline">{{presentation?.abstract}}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
       <!-- Presentation SLides -->

@@ -65,7 +65,7 @@ export class SpeakerFormComponent implements OnInit {
         Validators.required
       ]),
       'formatted_short_bio': new FormControl('', [
-        Validators.required
+
       ]),
       'photo_url': new FormControl('', [
         Validators.required

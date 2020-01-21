@@ -28,13 +28,13 @@
     <!-- Event Description -->
     <mat-list-item class="longListItemStyle" role="listitem">
       <div style="width: 10%"><b>Beschreibung:</b></div>
-      <div style="width: 90%" [innerHtml]="event?.merged_description"></div>
+      <div style="width: 90%" [innerHtml]="event?.merged_description" class="multiline"></div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <!-- Event Unformatted Description, only visible if there is a formatted description (otherwise, the unformatted one is shown above) -->
     <mat-list-item *ngIf="event?.formatted_description" class="longListItemStyle" role="listitem">
       <div style="width: 10%"><b>Unformatierte Beschreibung:</b></div>
-      <div style="width: 90%" [innerHtml]="event?.description"></div>
+      <div style="width: 90%" [innerHtml]="event?.description" class="multiline"></div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <!-- Event Location -->

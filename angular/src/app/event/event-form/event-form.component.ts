@@ -58,7 +58,7 @@ export class EventFormComponent implements OnInit, OnChanges {
         Validators.required
       ]),
       'formatted_description': new FormControl('', [
-        Validators.required
+
       ]),
       'start': new FormControl('', [
         Validators.required,
