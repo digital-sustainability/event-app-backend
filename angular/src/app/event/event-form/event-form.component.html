@@ -4,11 +4,15 @@
   <mat-form-field class="fullSizeFormField">
     <input matInput placeholder="Titel" type="text" formControlName="title" required>
   </mat-form-field>
-  <!-- Event Description Formfield -->
+  <!-- Event Description -->
   <mat-form-field class="fullSizeFormField">
-    <textarea matInput placeholder="Beschreibung" type="text" formControlName="description" required></textarea>
+    <textarea matInput placeholder="Unformatierte Beschreibung (für ältere App-Versionen und falls keine formatierte Beschreibung angegeben wird)" type="text" formControlName="description" required></textarea>
   </mat-form-field>
-  <!-- Event Start -->
+  <!-- Event Formatted Description -->
+  <div class="fullSizeFormField htmlEditor">
+    <angular-editor placeholder="Formatierte Beschreibung" formControlName="formatted_description" [config]="editorConfig"></angular-editor>
+  </div>
+  <!-- Event Start Formfield, only shows a Calender in Chrome -->
   <mat-form-field>
     <input matInput [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" formControlName="start" placeholder="Start" required>
     <owl-date-time #dt1></owl-date-time>

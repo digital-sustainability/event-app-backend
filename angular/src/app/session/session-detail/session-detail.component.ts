@@ -31,8 +31,8 @@ export class SessionDetailComponent implements OnInit, OnDestroy {
       this.session_id = params['session_id'];
       this.sessionService.getSessionById(this.session_id)
         .subscribe((session) => {
+          session.merged_abstract = session.formatted_abstract ? session.formatted_abstract : session.abstract;
           this.session = session;
-          console.log(this.session);
         });
     });
     this.route.params.subscribe( (params) => {

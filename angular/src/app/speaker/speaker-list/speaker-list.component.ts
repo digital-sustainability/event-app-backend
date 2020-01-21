@@ -28,7 +28,7 @@ export class SpeakerListComponent implements OnInit, AfterViewInit, OnChanges {
   speaker_id: number;
 
 
-  displayedColumns: string[] = ['id', 'first_name', 'last_name', 'email', 'position', 'organization', 'short_bio','details', 'update', 'delete'];
+  displayedColumns: string[] = ['id', 'first_name', 'last_name', 'email', 'position', 'organization', 'short_bio', 'photo_url', 'actions'];
 
   constructor(private speakerService: SpeakerService,
               private dialog: MatDialog,
@@ -57,12 +57,13 @@ export class SpeakerListComponent implements OnInit, AfterViewInit, OnChanges {
   getAllSpeakers() {
     this.speakerService.getSpeakers()
       .subscribe((speakers) => {
-        console.log("alle Speakers", speakers);
         this.speakers = speakers;
+        this.speakers.forEach((speaker) => {
+          speaker.merged_short_bio = speaker.formatted_short_bio ? speaker.formatted_short_bio : speaker.short_bio;
+        })
         this.dataSource = new MatTableDataSource(this.speakers);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        console.log("speakers", this.speakers);
       })
   }
 

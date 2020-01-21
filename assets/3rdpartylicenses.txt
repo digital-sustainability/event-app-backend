@@ -156,6 +156,9 @@ MIT
 @angular/router
 MIT
 
+@kolkov/angular-editor
+MIT
+
 angular2-sails
 MIT
 The MIT License (MIT)

@@ -27,8 +27,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
       this.event_id = params['event_id'];
       this.eventService.getEventById(this.event_id)
         .subscribe( (event) => {
+          event.merged_description = event.formatted_description ? event.formatted_description : event.description;
           this.event = event;
-          console.log(this.event);
         });
     });
   }

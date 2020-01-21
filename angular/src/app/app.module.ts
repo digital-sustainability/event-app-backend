@@ -54,6 +54,8 @@ import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.comp
 import { PresentationSpeakerComponent } from './presentation-speaker/presentation-speaker.component';
 import { MomentModule } from 'ngx-moment';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { DatePipePipe } from './shared/date-pipe.pipe';
 import { OwlDateTimeModule, OwlNativeDateTimeModule, OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
 
 export function appInitFactory(authService: AuthService): () => Promise<any> {
@@ -96,6 +98,7 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     SpeakerCreateComponent,
     DeleteDialogComponent,
     PresentationSpeakerComponent,
+    DatePipePipe,
   ],
   imports: [
     BrowserModule,
@@ -116,6 +119,7 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     MatAutocompleteModule,
     MomentModule,
     MatTableExporterModule,
+    AngularEditorModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule
   ],

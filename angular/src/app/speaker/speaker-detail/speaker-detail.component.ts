@@ -24,8 +24,8 @@ export class SpeakerDetailComponent implements OnInit {
       this.speaker_id = params['id'];
       this.speakerService.getSpeakerById(this.speaker_id)
         .subscribe((speaker) => {
+          speaker.merged_short_bio = speaker.formatted_short_bio ? speaker.formatted_short_bio : speaker.short_bio;
           this.speaker = speaker;
-          console.log(this.speaker);
         });
     });
 

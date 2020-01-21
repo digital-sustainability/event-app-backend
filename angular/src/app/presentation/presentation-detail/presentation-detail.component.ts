@@ -33,8 +33,8 @@ export class PresentationDetailComponent implements OnInit, OnDestroy {
       this.presentation_id = params['presentation_id'];
       this.presentationService.getPresenationById(this.presentation_id)
         .subscribe((presentation) => {
+          presentation.merged_abstract = presentation.formatted_abstract ? presentation.formatted_abstract : presentation.abstract;
           this.presentation = presentation;
-          console.log("dude", this.presentation);
         });
     });
     this.getEventAndSessionForRouting();

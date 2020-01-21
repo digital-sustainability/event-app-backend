@@ -39,6 +39,10 @@ module.exports = {
       columnType: 'TEXT',
       allowNull: true
     },
+    formatted_short_bio: {
+      type: 'string',
+      allowNull: true
+    },
     photo_url: {
       type: 'string',
       allowNull: true

@@ -9,6 +9,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 
+
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
@@ -25,9 +26,10 @@ export class EventListComponent implements OnInit, OnChanges {
 
   event_id: number;
 
-  displayedColumns: string[] = ['id', 'title', 'description', 'start', 'end', 'location', 'image_path', 'published', 'details', 'update', 'delete'];
+  displayedColumns: string[] = ['id', 'title', 'description', 'start', 'end', 'location', 'image_path', 'published', 'actions'];
 
   id: number;
+
 
   constructor(private router: Router,
               private eventService: EventService,
@@ -65,8 +67,10 @@ export class EventListComponent implements OnInit, OnChanges {
   getAllEvents() {
     this.eventService.getEvents()
       .subscribe((events) => {
-        console.log("das", events);
         this.events = events;
+        this.events.forEach((event) => {
+          event.merged_description = event.formatted_description ? event.formatted_description : event.description;
+        });
         this.dataSource = new MatTableDataSource(this.events);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
