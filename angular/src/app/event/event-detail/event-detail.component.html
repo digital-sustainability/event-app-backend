@@ -5,13 +5,11 @@
 <a>{{event?.title}}</a>
 <!-- Site Title -->
 <h1>
-  Event Detail Ansicht
+  Event-Detailansicht
 </h1>
 <mat-card style="margin: 5%">
-<!-- Card Title -->
-<h1>
-  Event Detail Ansicht <b>"{{event?.title}}"</b>
-</h1>
+  <!-- Card Title -->
+  <h1>{{event?.title}}</h1>
   <mat-list role="list">
     <!-- Event ID -->
     <mat-list-item role="listitem">
@@ -69,6 +67,11 @@
       <div style="width: 10%"><b>URL Label: </b></div>
       <div style="width: 90%">{{event?.url_label}}</div>
     </mat-list-item>
+    <!-- Kategorien -->
+    <mat-list-item role="listitem" class="longListItemStyle">
+      <div style="width: 10%"><b>Kategorien: </b></div>
+      <div style="width: 90%"><app-event-category [event]="event"></app-event-category></div>
+    </mat-list-item>
   </mat-list>
   <!-- Button that directs to the Event Create Component to add new Events -->
   <button style="margin: 10px 10px 0px 0px;" mat-raised-button color="primary" [routerLink]="['edit/']">Event bearbeiten</button>
@@ -77,9 +80,7 @@
 
 <!-- Shows a list of all sessions of this Event, directs to the Session-List Component
       passes the event_id -->
-<mat-card style="margin: 5%">
   <app-session-list [eventId]="event_id"></app-session-list>
-</mat-card>
 </mat-card>
 
 

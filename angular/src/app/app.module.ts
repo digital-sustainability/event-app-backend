@@ -57,6 +57,8 @@ import { MatTableExporterModule } from 'mat-table-exporter';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { DatePipePipe } from './shared/date-pipe.pipe';
 import { OwlDateTimeModule, OwlNativeDateTimeModule, OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
+import { EventCategoryComponent } from './event-category/event-category.component';
+import { CategoryPipe } from './event/event-list/category.pipe';
 
 export function appInitFactory(authService: AuthService): () => Promise<any> {
   return () => authService.checkLogin().toPromise();
@@ -99,6 +101,8 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     DeleteDialogComponent,
     PresentationSpeakerComponent,
     DatePipePipe,
+    EventCategoryComponent,
+    CategoryPipe,
   ],
   imports: [
     BrowserModule,

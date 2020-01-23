@@ -1,0 +1,27 @@
+<mat-form-field style="width: 100%" class="category-chip-list">
+  <mat-chip-list #chipList aria-label="Category selection">
+    <mat-chip
+      *ngFor="let category of event?.categories"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="remove(category)">
+      {{category.name}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input
+      placeholder="Neue Kategorie hinzufügen"
+      #categoryInput
+      [formControl]="categoryForm"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="addOnBlur"
+      (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let category of filteredCategories | async" [value]="category"
+  >
+      {{category.name}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

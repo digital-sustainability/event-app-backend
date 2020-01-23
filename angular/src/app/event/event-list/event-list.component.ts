@@ -26,7 +26,8 @@ export class EventListComponent implements OnInit, OnChanges {
 
   event_id: number;
 
-  displayedColumns: string[] = ['id', 'title', 'description', 'start', 'end', 'location', 'image_path', 'published', 'actions'];
+  displayedColumns: string[] = ['id', 'title', 'description', 'start', 'end', 'location',
+    'image_path', 'published', 'categories', 'actions'];
 
   id: number;
 

@@ -30,6 +30,8 @@ module.exports.routes = {
 
   'post /api/presentationSpeaker/destroy': 'presentationspeaker/destroy',
 
+  'post /api/eventCategory/destroy': 'eventcategory/destroy',
+
   /**
    * Enable CSRF in security config settings
    */
