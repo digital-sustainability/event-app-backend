@@ -27,11 +27,11 @@ module.exports = {
         if (inputs.archive) {
             filteredEvents = await Event.find({
                 where: { end: { '<': yesterday} }
-            })
+            }).populate('categories');
         } else {
             filteredEvents = await Event.find({
                 where: { end: { '>=': yesterday } }
-            })
+            }).populate('categories');
         }
         return exits.success(filteredEvents);
     }
