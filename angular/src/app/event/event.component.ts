@@ -51,6 +51,24 @@ export class EventComponent implements OnInit {
               private eventService: EventService
   ) { }
 
+  onCreateEvent() {
+    const emptyEvent = <Event>{
+      id: 1,
+      title: 'NewEventToTestCrud',
+      description: 'if it works, it would be great',
+      start: '2019-05-09 09:00:00',
+      end: '2019-05-09 09:00:00',
+      location: '',
+      image_path: '',
+      url: '',
+      url_label: '',
+      published: false
+    };
+    this.eventService.createEvent(emptyEvent).subscribe((event: Event) => {
+      console.log('huee');
+    });
+  }
+
   ngOnInit() {
     this.getAllEvents();
     //this.createNewEvent();

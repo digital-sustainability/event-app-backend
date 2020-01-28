@@ -67,10 +67,17 @@
       <div style="width: 10%"><b>URL Label: </b></div>
       <div style="width: 90%">{{event?.url_label}}</div>
     </mat-list-item>
+    <mat-divider></mat-divider>
     <!-- Kategorien -->
     <mat-list-item role="listitem" class="longListItemStyle">
       <div style="width: 10%"><b>Kategorien: </b></div>
       <div style="width: 90%"><app-event-category [event]="event"></app-event-category></div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <!-- Published -->
+    <mat-list-item role="listitem">
+      <div style="width: 10%"><b>Publiziert: </b></div>
+      <div style="width: 90%">{{event?.published}}</div>
     </mat-list-item>
   </mat-list>
   <!-- Button that directs to the Event Create Component to add new Events -->

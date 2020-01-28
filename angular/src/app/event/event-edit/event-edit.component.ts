@@ -50,8 +50,8 @@ export class EventEditComponent implements OnInit {
    *
    * @param formData
    */
-  submit(formData) {
-    let event = formData;
+  submit(args: {formData: Event, quit: boolean}) {
+    const event = args.formData;
 
     event.id = this.event_id;
 
@@ -60,8 +60,9 @@ export class EventEditComponent implements OnInit {
 
     this.eventService.updateEvent(event)
       .subscribe( (events) => {
-        console.log("new", events);
-        this.router.navigate(['event']);
+        if (args.quit) {
+          this.router.navigate(['event']);
+        }
         this.snackbar.open('Event wurde erfolgreich geändert.', '', {
           duration: 3000,
           panelClass: 'fail'

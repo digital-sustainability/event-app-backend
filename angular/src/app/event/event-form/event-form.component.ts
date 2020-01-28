@@ -12,9 +12,9 @@ import * as moment from 'node_modules/moment';
 export class EventFormComponent implements OnInit, OnChanges {
 
 
-  @Output() eventSubmit: EventEmitter<Event> = new EventEmitter<Event>();
+  @Output() eventSubmit: EventEmitter<{formData: Event, quit: boolean}> = new EventEmitter<{formData: Event, quit: boolean}>();
   @Input() event: Event;
-  @Input() buttonTitle: string;
+  @Input() newEvent: boolean;
 
   eventForm: FormGroup;
 
@@ -78,8 +78,8 @@ export class EventFormComponent implements OnInit, OnChanges {
       'url_label': new FormControl('', [
         Validators.required,
       ]),
-      'published': new FormControl('', [
-
+      'published': new FormControl(false, [
+        Validators.required
       ]),
     });
   }
@@ -106,7 +106,7 @@ export class EventFormComponent implements OnInit, OnChanges {
    * @param {SimpleChanges} changes
    */
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes.event && changes.event.currentValue &&
+    if (changes.event && changes.event.currentValue &&
       changes.event.previousValue !== changes.event.currentValue) {
       this.initInputs();
     }
@@ -118,11 +118,11 @@ export class EventFormComponent implements OnInit, OnChanges {
    *
    * @returns {boolean}
    */
-  onSubmit() {
-    if(this.eventForm.invalid) {
+  onSubmit(quit: boolean) {
+    if (this.eventForm.invalid) {
       return false;
     } else {
-      this.eventSubmit.emit(this.eventForm.value);
+      this.eventSubmit.emit({formData: this.eventForm.value, quit: quit});
     }
   }
 
