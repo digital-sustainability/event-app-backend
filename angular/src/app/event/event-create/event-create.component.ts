@@ -38,7 +38,7 @@ export class EventCreateComponent implements OnInit {
         if (args.quit) {
           this.router.navigate(['event']);
         } else {
-          this.router.navigate(['/event/' + event.id + '/edit']);
+          this.router.navigate(['/event/' + event.id + '/edit'], { replaceUrl: true });
         }
         this.snackbar.open('Event wurde erfolgreich erstellt', '', {
           duration: 3000,
