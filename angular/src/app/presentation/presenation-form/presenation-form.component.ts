@@ -3,6 +3,7 @@ import {Presentation} from "../../shared/presenation/presentation";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import * as moment from 'node_modules/moment';
 
 @Component({
   selector: 'app-presenation-form',
@@ -97,8 +98,12 @@ export class PresenationFormComponent implements OnInit {
     this.presentationForm.get('title').setValue(this.presentation.title);
     this.presentationForm.get('abstract').setValue(this.presentation.abstract);
     this.presentationForm.get('formatted_abstract').setValue(this.presentation.formatted_abstract);
-    this.presentationForm.get('start').setValue(this.presentation.start);
-    this.presentationForm.get('end').setValue(this.presentation.end);
+    const start = new Date(this.presentation.start);
+    start.setTime(start.getTime() - 2 * 60 * 60 * 1000);
+    const end = new Date(this.presentation.end);
+    end.setTime(end.getTime() - 2 * 60 * 60 * 1000);
+    this.presentationForm.get('start').setValue(start);
+    this.presentationForm.get('end').setValue(end);
     this.presentationForm.get('slides').setValue(this.presentation.slides);
     this.presentationForm.get('access_token').setValue(this.presentation.access_token);
     this.presentationForm.get('room').setValue(this.presentation.room);

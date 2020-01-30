@@ -45,7 +45,7 @@
       Event speichern, um Kategorien hinzuzufügen
       <button mat-stroked-button [disabled]="eventForm.invalid" (click)="onSubmit(false)">Event speichern</button>
     </p>
-    <app-event-category *ngIf="!newEvent" [event]="event"></app-event-category>
+    <app-event-category *ngIf="event && !newEvent" [event]="event"></app-event-category>
   </div>
   <!-- Checkbox to tell if the Event should be published or not -->
   <mat-checkbox class="checkboxStyle" [formControl]="eventForm.controls['published']" >Publizieren</mat-checkbox>

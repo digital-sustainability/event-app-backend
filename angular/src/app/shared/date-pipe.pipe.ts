@@ -6,9 +6,17 @@ import * as moment from 'node_modules/moment';
 })
 export class DatePipePipe implements PipeTransform {
 
-  transform(date: any, format: string): any {
+  transform(date: any, format: string, fixTimezone: boolean): any {
     moment.locale('de');
-    return moment(date).format(format);
+
+    if (fixTimezone) {
+      const fixedDate = new Date(date);
+      fixedDate.setTime(fixedDate.getTime() - 2 * 60 * 60 * 1000);
+
+      return moment(fixedDate).format(format);
+    } else {
+      return moment(date).format(format);
+    }
   }
 
 }

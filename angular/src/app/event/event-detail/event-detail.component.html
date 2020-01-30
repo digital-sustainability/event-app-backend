@@ -44,7 +44,7 @@
     <!-- Event Start and End -->
     <mat-list-item role="listitem">
       <div style="width: 10%"><b>Zeitraum: </b></div>
-      <div style="width: 90%">{{event?.start | datePipe: 'LLLL'}} - {{event?.end | datePipe: 'LLLL'}}</div>
+      <div style="width: 90%">{{event?.start | datePipe: 'LLLL' : true }} - {{event?.end | datePipe: 'LLLL' : true }}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <!-- Image Path, points on a side, where the image can be gotten -->
