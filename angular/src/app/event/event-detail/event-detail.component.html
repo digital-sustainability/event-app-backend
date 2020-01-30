@@ -71,7 +71,7 @@
     <!-- Kategorien -->
     <mat-list-item role="listitem" class="longListItemStyle">
       <div style="width: 10%"><b>Kategorien: </b></div>
-      <div style="width: 90%"><app-event-category [event]="event"></app-event-category></div>
+      <div style="width: 90%"><app-event-category *ngIf="event" [event]="event"></app-event-category></div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <!-- Published -->
