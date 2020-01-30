@@ -11,7 +11,7 @@ export class DatePipePipe implements PipeTransform {
 
     if (fixTimezone) {
       const fixedDate = new Date(date);
-      fixedDate.setTime(fixedDate.getTime() - 2 * 60 * 60 * 1000);
+      fixedDate.setTime(fixedDate.getTime() - 1 * 60 * 60 * 1000);
 
       return moment(fixedDate).format(format);
     } else {
