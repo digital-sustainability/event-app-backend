@@ -20,7 +20,7 @@ import { Event } from '../shared/event/event';
 })
 export class EventCategoryComponent {
   @Input() event: Event;
-  categories: Category[] = [];
+  allCategories: Category[] = [];
   categoryForm = new FormControl();
   filteredCategories: Observable<Category[] | string[]>;
 
@@ -34,22 +34,26 @@ export class EventCategoryComponent {
   fruits: string[] = ['Lemon'];
   allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];*/
 
-  @ViewChild('categoryInput', { static: true }) fruitInput: ElementRef<HTMLInputElement>;
+  @ViewChild('categoryInput', { static: true }) categoryInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', { static: true }) matAutocomplete: MatAutocomplete;
 
   constructor(
     private categoryService: CategoryService,
     private eventCategoryService: EventCategoryService
   ) {
-    this.getAllSpeakers();
+    this.getAllCategories();
   }
 
-  getAllSpeakers() {
+  getAllCategories() {
     this.categoryService.getCategories()
       .subscribe((categories) => {
-        this.filteredCategories = this.categoryForm.valueChanges.pipe(
+        this.allCategories = categories;
+
+        this.filteredCategories = this.categoryForm.valueChanges.pipe (
           startWith(null),
-          map((value: string | null) => value ? this._filter(categories, value) : categories.slice())
+          map((value: string | null) => value ?
+            this._filter(this.allCategories.filter((category) => !this.event.categories.some((cat) => cat.id === category.id)), value) :
+            this.allCategories.filter((category) => !this.event.categories.some((cat) => cat.id === category.id)))
         );
       });
   }
@@ -87,7 +91,7 @@ export class EventCategoryComponent {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.event.categories.push(event.option.value);
-    this.fruitInput.nativeElement.value = '';
+    this.categoryInput.nativeElement.value = '';
     this.categoryForm.setValue(null);
     this.eventCategoryService.createEventCategory({
       id: undefined,

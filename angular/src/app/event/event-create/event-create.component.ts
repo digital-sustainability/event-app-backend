@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {EventService} from "../../shared/event.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Event } from '../../shared/event/event';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-event-create',
@@ -27,7 +28,12 @@ export class EventCreateComponent implements OnInit {
    * uses the EventService, the Router and the MatSnackBar
    */
   submit(args: {formData: Event, quit: boolean}) {
-    this.eventService.createEvent(args.formData)
+    const newEvent = args.formData;
+
+    newEvent.start = moment(newEvent.start).format('YYYY-MM-DDTHH:mm:ss'); // don't use UTC in database
+    newEvent.end = moment(newEvent.end).format('YYYY-MM-DDTHH:mm:ss'); // don't use UTC in database
+
+    this.eventService.createEvent(newEvent)
       .subscribe((event: Event) => {
         if (args.quit) {
           this.router.navigate(['event']);

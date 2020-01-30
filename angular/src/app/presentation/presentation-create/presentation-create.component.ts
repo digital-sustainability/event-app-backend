@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {PresentationService} from "../../shared/presentation.service";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import {ActivatedRoute, Router} from "@angular/router";
-import {EventService} from "../../shared/event.service";
-import {SessionService} from "../../shared/session.service";
-import {Session} from "../../shared/session/session";
-import {Event} from "../../shared/event/event";
+import {PresentationService} from '../../shared/presentation.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import {ActivatedRoute, Router} from '@angular/router';
+import {EventService} from '../../shared/event.service';
+import {SessionService} from '../../shared/session.service';
+import {Session} from '../../shared/session/session';
+import {Event} from '../../shared/event/event';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-presentation-create',
@@ -33,15 +34,15 @@ export class PresentationCreateComponent implements OnInit {
    */
   getEventAndSessionForRouting() {
     this.route.params.subscribe( (params) => {
-      this.eventService.getEventById(params["event_id"])
+      this.eventService.getEventById(params['event_id'])
         .subscribe( (event: any) => {
           this.event = event;
-        })
-      this.sessionService.getSessionById(params["session_id"])
+        });
+      this.sessionService.getSessionById(params['session_id'])
         .subscribe( (session: any) => {
           this.session = session;
-        })
-    })
+        });
+    });
   }
 
   /**
@@ -54,9 +55,13 @@ export class PresentationCreateComponent implements OnInit {
    * @param formData
    */
   submit(formData: any) {
-    this.presentationService.createPresentation(formData)
+    const newPresentation = formData;
+
+    newPresentation.start = moment(newPresentation.start).format('YYYY-MM-DDTHH:mm:ss'); // don't use UTC in database
+    newPresentation.end = moment(newPresentation.end).format('YYYY-MM-DDTHH:mm:ss'); // don't use UTC in database
+
+    this.presentationService.createPresentation(newPresentation)
       .subscribe((presentations) => {
-        console.log(presentations);
         this.router.navigate(['../../'], {
           relativeTo: this.route
         });
