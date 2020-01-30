@@ -1,5 +1,5 @@
 <!-- This EventForm is used for the Create and Edit Component-->
-<form (ngSubmit)="onSubmit()" [formGroup]="eventForm">
+<form [formGroup]="eventForm">
   <!-- Event Title Formfield -->
   <mat-form-field class="fullSizeFormField">
     <input matInput placeholder="Titel" type="text" formControlName="title" required>
@@ -38,12 +38,21 @@
   <mat-form-field class="fullSizeFormField">
     <input matInput placeholder="URL Label" type="text" formControlName="url_label" required>
   </mat-form-field>
+  <!-- Categories -->
+  <div class="category-container">
+    <p><b>Kategorien</b></p>
+    <p *ngIf="newEvent">
+      Event speichern, um Kategorien hinzuzufügen
+      <button mat-stroked-button [disabled]="eventForm.invalid" (click)="onSubmit(false)">Event speichern</button>
+    </p>
+    <app-event-category *ngIf="!newEvent" [event]="event"></app-event-category>
+  </div>
   <!-- Checkbox to tell if the Event should be published or not -->
   <mat-checkbox class="checkboxStyle" [formControl]="eventForm.controls['published']" >Publizieren</mat-checkbox>
   <div class="fullSizeFormField">
     <!-- Button to submit the data, takes the Button description from Edit or create -->
-    <button mat-raised-button color="primary" [disabled]="eventForm.invalid" class="submit-button">
-      <mat-icon>input</mat-icon> {{buttonTitle}}
+    <button mat-raised-button color="primary" [disabled]="eventForm.invalid" class="submit-button" (click)="onSubmit(true)">
+      <mat-icon>input</mat-icon>{{newEvent ? 'Event erstellen' :  'Event anpassen'}}
     </button>
   </div>
 </form>

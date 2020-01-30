@@ -26,7 +26,8 @@ export class EventListComponent implements OnInit, OnChanges {
 
   event_id: number;
 
-  displayedColumns: string[] = ['id', 'title', 'description', 'start', 'end', 'location', 'image_path', 'published', 'actions'];
+  displayedColumns: string[] = ['id', 'title', 'description', 'start', 'end', 'location',
+    'image_path', 'published', 'categories', 'actions'];
 
   id: number;
 
@@ -74,6 +75,11 @@ export class EventListComponent implements OnInit, OnChanges {
         this.dataSource = new MatTableDataSource(this.events);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.dataSource.filterPredicate = (event: Event, filter: string) => {
+          const concat = [event.id, event.description, event.start.toString(), event.end.toString(), event.image_path,
+            event.categories.map(category => category.name).join(' ')].join(' ').toLowerCase();
+          return concat.includes(filter);
+        };
       });
   }
 

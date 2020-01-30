@@ -72,6 +72,22 @@ module.exports.policies = {
     'create': "isAuthenticated",
     'update': "isAuthenticated",
     'destroy': "isAuthenticated"
-  }
+  },
+
+  CategoryController: {
+    'find': true,
+    'findOne': true,
+    'create': "isAuthenticated",
+    'update': "isAuthenticated",
+    'destroy': "isAuthenticated"
+  },
+
+  EventCategoryController: {
+    'find': true,
+    'findOne': true,
+    'create': "isAuthenticated",
+    'update': "isAuthenticated",
+    'destroy': "isAuthenticated"
+  },
 
 };

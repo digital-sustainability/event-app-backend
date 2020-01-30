@@ -3,6 +3,7 @@ import {Subscription} from "rxjs/index";
 import {ActivatedRoute, Router} from "@angular/router";
 import {EventService} from "../../shared/event.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { Event } from '../../shared/event/event';
 
 @Component({
   selector: 'app-event-create',
@@ -25,11 +26,14 @@ export class EventCreateComponent implements OnInit {
    *
    * uses the EventService, the Router and the MatSnackBar
    */
-  submit(formData: any) {
-    this.eventService.createEvent(formData)
-      .subscribe((events) => {
-        console.log("new", events)
-        this.router.navigate(['event']);
+  submit(args: {formData: Event, quit: boolean}) {
+    this.eventService.createEvent(args.formData)
+      .subscribe((event: Event) => {
+        if (args.quit) {
+          this.router.navigate(['event']);
+        } else {
+          this.router.navigate(['/event/' + event.id + '/edit']);
+        }
         this.snackbar.open('Event wurde erfolgreich erstellt', '', {
           duration: 3000,
           panelClass: 'fail'
