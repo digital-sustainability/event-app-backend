@@ -46,7 +46,7 @@
       <!-- Presentation Start and End -->
       <mat-list-item role="listitem">
         <div class="listDescription"><b>Zeitraum: </b></div>
-        <div class="listItems"> {{ presentation?.start  | datePipe: 'LLLL' }} - {{ presentation?.end  | datePipe: 'LLL' }} </div>
+        <div class="listItems"> {{ presentation?.start  | datePipe: 'LLLL' : true }} - {{ presentation?.end  | datePipe: 'LLL' : true }} </div>
       </mat-list-item>
       <mat-divider></mat-divider>
       <!-- Presentation Room -->

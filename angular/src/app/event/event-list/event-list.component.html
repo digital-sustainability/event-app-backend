@@ -29,13 +29,13 @@
     <!-- Start Column -->
     <ng-container matColumnDef="start">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Start </th>
-      <td mat-cell *matCellDef="let element"> {{ element.start | datePipe:'l LT' }} </td>
+      <td mat-cell *matCellDef="let element"> {{ element.start | datePipe:'l LT' : true }} </td>
     </ng-container>
 
     <!-- End Column -->
     <ng-container matColumnDef="end">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Ende </th>
-      <td mat-cell *matCellDef="let element"> {{ element.end | datePipe:'l LT' }} </td>
+      <td mat-cell *matCellDef="let element"> {{ element.end | datePipe:'l LT' : true }} </td>
     </ng-container>
 
     <!-- Location Column -->
