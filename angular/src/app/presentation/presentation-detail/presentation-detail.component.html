@@ -16,7 +16,7 @@
       <!-- Presentation ID -->
       <mat-list-item role="listitem">
         <div class="listDescription"><b>ID: </b></div>
-        <div class="listItems">{{presentation?.id}}</div>
+        <div class="listItems">{{presentation?.id}} <i *ngIf="presentation?.position">(Position: {{presentation?.position}})</i></div>
       </mat-list-item>
       <mat-divider></mat-divider>
       <!-- Presentation Title -->

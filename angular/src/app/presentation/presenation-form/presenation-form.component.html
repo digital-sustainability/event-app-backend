@@ -38,6 +38,10 @@
   <mat-form-field class="fullSizeFormField" hidden>
     <input matInput placeholder="Session ID" type="text" formControlName="session_id" required>
   </mat-form-field>
+  <!-- Presentation Position -->
+  <mat-form-field>
+    <input matInput placeholder="Position (aufsteigend, optional)" type="number" formControlName="position">
+  </mat-form-field>
   <!-- Button to submit the form -->
   <div class="fullSizeFormField">
     <button mat-raised-button color="primary" [disabled]="presentationForm.invalid" class="submit-button">

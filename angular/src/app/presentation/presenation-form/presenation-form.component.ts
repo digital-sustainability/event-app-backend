@@ -76,6 +76,8 @@ export class PresenationFormComponent implements OnInit {
       'access_token': new FormControl('', [
         Validators.required
       ]),
+      'position': new FormControl('', [
+      ]),
       'room': new FormControl('', [
         Validators.required,
       ]),
@@ -106,6 +108,7 @@ export class PresenationFormComponent implements OnInit {
     this.presentationForm.get('end').setValue(end);
     this.presentationForm.get('slides').setValue(this.presentation.slides);
     this.presentationForm.get('access_token').setValue(this.presentation.access_token);
+    this.presentationForm.get('position').setValue(this.presentation.position);
     this.presentationForm.get('room').setValue(this.presentation.room);
     this.presentationForm.get('session_id').setValue(this.presentation.session_id);
   }

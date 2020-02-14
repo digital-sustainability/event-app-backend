@@ -10,6 +10,7 @@ import {DeleteDialogComponent} from "../../shared/delete-dialog/delete-dialog.co
 import {SessionService} from "../../shared/session.service";
 import {ActivatedRoute} from "@angular/router";
 import {Session} from "../../shared/session/session";
+import { MatTableDataSourceWithPositionSort } from 'src/app/shared/table-data-source-position-sort';
 
 @Component({
   selector: 'app-presentation-list',
@@ -26,9 +27,9 @@ export class PresentationListComponent implements OnInit, OnChanges {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  dataSource: MatTableDataSource<Presentation>;
+  dataSource: MatTableDataSourceWithPositionSort<Presentation>;
 
-  displayedColumns: string[] = ['id', 'title', 'abstract', 'slides', 'start', 'end', 'room', 'actions'];
+  displayedColumns: string[] = ['position', 'title', 'abstract', 'slides', 'start', 'end', 'room', 'actions'];
 
   constructor(private presentationService: PresentationService,
               private dialog: MatDialog,
@@ -69,7 +70,7 @@ export class PresentationListComponent implements OnInit, OnChanges {
         this.presentations.forEach((presentation) => {
           presentation.merged_abstract = presentation.formatted_abstract ? presentation.formatted_abstract : presentation.abstract;
         });
-        this.dataSource = new MatTableDataSource(this.presentations);
+        this.dataSource = new MatTableDataSourceWithPositionSort(this.presentations);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         console.log('presentations:', this.presentations)

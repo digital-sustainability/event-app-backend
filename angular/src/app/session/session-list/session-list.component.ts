@@ -10,6 +10,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import {DeleteDialogComponent} from "../../shared/delete-dialog/delete-dialog.component";
 import {EventService} from "../../shared/event.service";
 import {Event} from "../../shared/event/event";
+import { MatTableDataSourceWithPositionSort } from 'src/app/shared/table-data-source-position-sort';
 
 @Component({
   selector: 'app-session-list',
@@ -27,9 +28,9 @@ export class SessionListComponent implements OnInit, OnChanges {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  dataSource: MatTableDataSource<Session>;
+  dataSource: MatTableDataSourceWithPositionSort<Session>;
 
-  displayedColumns: string[] = ['id', 'title', 'abstract', 'label_presentations', 'event_id', 'actions'];
+  displayedColumns: string[] = ['position', 'title', 'abstract', 'label_presentations', 'event_id', 'actions'];
 
   constructor(private sessionService: SessionService,
               private router: Router,
@@ -63,7 +64,7 @@ export class SessionListComponent implements OnInit, OnChanges {
         this.sessions.forEach((session) => {
           session.merged_abstract = session.formatted_abstract ? session.formatted_abstract : session.abstract;
         })
-        this.dataSource = new MatTableDataSource(this.sessions);
+        this.dataSource = new MatTableDataSourceWithPositionSort(this.sessions);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       })
