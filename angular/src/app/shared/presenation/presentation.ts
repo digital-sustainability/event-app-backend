@@ -10,6 +10,7 @@ export interface Presentation {
   start: any;
   end: any;
   access_token: string;
+  position?: number;
   room: string;
   session_id: number;
   speakers?: Speaker[];

@@ -11,7 +11,7 @@
     <mat-list role="list">
       <mat-list-item role="listitem">
         <div class="listDescription"><b>ID: </b></div>
-        <div class="listItems">{{session?.id}}</div>
+        <div class="listItems">{{session?.id}} <i *ngIf="session?.position">(Position: {{session?.position}})</i></div>
       </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item role="listitem">

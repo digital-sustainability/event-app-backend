@@ -29,6 +29,9 @@ module.exports = {
       type: 'string',
       allowNull: true
     },
+    position: {
+      type: 'number'
+    },
     room: {
       type: 'string',
       allowNull: true

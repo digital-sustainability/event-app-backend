@@ -43,6 +43,9 @@ module.exports = {
       type: 'string',
       required: true
     },
+    position: {
+      type: 'number'
+    },
     room: {
       type: 'string',
       allowNull: true
