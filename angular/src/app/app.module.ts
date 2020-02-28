@@ -59,6 +59,7 @@ import { DatePipePipe } from './shared/date-pipe.pipe';
 import { OwlDateTimeModule, OwlNativeDateTimeModule, OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
 import { EventCategoryComponent } from './event-category/event-category.component';
 import { CategoryPipe } from './event/event-list/category.pipe';
+import { NotificationCreateComponent } from './notification/notification-create/notification-create.component';
 
 export function appInitFactory(authService: AuthService): () => Promise<any> {
   return () => authService.checkLogin().toPromise();
@@ -103,6 +104,7 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     DatePipePipe,
     EventCategoryComponent,
     CategoryPipe,
+    NotificationCreateComponent,
   ],
   imports: [
     BrowserModule,
