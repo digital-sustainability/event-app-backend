@@ -7,7 +7,18 @@ module.exports = {
   description: 'Send notification.',
 
   inputs: {
-
+    title: {
+      type: 'string',
+      required: true
+    },
+    body: {
+      type: 'string',
+      required: true
+    },
+    topics: {
+      type: 'string',
+      required: true
+    },
   },
 
 
@@ -17,6 +28,7 @@ module.exports = {
 
 
   fn: async function (inputs, exits) {
+    console.log(inputs);
       await sails.helpers.fcm.send.with({
         to: '/topics/banana',
         data: {'test': true},

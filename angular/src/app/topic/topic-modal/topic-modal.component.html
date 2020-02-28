@@ -1,0 +1,64 @@
+<div class="mat-typography">
+  <button mat-button class="close-button" [mat-dialog-close]="true">Schliessen</button>
+  <h2>Topics</h2>
+
+  <mat-card>
+    <mat-card-subtitle>Topic erstellen</mat-card-subtitle>
+    <p>Topics werden nach dem Erstellen sofort in den App-Einstellungen sichtbar. Der Identifier identifiziert das Topic technisch, nur der Titel und die Beschreibung sind in den App-Einstellungen sichtbar.</p>
+    <form [formGroup]="topicForm">
+      <!-- Topic identifier -->
+      <mat-form-field class="inline-form-block">
+        <input matInput placeholder="Identifier (eindeutig)" maxlength="32" pattern="[a-z]+" type="text" formControlName="identifier" required>
+      </mat-form-field>
+      <!-- Topic title -->
+      <mat-form-field class="inline-form-block">
+        <input matInput placeholder="Titel" type="text" formControlName="title" required>
+      </mat-form-field>
+      <!-- Topic description -->
+      <mat-form-field class="inline-form-block">
+        <input matInput placeholder="Beschreibung" type="text" formControlName="description">
+      </mat-form-field>
+
+
+      <button mat-raised-button color="primary" [disabled]="topicForm.invalid" class="submit-button inline-form-block" (click)="onCreateTopic(true)">
+        <mat-icon>add</mat-icon>Topic erstellen
+      </button>
+    </form>
+  </mat-card>
+
+  <div class="table-container">
+    <table  *ngIf="!loading" mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+      <ng-container matColumnDef="identifier">
+        <th mat-header-cell *matHeaderCellDef>Identifier</th>
+        <td mat-cell *matCellDef="let element"> {{element.identifier}} </td>
+      </ng-container>
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Titel</th>
+        <td mat-cell *matCellDef="let element"> {{element.title}}</td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Beschreibung</th>
+        <td mat-cell *matCellDef="let element"> {{element?.description}}</td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Aktionen</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="warn" (click)="onDeleteTopic(element)" title="Löschen">
+            <mat-icon class="mat-18">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <div *ngIf="loading" style="width: 25px; margin: auto;">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+</div>
+

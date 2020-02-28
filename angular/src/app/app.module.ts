@@ -60,6 +60,9 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule, OWL_DATE_TIME_LOCALE } from
 import { EventCategoryComponent } from './event-category/event-category.component';
 import { CategoryPipe } from './event/event-list/category.pipe';
 import { NotificationCreateComponent } from './notification/notification-create/notification-create.component';
+import { NotificationListComponent } from './notification/notification-list/notification-list.component';
+import { TopicModalComponent } from './topic/topic-modal/topic-modal.component';
+import { NotificationComponent } from './notification/notification.component';
 
 export function appInitFactory(authService: AuthService): () => Promise<any> {
   return () => authService.checkLogin().toPromise();
@@ -105,6 +108,9 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     EventCategoryComponent,
     CategoryPipe,
     NotificationCreateComponent,
+    NotificationListComponent,
+    TopicModalComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
@@ -138,7 +144,10 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     {provide: APP_INITIALIZER, useFactory: appInitFactory, deps: [AuthService], multi: true},
     {provide: OWL_DATE_TIME_LOCALE, useValue: 'de'},
   ],
-  entryComponents: [DeleteDialogComponent],
+  entryComponents: [
+    DeleteDialogComponent,
+    TopicModalComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

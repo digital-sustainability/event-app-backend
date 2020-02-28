@@ -1,0 +1,8 @@
+<mat-card>
+  <h1>Benachrichtigungen</h1>
+  <div>
+    <button mat-raised-button color="primary" (click)="onOpenTopicsModal()">Topics verwalten</button>
+  </div>
+  <app-notification-create [allTopics]="topics"></app-notification-create>
+
+</mat-card>

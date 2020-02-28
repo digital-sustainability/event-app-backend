@@ -1,1 +1,47 @@
-<p>notification-create works!</p>
+<mat-card>
+  <mat-card-subtitle>Benachrichtigung versenden</mat-card-subtitle>
+  <p>Die Benachrichtigung wird an alle Geräte gesendet, die zum Versand-Zeitpunkt ein oder mehrere der angegebenen Topics abonniert haben.</p>
+  <form [formGroup]="notificationForm">
+    <!-- Notification title -->
+    <mat-form-field class="inline-form-block">
+      <input matInput placeholder="Titel" type="text" formControlName="title" required>
+    </mat-form-field>
+    <!-- Notification body -->
+    <mat-form-field class="inline-form-block">
+      <input matInput placeholder="Body" type="text" formControlName="body" required>
+    </mat-form-field>
+    <!-- Notification topics -->
+    <mat-form-field class="inline-form-block chip-list">
+      <mat-chip-list #chipList>
+        <mat-chip
+          *ngFor="let topic of selectedTopics"
+          [selectable]="true"
+          [removable]="true"
+          (removed)="remove(topic)">
+          {{topic.identifier + ' (' + topic.title + ')'}}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+        <input
+          placeholder="Topics hinzufügen"
+          #topicInput
+          [formControl]="topicForm"
+          [matAutocomplete]="auto"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="seperators"
+          [matChipInputAddOnBlur]="true"
+          (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let topic of filteredTopics | async" [value]="topic">
+          {{topic.identifier}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+
+
+    <button mat-raised-button color="primary" [disabled]="notificationForm.invalid" class="submit-button inline-form-block" (click)="onSendNotification()">
+      Benachrichtigung versenden <mat-icon>send</mat-icon>
+    </button>
+  </form>
+</mat-card>

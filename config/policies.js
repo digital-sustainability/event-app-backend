@@ -90,15 +90,23 @@ module.exports.policies = {
     'destroy': "isAuthenticated"
   },
 
-  'notification/send': true
+  'notification/send': ["isAuthenticated"],
 
-  /* NotificationController: {
+  NotificationController: {
     'find': "isAuthenticated",
     'findOne': "isAuthenticated",
     'create': "isAuthenticated",
     'update': "isAuthenticated",
     'destroy': "isAuthenticated"
-  }*/
+  },
+
+  TopicController: {
+    'find': "isAuthenticated",
+    'findOne': "isAuthenticated",
+    'create': "isAuthenticated",
+    'update': "isAuthenticated",
+    'destroy': "isAuthenticated"
+  }
 
 
 

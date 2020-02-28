@@ -30,6 +30,7 @@ import {SessionEditComponent} from "./session/session-edit/session-edit.componen
 import {PresentationEditComponent} from "./presentation/presentation-edit/presentation-edit.component";
 import {PresentationCreateComponent} from "./presentation/presentation-create/presentation-create.component";
 import { NotificationCreateComponent } from './notification/notification-create/notification-create.component';
+import { NotificationComponent } from './notification/notification.component';
 
 const routes: Routes = [
   {
@@ -145,7 +146,7 @@ const routes: Routes = [
   {
     path: 'notifications',
     canActivate: [OnlyLoggedInGuard],
-    component: NotificationCreateComponent
+    component: NotificationComponent
   }
 
 
