@@ -386,7 +386,12 @@ module.exports = {
     mail: {
       apiKey: process.env.SENDGRID_API_KEY,
       templateId: process.env.SENDGRID_TEMPLATE_ID
+    },
+
+    fcm: {
+      key: process.env.FCM_KEY
     }
+
 
     // mailgunDomain: 'mg.example.com',
     // mailgunSecret: 'key-prod_fake_bd32301385130a0bafe030c',
