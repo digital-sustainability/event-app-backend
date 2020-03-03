@@ -101,8 +101,8 @@ module.exports.policies = {
   },
 
   TopicController: {
-    'find': "isAuthenticated",
-    'findOne': "isAuthenticated",
+    'find': true,
+    'findOne': true,
     'create': "isAuthenticated",
     'update': "isAuthenticated",
     'destroy': "isAuthenticated"

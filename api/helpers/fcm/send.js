@@ -13,8 +13,11 @@ module.exports = {
   inputs: {
     to: {
       type: 'string',
-      description: 'registration_token_or_topics',
-      required: true
+      description: 'registration_token_or_topics'
+    },
+    condition: {
+      type: 'string',
+      description: 'condition'
     },
     data: {
       type: 'json',
@@ -43,14 +46,19 @@ module.exports = {
 
 
   fn: async function (inputs, exits) {
-    await fcm.send({
-      to: inputs.to,
+    let body = {
       data: inputs.data,
       notification: {
         title: inputs.title,
         body: inputs.body
       }
-    }, function(err, response){
+    };
+    if(inputs.to)
+      body.to = inputs.to;
+    if(inputs.condition)
+      body.condition = inputs.condition;
+
+    await fcm.send(body, function(err, response){
       if (err) {
           console.log("Something has gone wrong!");
       } else {

@@ -78,9 +78,11 @@ export class NotificationCreateComponent implements OnInit {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.selectedTopics.push(event.option.value);
-    this.topicInput.nativeElement.value = '';
-    this.topicForm.setValue(null);
+    if (this.selectedTopics.length < 5) {
+      this.selectedTopics.push(event.option.value);
+      this.topicInput.nativeElement.value = '';
+      this.topicForm.setValue(null);
+    }
   }
 
   private _filter(topics: Topic[], value: any): Topic[] {
@@ -94,6 +96,10 @@ export class NotificationCreateComponent implements OnInit {
   }
 
   onSendNotification(): void {
+    if (!confirm('Benachrichtigung an die ausgewählten Geräte versenden?')) {
+      return;
+    }
+
     const notification = this.notificationForm.value;
     notification.topics = this.selectedTopics.map((topic) => {
       return topic.identifier;

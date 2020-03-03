@@ -1,6 +1,7 @@
 <mat-card>
   <mat-card-subtitle>Benachrichtigung versenden</mat-card-subtitle>
   <p>Die Benachrichtigung wird an alle Geräte gesendet, die zum Versand-Zeitpunkt ein oder mehrere der angegebenen Topics abonniert haben.</p>
+  <p><i>Falls eine Benachrichtigung an alle Geräte gesendet werden soll, Topic 'all' verwenden.</i></p>
   <form [formGroup]="notificationForm">
     <!-- Notification title -->
     <mat-form-field class="inline-form-block">
@@ -22,7 +23,7 @@
           <mat-icon matChipRemove>cancel</mat-icon>
         </mat-chip>
         <input
-          placeholder="Topics hinzufügen"
+          placeholder="Topics hinzufügen (max. 5) *"
           #topicInput
           [formControl]="topicForm"
           [matAutocomplete]="auto"
@@ -40,7 +41,7 @@
 
 
 
-    <button mat-raised-button color="primary" [disabled]="notificationForm.invalid" class="submit-button inline-form-block" (click)="onSendNotification()">
+    <button mat-raised-button color="primary" [disabled]="notificationForm.invalid || selectedTopics.length == 0" class="submit-button inline-form-block" (click)="onSendNotification()">
       Benachrichtigung versenden <mat-icon>send</mat-icon>
     </button>
   </form>

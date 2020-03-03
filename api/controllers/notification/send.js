@@ -23,21 +23,40 @@ module.exports = {
 
 
   exits: {
-
+    tooManyTopics: {
+      description: 'More than 5 topics',
+      statusCode: 400
+    },
+    invalidCharactersInTopics: {
+      description: 'Only a-z allowed in topics',
+      statusCode: 400
+    },
   },
 
 
   fn: async function (inputs, exits) {
-    console.log(inputs);
-      await sails.helpers.fcm.send.with({
-        to: '/topics/banana',
-        data: {'test': true},
-        title: 'Dein Becher wurde überscannt',
-        body: `Dein Becher wurde durch eine andere Person gescannt.`
-      });
+    // validate topics
+    let topics = inputs.topics.split(",");
 
-    return exits.success('success');
+    if(topics.length > 5)
+      throw 'tooManyTopics';
+
+    const letters = /^[a-z]+$/;
+    topics.forEach((topic) => {
+      if(!topic.match(letters))
+        throw 'invalidCharactersInTopics';
+    });
+
+    // bring topics in conditon form https://firebase.google.com/docs/cloud-messaging/send-message#send-messages-to-topics
+    topics = topics.map((topic) => "'" + topic + "' in topics");
+
+    await sails.helpers.fcm.send.with({
+      condition:  topics.join(" || "),
+      data: {'test': true},
+      title: inputs.title,
+      body: inputs.body
+    });
+
+    return exits.success('1');
   }
-
-
 };

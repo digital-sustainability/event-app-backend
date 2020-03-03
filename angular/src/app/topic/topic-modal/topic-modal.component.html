@@ -20,7 +20,7 @@
       </mat-form-field>
 
 
-      <button mat-raised-button color="primary" [disabled]="topicForm.invalid" class="submit-button inline-form-block" (click)="onCreateTopic(true)">
+      <button mat-raised-button color="primary" [disabled]="topicForm.invalid" class="submit-button inline-form-block" (click)="onCreateTopic()">
         <mat-icon>add</mat-icon>Topic erstellen
       </button>
     </form>
@@ -47,7 +47,7 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Aktionen</th>
         <td mat-cell *matCellDef="let element">
-          <button mat-icon-button color="warn" (click)="onDeleteTopic(element)" title="Löschen">
+          <button mat-icon-button color="warn" *ngIf="element.identifier!='all'" (click)="onDeleteTopic(element)" title="Löschen">
             <mat-icon class="mat-18">delete</mat-icon>
           </button>
         </td>
