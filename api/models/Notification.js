@@ -21,7 +21,7 @@ module.exports = {
       type: 'string',
       required: true
     },
-    topic: {
+    topics: {
       type: 'string',
       allowNull: true
     }

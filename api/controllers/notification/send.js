@@ -57,6 +57,9 @@ module.exports = {
       body: inputs.body
     });
 
+    // save notification in database
+    await Notification.create({title: inputs.title, body: inputs.body, topics: inputs.topics});
+
     return exits.success('1');
   }
 };

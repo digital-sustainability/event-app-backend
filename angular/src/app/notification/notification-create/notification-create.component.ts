@@ -15,7 +15,7 @@ import {ENTER, COMMA} from "@angular/cdk/keycodes";
   styleUrls: ['./notification-create.component.scss']
 })
 export class NotificationCreateComponent implements OnInit {
-  @Output() updateNotifications: EventEmitter<Event> = new EventEmitter<Event>();
+  @Output() updateNotifications: EventEmitter<void> = new EventEmitter<void>();
 
   notificationForm: FormGroup;
 
@@ -108,10 +108,12 @@ export class NotificationCreateComponent implements OnInit {
 
     this.notificationService.sendNotification(notification).subscribe((result) => {
       if (result) {
-        this.snackBar.open('Benachrichtigungen versendet.', '', {
+        this.snackBar.open('Versendet.', '', {
           duration: 3000,
         });
         this.notificationForm.reset();
+        this.selectedTopics = [];
+
         this.updateNotifications.emit();
       } else {
         this.snackBar.open('Fehlgeschlagen. Interner Server-Fehler.', '', {

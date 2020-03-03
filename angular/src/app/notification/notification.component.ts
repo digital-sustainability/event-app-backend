@@ -14,6 +14,8 @@ import { Notification } from '../shared/notification/notification';
 export class NotificationComponent implements OnInit {
   topics: Topic[] = [];
 
+  updateNotificationList = false;
+
   constructor (
     public _dialog: MatDialog,
     private topicService: TopicService,
@@ -46,7 +48,8 @@ export class NotificationComponent implements OnInit {
   }
 
   updateNotifications() {
-
+    console.log('UPDATE')
+    this.updateNotificationList = true;
   }
 
 }
