@@ -48,8 +48,7 @@ export class NotificationComponent implements OnInit {
   }
 
   updateNotifications() {
-    console.log('UPDATE')
-    this.updateNotificationList = true;
+    this.updateNotificationList = !this.updateNotificationList;
   }
 
 }

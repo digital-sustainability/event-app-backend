@@ -25,18 +25,14 @@ export class NotificationListComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges() {
-    if (this.update) {
-      this.getAllNotifications();
-
-      this.update = false;
-    }
+    this.getAllNotifications();
   }
 
   getAllNotifications() {
     this.loading = true;
 
     this.notificationService.getNotifications().subscribe((notifications: Notification[]) => {
-      notifications.sort((a: Notification, b: Notification) => a.createdAt - b.createdAt);
+      notifications.sort((a: Notification, b: Notification) => b.createdAt - a.createdAt);
       this.dataSource = new MatTableDataSource(notifications);
 
       this.loading = false;

@@ -6,7 +6,7 @@
     </ng-container>
     <ng-container matColumnDef="createdAt">
       <th mat-header-cell *matHeaderCellDef>Gesendet am</th>
-      <td mat-cell *matCellDef="let element"> {{element.createdAt}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.createdAt | date:'d.M.yy, H:mm:ss'}} </td>
     </ng-container>
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef>Titel</th>
