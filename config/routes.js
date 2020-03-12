@@ -46,6 +46,9 @@ module.exports.routes = {
     action: 'event/get-by-date'
   },
 
+  'post /api/notification/send': {
+    action: 'notification/send'
+  },
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

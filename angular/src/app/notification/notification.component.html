@@ -1,0 +1,9 @@
+<mat-card>
+  <h1>Benachrichtigungen</h1>
+  <div class="button-container">
+    <button mat-raised-button color="primary" (click)="onOpenTopicsModal()">Topics verwalten</button>
+  </div>
+  <app-notification-create [allTopics]="topics" (updateNotifications)="updateNotifications()"></app-notification-create>
+  <app-notification-list [update]="updateNotificationList"></app-notification-list>
+
+</mat-card>
