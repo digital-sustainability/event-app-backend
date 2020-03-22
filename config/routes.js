@@ -46,6 +46,10 @@ module.exports.routes = {
     action: 'event/get-by-date'
   },
 
+  '/api/session/:id/speaker': {
+    action: 'session/find-speakers'
+  },
+
   'post /api/notification/send': {
     action: 'notification/send'
   },
