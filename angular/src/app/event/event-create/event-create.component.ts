@@ -30,8 +30,8 @@ export class EventCreateComponent implements OnInit {
   submit(args: {formData: Event, quit: boolean}) {
     const newEvent = args.formData;
 
-    newEvent.start = moment(newEvent.start).format('YYYY-MM-DDTHH:mm:ss'); // don't use UTC in database
-    newEvent.end = moment(newEvent.end).format('YYYY-MM-DDTHH:mm:ss'); // don't use UTC in database
+    newEvent.start = moment(newEvent.start).format('YYYY-MM-DD HH:mm:ss');
+    newEvent.end = moment(newEvent.end).format('YYYY-MM-DD HH:mm:ss');
 
     this.eventService.createEvent(newEvent)
       .subscribe((event: Event) => {

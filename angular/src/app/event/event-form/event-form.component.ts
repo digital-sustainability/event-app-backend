@@ -92,9 +92,9 @@ export class EventFormComponent implements OnInit, OnChanges {
     this.eventForm.get('description').setValue(this.event.description);
     this.eventForm.get('formatted_description').setValue(this.event.formatted_description);
     const start = new Date(this.event.start);
-    start.setTime(start.getTime() - 1 * 60 * 60 * 1000);
+    //start.setTime(start.getTime() - 1 * 60 * 60 * 1000);
     const end = new Date(this.event.end);
-    end.setTime(end.getTime() - 1 * 60 * 60 * 1000);
+    //end.setTime(end.getTime() - 1 * 60 * 60 * 1000);
     this.eventForm.get('start').setValue(start);
     this.eventForm.get('end').setValue(end);
     this.eventForm.get('location').setValue(this.event.location);

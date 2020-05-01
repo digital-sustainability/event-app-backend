@@ -55,8 +55,8 @@ export class EventEditComponent implements OnInit {
 
     event.id = this.event_id;
 
-    event.start = moment(event.start).format('YYYY-MM-DDTHH:mm:ss'); // don't use UTC in database
-    event.end = moment(event.end).format('YYYY-MM-DDTHH:mm:ss'); // don't use UTC in database
+    event.start = moment(event.start).format('YYYY-MM-DD HH:mm:ss'); // don't use UTC in database
+    event.end = moment(event.end).format('YYYY-MM-DD HH:mm:ss'); // don't use UTC in database
 
 
     this.eventService.updateEvent(event)

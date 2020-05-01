@@ -101,14 +101,16 @@ export class PresenationFormComponent implements OnInit {
     this.presentationForm.get('abstract').setValue(this.presentation.abstract);
     this.presentationForm.get('formatted_abstract').setValue(this.presentation.formatted_abstract);
     const start = new Date(this.presentation.start);
-    start.setTime(start.getTime() - 1 * 60 * 60 * 1000);
+    //start.setTime(start.getTime() - 1 * 60 * 60 * 1000);
     const end = new Date(this.presentation.end);
-    end.setTime(end.getTime() - 1 * 60 * 60 * 1000);
+    //end.setTime(end.getTime() - 1 * 60 * 60 * 1000);
     this.presentationForm.get('start').setValue(start);
     this.presentationForm.get('end').setValue(end);
     this.presentationForm.get('slides').setValue(this.presentation.slides);
     this.presentationForm.get('access_token').setValue(this.presentation.access_token);
-    this.presentationForm.get('position').setValue(this.presentation.position);
+    if (this.presentation.position != 0) {
+      this.presentationForm.get('position').setValue(this.presentation.position);
+    }
     this.presentationForm.get('room').setValue(this.presentation.room);
     this.presentationForm.get('session_id').setValue(this.presentation.session_id);
   }

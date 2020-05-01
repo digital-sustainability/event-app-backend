@@ -30,7 +30,14 @@ export class SessionCreateComponent implements OnInit {
   }
 
   submit(formData: any) {
-    this.sessionService.createSession(formData)
+    const newSession = formData;
+
+    if(newSession.position == '') {
+      newSession.position = 0;
+    }
+
+
+    this.sessionService.createSession(newSession)
       .subscribe((sessions) => {
         console.log("new", sessions)
         this.router.navigate(['./../../'], {
