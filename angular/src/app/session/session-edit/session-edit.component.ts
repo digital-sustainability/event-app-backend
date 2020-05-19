@@ -53,6 +53,11 @@ export class SessionEditComponent implements OnInit {
 
   submit(formData) {
     let session = formData;
+
+    if(session.position == '') {
+      session.position = 0;
+    }
+
     session.id = this.session_id;
     session.event_id = session.event_id.id;
     this.sessionService.updateSession(session)

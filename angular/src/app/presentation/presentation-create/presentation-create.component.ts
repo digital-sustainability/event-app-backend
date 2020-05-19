@@ -57,8 +57,12 @@ export class PresentationCreateComponent implements OnInit {
   submit(formData: any) {
     const newPresentation = formData;
 
-    newPresentation.start = moment(newPresentation.start).format('YYYY-MM-DDTHH:mm:ss'); // don't use UTC in database
-    newPresentation.end = moment(newPresentation.end).format('YYYY-MM-DDTHH:mm:ss'); // don't use UTC in database
+    newPresentation.start = moment(newPresentation.start).format('YYYY-MM-DD HH:mm:ss');
+    newPresentation.end = moment(newPresentation.end).format('YYYY-MM-DD HH:mm:ss');
+    
+    if(newPresentation.position == '') {
+      newPresentation.position = 0;
+    }
 
     this.presentationService.createPresentation(newPresentation)
       .subscribe((presentations) => {

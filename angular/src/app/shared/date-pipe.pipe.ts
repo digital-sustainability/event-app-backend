@@ -9,14 +9,16 @@ export class DatePipePipe implements PipeTransform {
   transform(date: any, format: string, fixTimezone: boolean): any {
     moment.locale('de');
 
-    if (fixTimezone) {
-      const fixedDate = new Date(date);
-      fixedDate.setTime(fixedDate.getTime() - 1 * 60 * 60 * 1000);
+    //if (fixTimezone) {
+    //  const today = new Date();
+    //  const offset = today.getTimezoneOffset() * 60 * 1000;
+    //  const fixedDate = new Date(date);
+    //  fixedDate.setTime(fixedDate.getTime() - offset);
 
-      return moment(fixedDate).format(format);
-    } else {
-      return moment(date).format(format);
-    }
+    //  return moment(fixedDate).format(format);
+    //} else {
+    return moment(date).format(format);
+    //}
   }
 
 }

@@ -85,7 +85,9 @@ export class SessionFormComponent implements OnInit, OnChanges {
     this.sessionForm.get('abstract').setValue(this.session.abstract);
     this.sessionForm.get('formatted_abstract').setValue(this.session.formatted_abstract);
     this.sessionForm.get('label_presentations').setValue(this.session.label_presentations);
-    this.sessionForm.get('position').setValue(this.session.position);
+    if (this.session.position != 0) {
+      this.sessionForm.get('position').setValue(this.session.position);
+    }
     this.sessionForm.get('event_id').setValue(this.session.event_id);
     this.sessionForm.get('room').setValue(this.session.room);
   }
