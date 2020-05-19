@@ -4,7 +4,7 @@
       <mat-form-field style="width: 100%">
           <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
       </mat-form-field>
-    <table mat-table [dataSource]="dataSource" matSort matTableExporter #exporter="matTableExporter">
+    <table mat-table [dataSource]="dataSource" matSort matTableExporter #exporter="matTableExporter" matSortActive="createdAt" matSortDisableClear matSortDirection="desc">
 
       <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
@@ -63,7 +63,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <!-- Paginator, lets the User decide how many Elements should be on the first site of the table -->
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[25, 100]" showFirstLastButtons></mat-paginator>
     <button mat-raised-button (click)="exporter.exportTable('csv')">Export CSV</button>
     <button mat-raised-button (click)="exporter.exportTable('xlsx')">Export Excel</button>
   </mat-card>

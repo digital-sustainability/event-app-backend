@@ -6,7 +6,7 @@ import * as moment from 'node_modules/moment';
 })
 export class DatePipePipe implements PipeTransform {
 
-  transform(date: any, format: string, fixTimezone: boolean): any {
+  transform(date: string, format: string, fixTimezone: boolean): any {
     moment.locale('de');
 
     //if (fixTimezone) {
@@ -17,7 +17,7 @@ export class DatePipePipe implements PipeTransform {
 
     //  return moment(fixedDate).format(format);
     //} else {
-    return moment(date).format(format);
+    return moment(date.substring(0, date.length - 1)).format(format); // remove the wrong Z for UTC
     //}
   }
 

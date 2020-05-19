@@ -100,9 +100,9 @@ export class PresenationFormComponent implements OnInit {
     this.presentationForm.get('title').setValue(this.presentation.title);
     this.presentationForm.get('abstract').setValue(this.presentation.abstract);
     this.presentationForm.get('formatted_abstract').setValue(this.presentation.formatted_abstract);
-    const start = new Date(this.presentation.start);
+    const start = new Date(this.presentation.start.substring(0, this.presentation.start.length - 1)); // remove the wrong Z for UTC at the end
     //start.setTime(start.getTime() - 1 * 60 * 60 * 1000);
-    const end = new Date(this.presentation.end);
+    const end = new Date(this.presentation.end.substring(0, this.presentation.end.length - 1));
     //end.setTime(end.getTime() - 1 * 60 * 60 * 1000);
     this.presentationForm.get('start').setValue(start);
     this.presentationForm.get('end').setValue(end);
