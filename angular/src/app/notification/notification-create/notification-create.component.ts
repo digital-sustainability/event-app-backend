@@ -26,6 +26,10 @@ export class NotificationCreateComponent implements OnInit {
   selectedTopics: Topic[] = [];
   seperators = [ENTER, COMMA];
 
+  redirect = false;
+  redirectTo: string;
+  redirectId: number;
+
   @ViewChild('topicInput', { static: true }) topicInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', { static: true }) matAutocomplete: MatAutocomplete;
 
@@ -130,12 +134,25 @@ export class NotificationCreateComponent implements OnInit {
   }
 
   onShowNotificationLinkModal() {
+    this.redirectTo = 'event'
     this.dialog.open(NotificationLinkModalComponent, {
       height: '700px',
       width: '800px',
-      data: {}
-    }).afterClosed().subscribe(() => {
-      //
+      data: {
+        redirect: this.redirect,
+        redirectTo: this.redirectTo,
+        redirectId: this.redirectId
+      }
+    }).afterClosed().subscribe((result) => {
+      if (result) {
+        if (result.redirect) {
+          this.redirect = true;
+          this.redirectTo = result.redirectTo;
+          this.redirectId = result.redirectId;
+        } else {
+          this.redirect = false;
+        }
+      }
     });
   }
 
