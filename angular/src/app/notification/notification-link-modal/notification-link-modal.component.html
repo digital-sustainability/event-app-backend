@@ -1,0 +1,32 @@
+<div class="mat-typography">
+    <p>Beim Tap auf die Benachrichtigung wird die ausgewählte Seite geöffnet.</p>
+    <mat-tab-group>
+        <mat-tab label="Event">
+            <h1>Some tab content</h1>
+            <p>...</p>
+        </mat-tab>
+        <mat-tab label="Session">
+            <h1>Some more tab content</h1>
+            <p>...</p>
+        </mat-tab>
+        <mat-tab label="Presentation">
+            <h1>Some more tab content</h1>
+            <p>...</p>
+        </mat-tab>
+        <mat-tab label="Speaker">
+            <h1>Some more tab content</h1>
+            <p>...</p>
+        </mat-tab>
+    </mat-tab-group>
+    <p>
+        <button mat-button color="basic" (click)="onShowNotificationLinkModal()">
+            Abbrechen
+        </button>
+        <button mat-button color="basic" (click)="onShowNotificationLinkModal()">
+            Link löschen <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-raised-button color="primary" (click)="onShowNotificationLinkModal()">
+            Link speichern <mat-icon>save</mat-icon>
+        </button>
+    </p>
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatSnackBar, MatAutocomplete, MatChipInputEvent, MatAutocompleteSelectedEvent} from '@angular/material';
+import { MatSnackBar, MatAutocomplete, MatChipInputEvent, MatAutocompleteSelectedEvent, MatDialog} from '@angular/material';
 import { Notification } from 'src/app/shared/notification/notification';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 import { Topic } from 'src/app/shared/topic/topic';
@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { TopicService } from 'src/app/shared/topic/topic.service';
 import {ENTER, COMMA} from "@angular/cdk/keycodes";
+import { NotificationLinkModalComponent } from '../notification-link-modal/notification-link-modal.component';
 
 @Component({
   selector: 'app-notification-create',
@@ -29,6 +30,7 @@ export class NotificationCreateComponent implements OnInit {
   @ViewChild('auto', { static: true }) matAutocomplete: MatAutocomplete;
 
   constructor(
+    public dialog: MatDialog,
     private snackBar: MatSnackBar,
     private notificationService: NotificationService
   ) {
@@ -127,5 +129,14 @@ export class NotificationCreateComponent implements OnInit {
     });
   }
 
+  onShowNotificationLinkModal() {
+    this.dialog.open(NotificationLinkModalComponent, {
+      height: '700px',
+      width: '800px',
+      data: {}
+    }).afterClosed().subscribe(() => {
+      //
+    });
+  }
 
 }

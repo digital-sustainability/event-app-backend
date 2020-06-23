@@ -37,7 +37,9 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-
+    <button mat-button color="basic" class="inline-form-block" (click)="onShowNotificationLinkModal()">
+      Link einfügen <mat-icon>link</mat-icon>
+    </button>
 
 
     <button mat-raised-button color="primary" [disabled]="notificationForm.invalid || selectedTopics.length == 0" class="submit-button inline-form-block" (click)="onSendNotification()">
