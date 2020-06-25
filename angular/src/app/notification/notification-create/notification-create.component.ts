@@ -110,6 +110,12 @@ export class NotificationCreateComponent implements OnInit {
     notification.topics = this.selectedTopics.map((topic) => {
       return topic.identifier;
     }).join(',');
+    notification.redirect = this.redirect;
+    if (this.redirect) {
+      notification.redirectTo = this.redirectTo;
+      notification.redirectId = this.redirectId;
+    }
+    
 
 
     this.notificationService.sendNotification(notification).subscribe((result) => {
@@ -134,7 +140,6 @@ export class NotificationCreateComponent implements OnInit {
   }
 
   onShowNotificationLinkModal() {
-    this.redirectTo = 'event'
     this.dialog.open(NotificationLinkModalComponent, {
       height: '700px',
       width: '800px',

@@ -12,7 +12,7 @@ export class NotificationListComponent implements OnChanges, OnInit {
   @Input() update: boolean;
 
   dataSource = new MatTableDataSource<Notification>([]);
-  displayedColumns: string[] = ['id', 'createdAt', 'title', 'body', 'topics', 'actions'];
+  displayedColumns: string[] = ['id', 'createdAt', 'title', 'body', 'topics', 'redirect', 'actions'];
   loading = false;
 
   constructor(

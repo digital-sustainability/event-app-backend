@@ -24,6 +24,19 @@ module.exports = {
     topics: {
       type: 'string',
       allowNull: true
+    },
+    redirect: {
+      type: 'boolean',
+      defaultsTo: false
+    },
+    redirectTo: {
+      type: 'string',
+      isIn: ['event', 'session', 'presentation', 'speaker'],
+      allowNull: true
+    },
+    redirectId: {
+      type: 'number',
+      allowNull: true
     }
 
 

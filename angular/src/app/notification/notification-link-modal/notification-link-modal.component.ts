@@ -32,6 +32,7 @@ export class NotificationLinkModalComponent implements OnInit {
   selectedSessionId: number;
   selectedPresentationId: number;
   selectedSpeakerId: number;
+  selectedTab: number;
 
   loading: boolean;
 
@@ -139,6 +140,9 @@ export class NotificationLinkModalComponent implements OnInit {
       this.calculatePresentationsOfEvent();
       this.calculateSessionsOfEvent();
 
+      this.updateSelect();
+      this.updateTabs();
+
       this.loading = false;
     }, error: () => {}});
   }
@@ -156,40 +160,80 @@ export class NotificationLinkModalComponent implements OnInit {
     });
   }
 
+  updateSelect() {
+    switch(this.redirectTo) {
+      case 'event':
+        this.selectedEventId = this.redirectId;
+        this.selectedSessionId = undefined;
+        this.selectedPresentationId = undefined;
+        this.selectedSpeakerId = undefined;
+        break;
+      case 'session':
+        this.selectedEventId = undefined;
+        this.selectedSessionId = this.redirectId;
+        this.selectedPresentationId = undefined;
+        this.selectedSpeakerId = undefined;
+        break;
+      case 'presentation':
+        this.selectedEventId = undefined;
+        this.selectedSessionId = undefined;
+        this.selectedPresentationId = this.redirectId;
+        this.selectedSpeakerId = undefined;
+        break;
+      case 'speaker':
+        this.selectedEventId = undefined;
+        this.selectedSessionId = undefined;
+        this.selectedPresentationId = undefined;
+        this.selectedSpeakerId = this.redirectId;
+        break;
+    }
+  }
+
+  updateTabs() {
+    switch (this.redirectTo) {
+      case 'event':
+        this.selectedTab = 0;
+        break;
+      case 'session':
+        this.selectedTab = 1;
+        break;
+      case 'presentation':
+        this.selectedTab = 2;
+        break;
+      case 'speaker':
+        this.selectedTab = 3;
+        break;
+      default: 
+        this.selectedTab = 0;
+    }
+  }
+
   onEventSelectChange(data: MatSelectChange) {
     this.redirectTo = 'event';
     this.redirectId = data.value;
 
-    this.selectedSessionId = undefined;
-    this.selectedPresentationId = undefined;
-    this.selectedSpeakerId = undefined;
+    this.updateSelect();
   }
 
   onSessionSelectChange(data: MatSelectChange) {
     this.redirectTo = 'session';
     this.redirectId = data.value;
 
-    this.selectedEventId = undefined;
-    this.selectedPresentationId = undefined;
-    this.selectedSpeakerId = undefined;
+    this.updateSelect();
   }
 
   onPresentationSelectChange(data: MatSelectChange) {
     this.redirectTo = 'presentation';
     this.redirectId = data.value;
 
-    this.selectedEventId = undefined;
-    this.selectedSessionId = undefined;
-    this.selectedSpeakerId = undefined;
+    this.updateSelect();
   }
 
   onSpeakerSelectChange(data: MatSelectChange) {
     this.redirectTo = 'speaker';
     this.redirectId = data.value;
 
-    this.selectedEventId = undefined;
-    this.selectedSessionId = undefined;
-    this.selectedPresentationId = undefined;
+    this.updateSelect();
   }
 
   onCancel() {

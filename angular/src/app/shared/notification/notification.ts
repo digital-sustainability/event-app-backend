@@ -5,4 +5,7 @@ export interface Notification {
   body: string;
   topic?: string;
   topics?: string;
+  redirect: boolean;
+  redirectTo: string;
+  redirectId: number;
 }
