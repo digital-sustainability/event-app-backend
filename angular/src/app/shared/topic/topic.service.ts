@@ -22,4 +22,8 @@ export class TopicService {
   deleteTopic(id: number): Observable<Topic> {
     return this.http.delete<Topic>(environment.apiURL + 'api/' + `topic/${id}`);
   }
+
+  updateTopic(topic: Topic): Observable<Topic> {
+    return this.http.patch<Topic>(environment.apiURL + `api/topic/${topic.id}`, topic); 
+  }
 }

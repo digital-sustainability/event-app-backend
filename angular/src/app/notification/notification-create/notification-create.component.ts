@@ -141,8 +141,6 @@ export class NotificationCreateComponent implements OnInit {
 
   onShowNotificationLinkModal() {
     this.dialog.open(NotificationLinkModalComponent, {
-      height: '700px',
-      width: '800px',
       data: {
         redirect: this.redirect,
         redirectTo: this.redirectTo,

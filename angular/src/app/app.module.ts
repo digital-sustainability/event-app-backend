@@ -65,6 +65,7 @@ import { TopicModalComponent } from './topic/topic-modal/topic-modal.component';
 import { NotificationComponent } from './notification/notification.component';
 import { NotificationLinkModalComponent } from './notification/notification-link-modal/notification-link-modal.component';
 import { MatTabsModule } from '@angular/material';
+import { TopicEditModalComponent } from './topic/topic-modal/topic-edit-modal/topic-edit-modal.component';
 
 export function appInitFactory(authService: AuthService): () => Promise<any> {
   return () => authService.checkLogin().toPromise();
@@ -114,6 +115,7 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     TopicModalComponent,
     NotificationComponent,
     NotificationLinkModalComponent,
+    TopicEditModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -152,6 +154,7 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     DeleteDialogComponent,
     TopicModalComponent,
     NotificationLinkModalComponent,
+    TopicEditModalComponent
   ],
   bootstrap: [AppComponent]
 })
