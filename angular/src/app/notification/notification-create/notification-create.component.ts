@@ -124,6 +124,8 @@ export class NotificationCreateComponent implements OnInit {
           duration: 3000,
         });
         this.notificationForm.reset();
+        this.redirect = false;
+
         this.selectedTopics = [];
 
         this.updateNotifications.emit();

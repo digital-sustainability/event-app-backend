@@ -63,6 +63,7 @@ module.exports = {
     // bring topics in conditon form https://firebase.google.com/docs/cloud-messaging/send-message#send-messages-to-topics
     topics = topics.map((topic) => "'" + topic + "' in topics");
 
+    let data = {};
     if (inputs.redirect) {
       data = {
         redirectTo: inputs.redirectTo,

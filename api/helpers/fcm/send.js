@@ -21,7 +21,8 @@ module.exports = {
     },
     data: {
       type: 'json',
-      description: 'your_custom_data_keys: your_custom_data_values'
+      description: 'your_custom_data_keys: your_custom_data_values',
+      required: true
     },
     title: {
       type: 'string',
