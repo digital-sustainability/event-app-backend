@@ -37,7 +37,11 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-
+    <i *ngIf="!redirect">Keine Weiterleitung</i>
+    <i *ngIf="redirect">Weiterleitung zu {{redirectTo}} mit ID {{redirectId}}</i>
+    <button mat-button color="basic" class="inline-form-block" (click)="onShowNotificationLinkModal()">
+      Weiterleitung anpassen <mat-icon>link</mat-icon>
+    </button>
 
 
     <button mat-raised-button color="primary" [disabled]="notificationForm.invalid || selectedTopics.length == 0" class="submit-button inline-form-block" (click)="onSendNotification()">

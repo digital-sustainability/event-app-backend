@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatSnackBar, MatAutocomplete, MatChipInputEvent, MatAutocompleteSelectedEvent} from '@angular/material';
+import { MatSnackBar, MatAutocomplete, MatChipInputEvent, MatAutocompleteSelectedEvent, MatDialog} from '@angular/material';
 import { Notification } from 'src/app/shared/notification/notification';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 import { Topic } from 'src/app/shared/topic/topic';
@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { TopicService } from 'src/app/shared/topic/topic.service';
 import {ENTER, COMMA} from "@angular/cdk/keycodes";
+import { NotificationLinkModalComponent } from '../notification-link-modal/notification-link-modal.component';
 
 @Component({
   selector: 'app-notification-create',
@@ -25,10 +26,15 @@ export class NotificationCreateComponent implements OnInit {
   selectedTopics: Topic[] = [];
   seperators = [ENTER, COMMA];
 
+  redirect = false;
+  redirectTo: string;
+  redirectId: number;
+
   @ViewChild('topicInput', { static: true }) topicInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', { static: true }) matAutocomplete: MatAutocomplete;
 
   constructor(
+    public dialog: MatDialog,
     private snackBar: MatSnackBar,
     private notificationService: NotificationService
   ) {
@@ -104,6 +110,12 @@ export class NotificationCreateComponent implements OnInit {
     notification.topics = this.selectedTopics.map((topic) => {
       return topic.identifier;
     }).join(',');
+    notification.redirect = this.redirect;
+    if (this.redirect) {
+      notification.redirectTo = this.redirectTo;
+      notification.redirectId = this.redirectId;
+    }
+    
 
 
     this.notificationService.sendNotification(notification).subscribe((result) => {
@@ -112,6 +124,8 @@ export class NotificationCreateComponent implements OnInit {
           duration: 3000,
         });
         this.notificationForm.reset();
+        this.redirect = false;
+
         this.selectedTopics = [];
 
         this.updateNotifications.emit();
@@ -127,5 +141,24 @@ export class NotificationCreateComponent implements OnInit {
     });
   }
 
+  onShowNotificationLinkModal() {
+    this.dialog.open(NotificationLinkModalComponent, {
+      data: {
+        redirect: this.redirect,
+        redirectTo: this.redirectTo,
+        redirectId: this.redirectId
+      }
+    }).afterClosed().subscribe((result) => {
+      if (result) {
+        if (result.redirect) {
+          this.redirect = true;
+          this.redirectTo = result.redirectTo;
+          this.redirectId = result.redirectId;
+        } else {
+          this.redirect = false;
+        }
+      }
+    });
+  }
 
 }

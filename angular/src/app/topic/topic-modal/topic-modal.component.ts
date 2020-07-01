@@ -1,9 +1,10 @@
 import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef, MatDialog} from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TopicService } from 'src/app/shared/topic/topic.service';
 import { MatSnackBar, MatTableDataSource } from '@angular/material';
 import { Topic } from 'src/app/shared/topic/topic';
+import { TopicEditModalComponent } from './topic-edit-modal/topic-edit-modal.component';
 
 @Component({
   selector: 'app-topic-modal',
@@ -13,12 +14,15 @@ import { Topic } from 'src/app/shared/topic/topic';
 export class TopicModalComponent implements OnInit {
   topicForm: FormGroup;
 
+  topics: Topic[];
+
   dataSource = new MatTableDataSource<Topic>([]);
   displayedColumns: string[] = ['id', 'identifier', 'title', 'description', 'actions'];
   loading = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialog: MatDialog,
     private topicService: TopicService,
     private snackBar: MatSnackBar
   ) {}
@@ -44,6 +48,7 @@ export class TopicModalComponent implements OnInit {
 
     this.topicService.getTopics().subscribe((topics) => {
       this.dataSource = new MatTableDataSource(topics);
+      this.topics = topics;
 
       this.loading = false;
     }, (err) => {
@@ -85,5 +90,18 @@ export class TopicModalComponent implements OnInit {
         this.getAllTopics();
       });
     }
+  }
+
+  onEditTopic(topic: Topic, index: number) {
+    this.dialog.open(TopicEditModalComponent, {
+      data: {
+        topic: topic
+      }
+    }).afterClosed().subscribe((result) => {
+      if (result) {
+        this.topics[index] = result.topic;
+        this.dataSource = new MatTableDataSource(this.topics);
+      }
+    });
   }
 }

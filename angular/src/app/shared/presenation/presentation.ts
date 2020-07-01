@@ -1,4 +1,5 @@
-import {Speaker} from "../speaker/speaker";
+import {Speaker} from '../speaker/speaker';
+import { Session } from '../session/session';
 
 export interface Presentation {
   id: number;
@@ -12,6 +13,6 @@ export interface Presentation {
   access_token: string;
   position?: number;
   room: string;
-  session_id: number;
+  session_id: any;
   speakers?: Speaker[];
 }

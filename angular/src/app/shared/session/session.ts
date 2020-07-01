@@ -1,3 +1,5 @@
+import { Event } from '../event/event';
+
 export interface Session {
   id: number;
   title: string;

@@ -63,6 +63,9 @@ import { NotificationCreateComponent } from './notification/notification-create/
 import { NotificationListComponent } from './notification/notification-list/notification-list.component';
 import { TopicModalComponent } from './topic/topic-modal/topic-modal.component';
 import { NotificationComponent } from './notification/notification.component';
+import { NotificationLinkModalComponent } from './notification/notification-link-modal/notification-link-modal.component';
+import { MatTabsModule } from '@angular/material';
+import { TopicEditModalComponent } from './topic/topic-modal/topic-edit-modal/topic-edit-modal.component';
 
 export function appInitFactory(authService: AuthService): () => Promise<any> {
   return () => authService.checkLogin().toPromise();
@@ -111,6 +114,8 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     NotificationListComponent,
     TopicModalComponent,
     NotificationComponent,
+    NotificationLinkModalComponent,
+    TopicEditModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -133,7 +138,8 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     MatTableExporterModule,
     AngularEditorModule,
     OwlDateTimeModule,
-    OwlNativeDateTimeModule
+    OwlNativeDateTimeModule,
+    MatTabsModule
   ],
   providers: [
     {
@@ -146,7 +152,9 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
   ],
   entryComponents: [
     DeleteDialogComponent,
-    TopicModalComponent
+    TopicModalComponent,
+    NotificationLinkModalComponent,
+    TopicEditModalComponent
   ],
   bootstrap: [AppComponent]
 })
