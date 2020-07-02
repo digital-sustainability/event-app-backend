@@ -18,7 +18,7 @@
     "ng-material-datetimepicker": "^1.18.5",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "sails": "^1.2.3",
+    "sails": "^1.2.4",
     "sails-hook-grunt": "^3.1.0",
     "sails-hook-orm": "^2.1.1",
     "sails-hook-sockets": "^1.5.5",
