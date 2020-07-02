@@ -1,7 +1,7 @@
 module.exports = {
 
 
-  friendlyName: 'Find speakers',
+  friendlyName: 'Find speakers of event',
 
 
   description: '',
@@ -22,7 +22,7 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    const query = `SELECT distinct speaker.id, first_name, last_name, email, position, organization, short_bio,
+    const query = `SELECT distinct speaker.id, first_name, last_name, email, speaker.position, organization, short_bio,
      photo_url FROM speaker, presentationspeaker, presentation, session, event WHERE
       speaker.id = presentationspeaker.speaker_id AND
       presentationspeaker.presentation_id = presentation.id AND
