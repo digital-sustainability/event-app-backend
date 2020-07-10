@@ -52,7 +52,6 @@
       <ng-container matColumnDef="photo_url">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Bild</th>
           <td mat-cell *matCellDef="let element">
-            <div><a [href]="element?.photo_url" target="_blank">{{element?.photo_url}}</a></div>
             <div><img [src]="element?.photo_url" style="max-height: 100px; max-width: 100px;" alt="Vorschau" onerror="this.alt='Vorschau konnte nicht geladen werden';"/></div>
           </td>
         </ng-container>

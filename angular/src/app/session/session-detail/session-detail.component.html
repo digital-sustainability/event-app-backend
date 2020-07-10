@@ -7,7 +7,7 @@
 <h1>
   Session Detail Ansicht
 </h1>
-  <mat-card style="margin: 5%">
+  <mat-card>
     <mat-list role="list">
       <mat-list-item role="listitem">
         <div class="listDescription"><b>ID: </b></div>
@@ -49,7 +49,7 @@
     <button style="margin: 10px 10px 0px 0px;" mat-raised-button color="primary" routerLink="presentations/create">Präsentation hinzufügen</button>
   </mat-card>
 
-  <mat-card style="margin: 5%">
+  <mat-card>
     <app-presentation-list [sessionId]="session_id"></app-presentation-list>
   </mat-card>
 </mat-card>

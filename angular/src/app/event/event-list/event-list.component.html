@@ -61,7 +61,7 @@
     <!-- Published Column -->
     <ng-container matColumnDef="published">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Publiziert </th>
-      <td mat-cell *matCellDef="let element"> {{element.published}} </td>
+      <td mat-cell *matCellDef="let element"> <mat-icon *ngIf="!element.published" style="color:red;">close</mat-icon><mat-icon *ngIf="element.published" style="color:limegreen;">check</mat-icon></td>
     </ng-container>
 
     <!-- Actions Column -->

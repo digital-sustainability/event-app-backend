@@ -27,14 +27,14 @@ module.exports = {
     },
     label_presentations: {
       type: 'string',
-      allowNull: true
+      defaultsTo: ''
     },
     position: {
       type: 'number'
     },
     room: {
       type: 'string',
-      allowNull: true
+      defaultsTo: ''
     },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗

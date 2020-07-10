@@ -62,7 +62,6 @@ export class SessionFormComponent implements OnInit, OnChanges {
 
       ]),
       'label_presentations': new FormControl('', [
-        Validators.required
       ]),
       'position': new FormControl('', [
       ]),
