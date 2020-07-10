@@ -29,7 +29,7 @@ export class PresentationListComponent implements OnInit, OnChanges {
 
   dataSource: MatTableDataSourceWithPositionSort<Presentation>;
 
-  displayedColumns: string[] = ['position', 'title', 'abstract', 'slides', 'start', 'end', 'room', 'actions'];
+  displayedColumns: string[] = ['actions', 'position', 'title', 'abstract', 'slides', 'start', 'end', 'room'];
 
   constructor(private presentationService: PresentationService,
               private dialog: MatDialog,

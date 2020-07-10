@@ -28,7 +28,7 @@ export class SpeakerListComponent implements OnInit, AfterViewInit, OnChanges {
   speaker_id: number;
 
 
-  displayedColumns: string[] = ['id', 'first_name', 'last_name', 'email', 'position', 'organization', 'short_bio', 'photo_url', 'actions'];
+  displayedColumns: string[] = ['actions', 'id', 'first_name', 'last_name', 'email', 'position', 'organization', 'short_bio', 'photo_url'];
 
   constructor(private speakerService: SpeakerService,
               private dialog: MatDialog,

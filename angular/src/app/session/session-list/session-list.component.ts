@@ -30,7 +30,7 @@ export class SessionListComponent implements OnInit, OnChanges {
 
   dataSource: MatTableDataSourceWithPositionSort<Session>;
 
-  displayedColumns: string[] = ['position', 'title', 'abstract', 'label_presentations', 'event_id', 'actions'];
+  displayedColumns: string[] = ['actions', 'position', 'title', 'abstract', 'label_presentations', 'event_id'];
 
   constructor(private sessionService: SessionService,
               private router: Router,

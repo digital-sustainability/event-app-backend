@@ -27,7 +27,7 @@ module.exports = {
     },
     slides: {
       type: 'string',
-      required: true
+      defaultsTo: ''
     },
     start: {
       type: 'ref',
@@ -41,14 +41,14 @@ module.exports = {
     },
     access_token: {
       type: 'string',
-      required: true
+      defaultsTo: ''
     },
     position: {
       type: 'number'
     },
     room: {
       type: 'string',
-      allowNull: true
+      defaultsTo: ''
     },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
