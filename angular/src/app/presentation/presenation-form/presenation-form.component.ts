@@ -71,15 +71,12 @@ export class PresenationFormComponent implements OnInit {
         Validators.required
       ]),
       'slides': new FormControl('', [
-        Validators.required
       ]),
       'access_token': new FormControl('', [
-        Validators.required
       ]),
       'position': new FormControl('', [
       ]),
       'room': new FormControl('', [
-        Validators.required,
       ]),
       'session_id': new FormControl('', [
         Validators.required

@@ -95,11 +95,11 @@ module.exports = {
         return 'emailAlreadyInUse'
       });
 
-    //Send confirm email
-    var content = `Successfully registered. Please click on the link below to confirm your email address: <br> 
+    // E-mail confimation deactivated for security reasons
+    /* var content = `Successfully registered. Please click on the link below to confirm your email address: <br> 
        ${sails.config.custom.baseUrl}/register/confirm?user_id=${user.id}&token=${user.confirm_token}`;
     
-    await sails.helpers.mail.send('Successfully registered', content, user.email);
+    await sails.helpers.mail.send('Successfully registered', content, user.email); */
 
     return exits.success(user);
   }

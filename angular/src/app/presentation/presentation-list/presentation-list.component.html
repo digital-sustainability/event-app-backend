@@ -55,7 +55,7 @@
 
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Aktionen </th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element" class="padding-right: 30px;">
         <div style="white-space: nowrap;">
           <button mat-icon-button color="primary" [routerLink]="['presentations/', element.id]" title="Details">
               <mat-icon class="mat-18">info</mat-icon>

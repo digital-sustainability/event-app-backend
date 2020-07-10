@@ -17,7 +17,12 @@ export class DatePipePipe implements PipeTransform {
 
     //  return moment(fixedDate).format(format);
     //} else {
-    return moment(date.substring(0, date.length - 1)).format(format); // remove the wrong Z for UTC
+    if (date) {
+      return moment(date.substring(0, date.length - 1)).format(format);
+    } else {
+      return '-';
+    }
+     // remove the wrong Z for UTC
     //}
   }
 

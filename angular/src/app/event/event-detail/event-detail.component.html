@@ -87,7 +87,9 @@
 
 <!-- Shows a list of all sessions of this Event, directs to the Session-List Component
       passes the event_id -->
-  <app-session-list [eventId]="event_id"></app-session-list>
+  <mat-card>
+    <app-session-list [eventId]="event_id"></app-session-list>
+  </mat-card>
 </mat-card>
 
 
