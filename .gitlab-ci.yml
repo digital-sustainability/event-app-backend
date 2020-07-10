@@ -88,12 +88,6 @@ include:
   - template: Security/License-Management.gitlab-ci.yml
   - template: Security/SAST.gitlab-ci.yml
 
-# Override DAST job to exclude master branch
-dast:
-  except:
-    refs:
-      - master
-      
       
 # Override Staging database URL
 staging:
