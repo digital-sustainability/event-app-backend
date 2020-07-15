@@ -107,8 +107,10 @@ module.exports.policies = {
     'create': "isAuthenticated",
     'update': "isAuthenticated",
     'destroy': "isAuthenticated"
-  }
+  },
 
+  'presentation/populated-presentation': true,
+  'speaker/populated-speaker': true,
 
 
 };
