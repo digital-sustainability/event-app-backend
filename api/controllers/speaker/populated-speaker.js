@@ -24,10 +24,10 @@ module.exports = {
     const speaker = await Speaker.findOne({id: inputs.id}).populate('presentations');
 
     for(let i = 0; i < speaker.presentations.length; i ++ ) {
-      const session = await Session.findOne({id: speaker.presentations[i].session_id}).populate('event_id');
+      const session = await Session.findOne({id: speaker.presentations[i].session_id})
+        .populate('event_id')
       speaker.presentations[i].session_id = session;
     }
-    console.log(speaker)
 
 
     // All done.
