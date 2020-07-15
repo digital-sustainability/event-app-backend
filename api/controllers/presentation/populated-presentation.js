@@ -23,7 +23,7 @@ module.exports = {
   fn: async function (inputs, exits) {
     const presentation = await Presentation.findOne({id: inputs.id})
       .populate('session_id')
-      .populate('presentations')
+      .populate('speakers')
       .populate('feedbacks');
 
     const event = await Event.findOne({id: presentation.session_id.event_id});
