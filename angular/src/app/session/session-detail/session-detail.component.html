@@ -5,7 +5,7 @@
 <a> > </a>
 <a>{{session?.title}}</a>
 <h1>
-  Session Detail Ansicht
+  Session
 </h1>
   <mat-card>
     <mat-list role="list">
@@ -44,6 +44,11 @@
         <div class="listItems">{{session?.event_id.id}}</div>
       </mat-list-item>
       <mat-divider></mat-divider>
+      <!-- Speakers -->
+      <mat-list-item role="listitem" class="longListItemStyle">
+        <div style="width: 10%"><b>Moderation: </b></div>
+        <div style="width: 90%"><app-session-speaker *ngIf="session" [session]="session"></app-session-speaker></div>
+      </mat-list-item>
     </mat-list>
     <button style="margin: 10px 10px 0px 0px;" mat-raised-button color="primary" [routerLink]="['edit/']">Session bearbeiten</button>
     <button style="margin: 10px 10px 0px 0px;" mat-raised-button color="primary" routerLink="presentations/create">Präsentation hinzufügen</button>

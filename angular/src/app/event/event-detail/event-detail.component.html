@@ -5,7 +5,7 @@
 <a>{{event?.title}}</a>
 <!-- Site Title -->
 <h1>
-  Event-Detailansicht
+  Event
 </h1>
 <mat-card>
   <!-- Card Title -->
@@ -68,10 +68,16 @@
       <div style="width: 90%">{{event?.url_label}}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
-    <!-- Kategorien -->
+    <!-- Categories -->
     <mat-list-item role="listitem" class="longListItemStyle">
       <div style="width: 10%"><b>Kategorien: </b></div>
       <div style="width: 90%"><app-event-category *ngIf="event" [event]="event"></app-event-category></div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <!-- Speakers -->
+    <mat-list-item role="listitem" class="longListItemStyle">
+      <div style="width: 10%"><b>Moderation: </b></div>
+      <div style="width: 90%"><app-event-speaker *ngIf="event" [event]="event"></app-event-speaker></div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <!-- Published -->

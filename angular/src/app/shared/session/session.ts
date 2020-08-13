@@ -1,4 +1,5 @@
 import { Event } from '../event/event';
+import { Speaker } from '../speaker/speaker';
 
 export interface Session {
   id: number;
@@ -11,4 +12,5 @@ export interface Session {
   room: string;
   event_id: any;
   presentations: string;
+  speakers?: Speaker[];
 }

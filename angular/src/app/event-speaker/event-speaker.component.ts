@@ -5,19 +5,19 @@ import {Observable} from 'rxjs/index';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import {map, startWith} from 'rxjs/operators';
-import {Presentation} from '../shared/presenation/presentation';
+import {Event} from '../shared/event/event';
 import {Speaker} from '../shared/speaker/speaker';
 import {SpeakerService} from '../shared/speaker.service';
-import {PresentationSpeakerService} from '../shared/presentation-speaker.service';
+import {EventSpeakerService} from '../shared/event-speaker.service';
 
 @Component({
-  selector: 'app-presentation-speaker',
-  templateUrl: './presentation-speaker.component.html',
-  styleUrls: ['./presentation-speaker.component.scss']
+  selector: 'app-event-speaker',
+  templateUrl: './event-speaker.component.html',
+  styleUrls: ['./event-speaker.component.scss']
 })
-export class PresentationSpeakerComponent {
+export class EventSpeakerComponent {
 
-  @Input() presentation: Presentation;
+  @Input() event: Event;
   speakers: Speaker[] = [];
   speakerForm = new FormControl();
   filteredSpeakers: Observable<Speaker[] | string[]>;
@@ -33,7 +33,7 @@ export class PresentationSpeakerComponent {
 
   constructor(
     private speakerService: SpeakerService,
-    private presentationSpeakerService: PresentationSpeakerService,
+    private eventSpeakerService: EventSpeakerService,
   ) {
     this.getAllSpeakers();
   }
@@ -64,26 +64,26 @@ export class PresentationSpeakerComponent {
   }
 
   remove(speaker: Speaker): void {
-      this.presentationSpeakerService.deletePresentationSpeaker({
-        presentation_id: this.presentation.id,
+      this.eventSpeakerService.deleteEventSpeaker({
+        event_id: this.event.id,
         speaker_id: speaker.id
-      }).subscribe((presentationSpeaker) => {
-        const index = this.presentation.speakers.indexOf(speaker);
-        this.presentation.speakers.splice(index, 1);
-        console.log('delete presentationspeaker', presentationSpeaker);
+      }).subscribe((eventSpeaker) => {
+        const index = this.event.speakers.indexOf(speaker);
+        this.event.speakers.splice(index, 1);
+        console.log('delete eventspeaker', eventSpeaker);
       });
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.presentation.speakers.push(event.option.value);
+    this.event.speakers.push(event.option.value);
     this.speakerInput.nativeElement.value = '';
     this.speakerForm.setValue(null);
-    this.presentationSpeakerService.createPresentationSpeaker({
+    this.eventSpeakerService.createEventSpeaker({
       id: undefined,
-      presentation_id: this.presentation.id,
+      event_id: this.event.id,
       speaker_id: event.option.value.id
-    }).subscribe( (presentationSpeaker) => {
-      console.log('new speakerpresentation', presentationSpeaker);
+    }).subscribe( (eventSpeaker) => {
+      console.log('new speakerevent', eventSpeaker);
     });
   }
 

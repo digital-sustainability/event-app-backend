@@ -66,6 +66,8 @@ import { NotificationComponent } from './notification/notification.component';
 import { NotificationLinkModalComponent } from './notification/notification-link-modal/notification-link-modal.component';
 import { MatTabsModule } from '@angular/material';
 import { TopicEditModalComponent } from './topic/topic-modal/topic-edit-modal/topic-edit-modal.component';
+import { SessionSpeakerComponent } from './session-speaker/session-speaker.component';
+import { EventSpeakerComponent } from './event-speaker/event-speaker.component';
 
 export function appInitFactory(authService: AuthService): () => Promise<any> {
   return () => authService.checkLogin().toPromise();
@@ -116,6 +118,8 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     NotificationComponent,
     NotificationLinkModalComponent,
     TopicEditModalComponent,
+    SessionSpeakerComponent,
+    EventSpeakerComponent,
   ],
   imports: [
     BrowserModule,

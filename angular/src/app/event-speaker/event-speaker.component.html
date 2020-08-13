@@ -1,7 +1,7 @@
 <mat-form-field style="width: 100%" class="example-chip-list">
   <mat-chip-list #chipList aria-label="Speaker selection">
     <mat-chip
-      *ngFor="let speaker of presentation?.speakers"
+      *ngFor="let speaker of event?.speakers"
       [selectable]="selectable"
       [removable]="removable"
       (removed)="remove(speaker)">

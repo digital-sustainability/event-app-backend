@@ -1,5 +1,6 @@
 import DateTimeFormat = Intl.DateTimeFormat;
 import { Category } from '../category/category';
+import { Speaker } from '../speaker/speaker';
 
 export interface Event {
   id: number;
@@ -15,5 +16,6 @@ export interface Event {
   url_label: string;
   published: boolean;
   categories: Category[];
+  speakers: Speaker[];
 }
 
