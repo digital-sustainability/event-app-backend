@@ -75,6 +75,22 @@ module.exports.policies = {
     'destroy': "isAuthenticated"
   },
 
+  SessionSpeakerController: {
+    'find': true,
+    'findOne': true,
+    'create': "isAuthenticated",
+    'update': "isAuthenticated",
+    'destroy': "isAuthenticated"
+  },
+
+  EventSpeakerController: {
+    'find': true,
+    'findOne': true,
+    'create': "isAuthenticated",
+    'update': "isAuthenticated",
+    'destroy': "isAuthenticated"
+  },
+
   CategoryController: {
     'find': true,
     'findOne': true,
