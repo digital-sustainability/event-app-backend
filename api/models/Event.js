@@ -70,6 +70,10 @@ module.exports = {
       collection: 'session',
       via: 'event_id'
     },
+    presentations: {
+      collection: 'presentation',
+      via: 'event_id'
+    },
     speakers: {
       collection: 'speaker',
       via: 'event_id',

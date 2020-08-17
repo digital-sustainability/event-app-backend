@@ -61,7 +61,11 @@ module.exports = {
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     session_id: {
       model: 'session',
-      required: true
+      required: false
+    },
+    event_id: {
+      model: 'event',
+      required: false
     },
     feedbacks: {
       collection: 'feedback',
