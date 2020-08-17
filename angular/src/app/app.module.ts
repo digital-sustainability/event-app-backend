@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { SailsModule } from "angular2-sails";
+import { SailsModule } from 'angular2-sails';
 import { HttpInterceptorService } from './shared/auth/http-interceptor.service';
 import { AuthService } from './shared/auth/auth.service';
 import { MaterialDesignModule } from './shared/material-design/material-design.module';
@@ -23,19 +23,17 @@ import { EventComponent } from './event/event.component';
 import { SpeakerComponent } from './speaker/speaker.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { EventListComponent } from './event/event-list/event-list.component';
-import { MatAutocomplete, MatAutocompleteModule } from "@angular/material/autocomplete";
-import { DateAdapter, MatNativeDateModule } from "@angular/material/core";
-import { MatDatepicker, MatDatepickerModule } from "@angular/material/datepicker";
-import { MatDialogModule } from "@angular/material/dialog";
-import { MatInputModule } from "@angular/material/input";
-import { MatPaginatorModule } from "@angular/material/paginator";
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { MatSortModule } from "@angular/material/sort";
-import { MatTableModule } from "@angular/material/table";
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { EventDetailComponent } from './event/event-detail/event-detail.component';
-import { SessionComponent } from './session/session.component';
-import { PresentationComponent } from './presentation/presentation.component';
 import { SpeakerListComponent } from './speaker/speaker-list/speaker-list.component';
 import { SpeakerDetailComponent } from './speaker/speaker-detail/speaker-detail.component';
 import { SessionListComponent } from './session/session-list/session-list.component';
@@ -91,8 +89,6 @@ export function appInitFactory(authService: AuthService): () => Promise<any> {
     FeedbackComponent,
     EventListComponent,
     EventDetailComponent,
-    SessionComponent,
-    PresentationComponent,
     SpeakerListComponent,
     SpeakerDetailComponent,
     SessionListComponent,

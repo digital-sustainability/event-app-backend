@@ -1,15 +1,15 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {PresentationService} from "../../shared/presentation.service";
-import {Presentation} from "../../shared/presenation/presentation";
-import { MatDialog } from "@angular/material/dialog";
-import { MatPaginator } from "@angular/material/paginator";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
-import {DeleteDialogComponent} from "../../shared/delete-dialog/delete-dialog.component";
-import {SessionService} from "../../shared/session.service";
-import {ActivatedRoute} from "@angular/router";
-import {Session} from "../../shared/session/session";
+import {PresentationService} from '../../shared/presentation.service';
+import {Presentation} from '../../shared/presentation/presentation';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import {DeleteDialogComponent} from '../../shared/delete-dialog/delete-dialog.component';
+import {SessionService} from '../../shared/session.service';
+import {ActivatedRoute} from '@angular/router';
+import {Session} from '../../shared/session/session';
 import { MatTableDataSourceWithPositionSort } from 'src/app/shared/table-data-source-position-sort';
 
 @Component({
@@ -43,14 +43,11 @@ export class PresentationListComponent implements OnInit, OnChanges {
 
   getSessionForRouting() {
     this.route.params.subscribe( (params) => {
-      this.sessionService.getSessionById(params["session_id"])
+      this.sessionService.getSessionById(params['session_id'])
         .subscribe( (session: any) => {
           this.session = session;
-        })
-    })
-  }
-
-  ngAfterViewInit(): void {
+        });
+    });
   }
 
   applyFilter(filterValue: string) {
@@ -74,22 +71,21 @@ export class PresentationListComponent implements OnInit, OnChanges {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         console.log('presentations:', this.presentations)
-      })
-  };
+      });
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes.sessionId && changes.sessionId.currentValue !== changes.sessionId.previousValue) {
+    if (changes.sessionId && changes.sessionId.currentValue !== changes.sessionId.previousValue) {
       this.getAllPresentations();
     }
   }
 
-  // todo: confirmation before deleting something
-  deletePresentationById(id) {
+  deletePresentationById(id: number) {
     this.presentationService.deletePresentation(id)
       .subscribe((presentation) => {
         this.presentation = presentation;
         this.ngOnInit();
-        console.log("deleted", this.presentations);
+        console.log('deleted', this.presentations);
         this.getAllPresentations();
         this.snackbar.open('Präsentation erfolgreich gelöscht.', '', {
           duration: 3000,
@@ -108,7 +104,7 @@ export class PresentationListComponent implements OnInit, OnChanges {
       data: {title: `${presentation.title}`}
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result) {
+      if (result) {
         this.deletePresentationById(presentation.id);
       }
     });

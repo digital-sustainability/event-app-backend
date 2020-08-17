@@ -1,7 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@angular/core';
-import {Presentation} from "../../shared/presenation/presentation";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
+import {Component, EventEmitter, Input, OnInit, Output, SimpleChanges, OnChanges} from '@angular/core';
+import {Presentation} from '../../shared/presentation/presentation';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import * as moment from 'node_modules/moment';
 
@@ -10,7 +10,7 @@ import * as moment from 'node_modules/moment';
   templateUrl: './presenation-form.component.html',
   styleUrls: ['./presenation-form.component.scss']
 })
-export class PresenationFormComponent implements OnInit {
+export class PresenationFormComponent implements OnInit, OnChanges {
 
   @Output() presentationSubmit: EventEmitter<Event> = new EventEmitter<Event>();
   @Input() buttonTitle: string;
@@ -78,15 +78,20 @@ export class PresenationFormComponent implements OnInit {
       ]),
       'room': new FormControl('', [
       ]),
-      'session_id': new FormControl('', [
-        Validators.required
-      ])
+      'session_id': new FormControl(),
+      'event_id': new FormControl()
     });
 
     this.route.params.subscribe( (params) => {
-      this.presentationForm.patchValue({
-        session_id: params["session_id"]
-      });
+      if (params['session_id']) {
+        this.presentationForm.patchValue({
+          session_id: params['session_id']
+        }); // presentation belongs to a session
+      } else {
+        this.presentationForm.patchValue({
+          event_id: params['event_id']
+        }); // presentation belongs to an event
+      }
     });
   }
 
@@ -98,18 +103,18 @@ export class PresenationFormComponent implements OnInit {
     this.presentationForm.get('abstract').setValue(this.presentation.abstract);
     this.presentationForm.get('formatted_abstract').setValue(this.presentation.formatted_abstract);
     const start = new Date(this.presentation.start.substring(0, this.presentation.start.length - 1)); // remove the wrong Z for UTC at the end
-    //start.setTime(start.getTime() - 1 * 60 * 60 * 1000);
+    // start.setTime(start.getTime() - 1 * 60 * 60 * 1000);
     const end = new Date(this.presentation.end.substring(0, this.presentation.end.length - 1));
-    //end.setTime(end.getTime() - 1 * 60 * 60 * 1000);
+    // end.setTime(end.getTime() - 1 * 60 * 60 * 1000);
     this.presentationForm.get('start').setValue(start);
     this.presentationForm.get('end').setValue(end);
     this.presentationForm.get('slides').setValue(this.presentation.slides);
     this.presentationForm.get('access_token').setValue(this.presentation.access_token);
-    if (this.presentation.position != 0) {
+    if (this.presentation.position !== 0) {
       this.presentationForm.get('position').setValue(this.presentation.position);
     }
     this.presentationForm.get('room').setValue(this.presentation.room);
-    this.presentationForm.get('session_id').setValue(this.presentation.session_id);
+    // this.presentationForm.get('session_id').setValue(this.presentation.session_id);
   }
 
   /**
@@ -118,7 +123,7 @@ export class PresenationFormComponent implements OnInit {
    * @param {SimpleChanges} changes
    */
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes.presentation && changes.presentation.currentValue &&
+    if (changes.presentation && changes.presentation.currentValue &&
       changes.presentation.previousValue !== changes.presentation.currentValue) {
       this.initInputs();
     }
@@ -130,7 +135,7 @@ export class PresenationFormComponent implements OnInit {
    * @returns {boolean}
    */
   onSubmit() {
-    if(this.presentationForm.invalid) {
+    if (this.presentationForm.invalid) {
       return false;
     } else {
       this.presentationSubmit.emit(this.presentationForm.value);

@@ -1,7 +1,9 @@
-<h1>Sessions vom Event: <b>{{event?.title}}</b></h1>
-<mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-</mat-form-field>
+<div>
+  <button mat-raised-button color="primary" routerLink="sessions/create">Session hinzufügen</button>
+  <mat-form-field style="margin: 0px 20px;">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
 <div class="mat-elevation-z8">
 <table mat-table [dataSource]="dataSource" matSort matSortActive="position" matSortDisableClear matSortDirection="asc">
 

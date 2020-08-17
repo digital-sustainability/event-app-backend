@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/index';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import {map, startWith} from 'rxjs/operators';
-import {Presentation} from '../shared/presenation/presentation';
+import {Presentation} from '../shared/presentation/presentation';
 import {Speaker} from '../shared/speaker/speaker';
 import {SpeakerService} from '../shared/speaker.service';
 import {PresentationSpeakerService} from '../shared/presentation-speaker.service';

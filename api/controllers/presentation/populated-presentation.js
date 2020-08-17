@@ -36,6 +36,4 @@ module.exports = {
     // All done.
     return exits.success(presentation);
   }
-
-
 };

@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {EventService} from "../../shared/event.service";
-import {ActivatedRoute} from "@angular/router";
-import {Event} from "../../shared/event/event";
+import {EventService} from '../../shared/event.service';
+import {ActivatedRoute} from '@angular/router';
+import {Event} from '../../shared/event/event';
 
 @Component({
   selector: 'app-event-detail',

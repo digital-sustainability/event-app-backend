@@ -7,7 +7,8 @@
 <h1>
   Session
 </h1>
-  <mat-card>
+  <mat-card style="margin-bottom: 30px;">
+    <h2>{{event?.title}}</h2>
     <mat-list role="list">
       <mat-list-item role="listitem">
         <div class="listDescription"><b>ID: </b></div>
@@ -51,10 +52,8 @@
       </mat-list-item>
     </mat-list>
     <button style="margin: 10px 10px 0px 0px;" mat-raised-button color="primary" [routerLink]="['edit/']">Session bearbeiten</button>
-    <button style="margin: 10px 10px 0px 0px;" mat-raised-button color="primary" routerLink="presentations/create">Präsentation hinzufügen</button>
   </mat-card>
 
-  <mat-card>
-    <app-presentation-list [sessionId]="session_id"></app-presentation-list>
-  </mat-card>
+  <h2>Dazugehörige Präsentationen</h2>
+  <app-presentation-list [sessionId]="session_id"></app-presentation-list>
 </mat-card>

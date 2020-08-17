@@ -34,13 +34,16 @@ export class PresentationCreateComponent implements OnInit {
    */
   getEventAndSessionForRouting() {
     this.route.params.subscribe( (params) => {
+      if (params['session_id']) { // presentation belongs to a session
+        this.sessionService.getSessionById(params['session_id'])
+          .subscribe( (session: any) => {
+            this.session = session;
+          });
+      }
+
       this.eventService.getEventById(params['event_id'])
         .subscribe( (event: any) => {
           this.event = event;
-        });
-      this.sessionService.getSessionById(params['session_id'])
-        .subscribe( (session: any) => {
-          this.session = session;
         });
     });
   }
@@ -59,8 +62,8 @@ export class PresentationCreateComponent implements OnInit {
 
     newPresentation.start = moment(newPresentation.start).format('YYYY-MM-DD HH:mm:ss');
     newPresentation.end = moment(newPresentation.end).format('YYYY-MM-DD HH:mm:ss');
-    
-    if(newPresentation.position == '') {
+
+    if (newPresentation.position === '') {
       newPresentation.position = 0;
     }
 
@@ -75,7 +78,7 @@ export class PresentationCreateComponent implements OnInit {
         });
       }, (err) => {
         console.log('Error', err);
-        this.snackbar.open('Präsentation konnte nich erstellt werden. Überprüfe alle Felder.', '', {
+        this.snackbar.open('Präsentation konnte nicht erstellt werden. Überprüfe alle Felder.', '', {
           duration: 3000,
           panelClass: 'fail'
         });

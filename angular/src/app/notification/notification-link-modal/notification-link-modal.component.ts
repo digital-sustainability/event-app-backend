@@ -7,7 +7,7 @@ import { PresentationService } from 'src/app/shared/presentation.service';
 import { SpeakerService } from 'src/app/shared/speaker.service';
 import { Event } from 'src/app/shared/event/event';
 import { Session } from 'src/app/shared/session/session';
-import { Presentation } from 'src/app/shared/presenation/presentation';
+import { Presentation } from 'src/app/shared/presentation/presentation';
 import { Speaker } from 'src/app/shared/speaker/speaker';
 import { zip, forkJoin } from 'rxjs';
 
@@ -203,7 +203,7 @@ export class NotificationLinkModalComponent implements OnInit {
       case 'speaker':
         this.selectedTab = 3;
         break;
-      default: 
+      default:
         this.selectedTab = 0;
     }
   }

@@ -14,5 +14,6 @@ export interface Presentation {
   position?: number;
   room: string;
   session_id: any;
+  event_id: any;
   speakers: Speaker[];
 }
