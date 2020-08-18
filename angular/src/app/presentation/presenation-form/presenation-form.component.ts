@@ -102,7 +102,8 @@ export class PresenationFormComponent implements OnInit, OnChanges {
     this.presentationForm.get('title').setValue(this.presentation.title);
     this.presentationForm.get('abstract').setValue(this.presentation.abstract);
     this.presentationForm.get('formatted_abstract').setValue(this.presentation.formatted_abstract);
-    const start = new Date(this.presentation.start.substring(0, this.presentation.start.length - 1)); // remove the wrong Z for UTC at the end
+    // remove the wrong Z for UTC at the end:
+    const start = new Date(this.presentation.start.substring(0, this.presentation.start.length - 1));
     // start.setTime(start.getTime() - 1 * 60 * 60 * 1000);
     const end = new Date(this.presentation.end.substring(0, this.presentation.end.length - 1));
     // end.setTime(end.getTime() - 1 * 60 * 60 * 1000);
@@ -114,7 +115,12 @@ export class PresenationFormComponent implements OnInit, OnChanges {
       this.presentationForm.get('position').setValue(this.presentation.position);
     }
     this.presentationForm.get('room').setValue(this.presentation.room);
-    // this.presentationForm.get('session_id').setValue(this.presentation.session_id);
+
+    if (this.presentation.session_id) { // belongs to a session
+      this.presentationForm.get('session_id').setValue(this.presentation.session_id.id);
+    } else if (this.presentation.event_id) { // belongs to an event
+      this.presentationForm.get('event_id').setValue(this.presentation.event_id.id);
+    }
   }
 
   /**

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs/index";
-import { environment } from "../../environments/environment";
-import {Presentation} from "./presentation/presentation";
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs/index';
+import { environment } from '../../environments/environment';
+import {Presentation} from './presentation/presentation';
 
 
 @Injectable({

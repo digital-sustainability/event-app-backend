@@ -17,12 +17,13 @@ import { MatTableDataSourceWithPositionSort } from 'src/app/shared/table-data-so
   templateUrl: './presentation-list.component.html',
   styleUrls: ['./presentation-list.component.scss']
 })
-export class PresentationListComponent implements OnInit, OnChanges {
+export class PresentationListComponent implements OnInit {
 
-  @Input() sessionId;
+  @Input() sessionId?: number;
+  @Input() eventId?: number;
+
   presentations: Presentation[];
   presentation: Presentation;
-  session: Session;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -38,17 +39,9 @@ export class PresentationListComponent implements OnInit, OnChanges {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getSessionForRouting();
+    this.getAllPresentations();
   }
 
-  getSessionForRouting() {
-    this.route.params.subscribe( (params) => {
-      this.sessionService.getSessionById(params['session_id'])
-        .subscribe( (session: any) => {
-          this.session = session;
-        });
-    });
-  }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -59,9 +52,13 @@ export class PresentationListComponent implements OnInit, OnChanges {
   }
 
   getAllPresentations() {
-    this.presentationService.getPresentations({
-      session_id: this.sessionId
-    })
+    const param = {};
+    if (this.eventId) {
+      param['event_id'] = this.eventId;
+    } else if (this.sessionId) {
+      param['session_id'] = this.sessionId;
+    }
+    this.presentationService.getPresentations(param)
       .subscribe((presentations) => {
         this.presentations = presentations;
         this.presentations.forEach((presentation) => {
@@ -70,15 +67,15 @@ export class PresentationListComponent implements OnInit, OnChanges {
         this.dataSource = new MatTableDataSourceWithPositionSort(this.presentations);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        console.log('presentations:', this.presentations)
+        console.log('presentations:', this.presentations);
       });
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  /*ngOnChanges(changes: SimpleChanges): void {
     if (changes.sessionId && changes.sessionId.currentValue !== changes.sessionId.previousValue) {
       this.getAllPresentations();
     }
-  }
+  }*/
 
   deletePresentationById(id: number) {
     this.presentationService.deletePresentation(id)

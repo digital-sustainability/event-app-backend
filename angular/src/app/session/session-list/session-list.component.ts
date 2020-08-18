@@ -1,15 +1,15 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {SessionService} from "../../shared/session.service";
-import {Session} from "../../shared/session/session";
-import {ActivatedRoute, Router} from "@angular/router";
-import { MatDialog } from "@angular/material/dialog";
-import { MatPaginator } from "@angular/material/paginator";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
-import {DeleteDialogComponent} from "../../shared/delete-dialog/delete-dialog.component";
-import {EventService} from "../../shared/event.service";
-import {Event} from "../../shared/event/event";
+import {SessionService} from '../../shared/session.service';
+import {Session} from '../../shared/session/session';
+import {ActivatedRoute, Router} from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import {DeleteDialogComponent} from '../../shared/delete-dialog/delete-dialog.component';
+import {EventService} from '../../shared/event.service';
+import {Event} from '../../shared/event/event';
 import { MatTableDataSourceWithPositionSort } from 'src/app/shared/table-data-source-position-sort';
 
 @Component({
@@ -43,9 +43,6 @@ export class SessionListComponent implements OnInit, OnChanges {
     this.getEventForRouting();
   }
 
-  ngAfterViewInit(): void {
-  }
-
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -63,24 +60,24 @@ export class SessionListComponent implements OnInit, OnChanges {
         this.sessions = sessions;
         this.sessions.forEach((session) => {
           session.merged_abstract = session.formatted_abstract ? session.formatted_abstract : session.abstract;
-        })
+        });
         this.dataSource = new MatTableDataSourceWithPositionSort(this.sessions);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-      })
+      });
   }
 
   getEventForRouting() {
     this.route.params.subscribe( (params) => {
-      this.eventService.getEventById(params["event_id"])
+      this.eventService.getEventById(params['event_id'])
         .subscribe( (event: any) => {
           this.event = event;
-        })
-    })
+        });
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes.eventId && changes.eventId.currentValue !== changes.eventId.previousValue) {
+    if (changes.eventId && changes.eventId.currentValue !== changes.eventId.previousValue) {
       this.getAllSessions();
     }
   }
@@ -91,7 +88,7 @@ export class SessionListComponent implements OnInit, OnChanges {
       .subscribe((session) => {
         this.session = session;
         this.ngOnInit();
-        console.log("deleted", this.sessions);
+
         this.getAllSessions();
         this.snackbar.open('Session erfolgreich gelöscht.', '', {
           duration: 3000,
@@ -110,7 +107,7 @@ export class SessionListComponent implements OnInit, OnChanges {
       data: {title: `${session.title}`}
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result) {
+      if (result) {
         this.deleteSessionById(session.id);
       }
     });

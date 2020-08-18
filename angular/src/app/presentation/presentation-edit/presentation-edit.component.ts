@@ -73,7 +73,6 @@ export class PresentationEditComponent implements OnInit {
   preparePresentation(formData) {
     const presentation = formData;
     presentation.id = this.presentation_id;
-    presentation.session_id = presentation.session_id.id;
 
     presentation.start = moment(presentation.start).format('YYYY-MM-DD HH:mm:ss');
     presentation.end = moment(presentation.end).format('YYYY-MM-DD HH:mm:ss');
