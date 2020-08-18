@@ -17,7 +17,7 @@ variables:
   DAST_DISABLED: 'true'
   
   K8S_SECRET_SOCKET_ONLY_ALLOW_ORIGINS: https://$CI_PROJECT_PATH_SLUG.$KUBE_INGRESS_BASE_DOMAIN,https://$CI_PROJECT_PATH_SLUG-staging.$KUBE_INGRESS_BASE_DOMAIN,https://$CI_PROJECT_ID-$CI_ENVIRONMENT_SLUG.$KUBE_INGRESS_BASE_DOMAIN
-
+  HELM_UPGRADE_EXTRA_ARGS: --set postgresql.enabled=false
 
 # Override Staging database URL
 staging:
@@ -33,14 +33,11 @@ review:
 production:
   variables:
     DATABASE_URL: $DATABASE_URL_PRODUCTION
-    HELM_UPGRADE_EXTRA_ARGS: --set postgresql.enabled=false
     
 timed rollout 100%:
   variables:
     DATABASE_URL: $DATABASE_URL_PRODUCTION
-    HELM_UPGRADE_EXTRA_ARGS: --set postgresql.enabled=false
     
 rollout 100%:
   variables:
     DATABASE_URL: $DATABASE_URL_PRODUCTION
-    HELM_UPGRADE_EXTRA_ARGS: --set postgresql.enabled=false
