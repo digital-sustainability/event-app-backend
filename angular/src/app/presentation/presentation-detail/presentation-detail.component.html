@@ -1,65 +1,72 @@
 <mat-card>
   <!-- Routing through path -->
-  <a routerLink="../../../../../">Event</a>
-  <a> > </a>
-  <a routerLink="../../../../">{{event?.title}}</a>
-  <a> > </a>
-  <a routerLink="../../">{{session?.title}}</a>
-  <a> > </a>
-  <a>{{presentation?.title}}</a>
+  <ng-container *ngIf="session">
+    <a routerLink="../../../../../">Event</a> >
+    <a routerLink="../../../../">{{event?.title}}</a> >
+    <a routerLink="../../">{{session?.title}}</a> >
+    {{presentation?.title}}
+  </ng-container>
+  <ng-container *ngIf="!session">
+    <a routerLink="../../../">Event</a> >
+    <a routerLink="../../">{{event?.title}}</a> >
+    {{presentation?.title}}
+  </ng-container>
   <!-- Title of the site -->
   <h1>
     Präsentation
   </h1>
-  <mat-list role="list" *ngIf="presentation">
-    <!-- Presentation ID -->
-    <mat-list-item role="listitem">
-      <div class="listDescription"><b>ID: </b></div>
-      <div class="listItems">{{presentation?.id}} <i *ngIf="presentation?.position">(Position: {{presentation?.position}})</i></div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <!-- Presentation Title -->
-    <mat-list-item role="listitem">
-      <div class="listDescription"><b>Titel: </b></div>
-      <div class="listItems">{{presentation?.title}}</div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <!-- Presentation Abstract -->
-    <mat-list-item class="longListItemStyle" role="listitem">
-      <div class="listDescription"><b>Abstract: </b></div>
-      <div class="listItems multiline" [innerHtml]="presentation?.merged_abstract"></div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-      <!-- Presentation Unformatted Abstract -->
-      <mat-list-item *ngIf="presentation?.formatted_abstract" class="longListItemStyle" role="listitem">
-        <div class="listDescription"><b>Unformatiertes Abstract: </b></div>
-        <div class="listItems multiline">{{presentation?.abstract}}</div>
+  <mat-card style="margin-bottom: 30px;">
+    <mat-list role="list" *ngIf="presentation">
+      <h2>{{presentation?.title}}</h2>
+      <!-- Presentation ID -->
+      <mat-list-item role="listitem">
+        <div class="listDescription"><b>ID: </b></div>
+        <div class="listItems">{{presentation?.id}} <i *ngIf="presentation?.position">(Position: {{presentation?.position}})</i></div>
       </mat-list-item>
       <mat-divider></mat-divider>
-    <!-- Presentation SLides -->
-    <mat-list-item role="listitem">
-      <div class="listDescription"><b>Slides: </b></div>
-      <div class="listItems"><a [href]="presentation?.slides" target="_blank">{{presentation?.slides}}</a></div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <!-- Presentation Start and End -->
-    <mat-list-item role="listitem">
-      <div class="listDescription"><b>Zeitraum: </b></div>
-      <div class="listItems"> {{ presentation?.start  | datePipe: 'LLLL' : true }} - {{ presentation?.end  | datePipe: 'LLL' : true }} </div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <!-- Presentation Room -->
-    <mat-list-item role="listitem">
-      <div class="listDescription"><b>Raum: </b></div>
-      <div class="listItems">{{presentation?.room}}</div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <!-- Speakers -->
-    <mat-list-item role="listitem" class="longListItemStyle">
-      <div style="width: 10%"><b>Speakers: </b></div>
-      <div style="width: 90%"><app-presentation-speaker *ngIf="presentation" [presentation]="presentation"></app-presentation-speaker></div>
-    </mat-list-item>
-  </mat-list>
-  <button style="margin: 10px;" mat-raised-button color="primary" [routerLink]="['edit/']">Präsentation bearbeiten</button>
+      <!-- Presentation Title -->
+      <mat-list-item role="listitem">
+        <div class="listDescription"><b>Titel: </b></div>
+        <div class="listItems">{{presentation?.title}}</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <!-- Presentation Abstract -->
+      <mat-list-item class="longListItemStyle" role="listitem">
+        <div class="listDescription"><b>Abstract: </b></div>
+        <div class="listItems multiline" [innerHtml]="presentation?.merged_abstract"></div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+        <!-- Presentation Unformatted Abstract -->
+        <mat-list-item *ngIf="presentation?.formatted_abstract" class="longListItemStyle" role="listitem">
+          <div class="listDescription"><b>Unformatiertes Abstract: </b></div>
+          <div class="listItems multiline">{{presentation?.abstract}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      <!-- Presentation SLides -->
+      <mat-list-item role="listitem">
+        <div class="listDescription"><b>Slides: </b></div>
+        <div class="listItems"><a [href]="presentation?.slides" target="_blank">{{presentation?.slides}}</a></div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <!-- Presentation Start and End -->
+      <mat-list-item role="listitem">
+        <div class="listDescription"><b>Zeitraum: </b></div>
+        <div class="listItems"> {{ presentation?.start  | datePipe: 'LLLL' : true }} - {{ presentation?.end  | datePipe: 'LLL' : true }} </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <!-- Presentation Room -->
+      <mat-list-item role="listitem">
+        <div class="listDescription"><b>Raum: </b></div>
+        <div class="listItems">{{presentation?.room}}</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <!-- Speakers -->
+      <mat-list-item role="listitem" class="longListItemStyle">
+        <div style="width: 10%"><b>Speakers: </b></div>
+        <div style="width: 90%"><app-presentation-speaker *ngIf="presentation" [presentation]="presentation"></app-presentation-speaker></div>
+      </mat-list-item>
+    </mat-list>
+    <button style="margin: 10px;" mat-raised-button color="primary" [routerLink]="['edit/']">Präsentation bearbeiten</button>
+  </mat-card>
 </mat-card>
 

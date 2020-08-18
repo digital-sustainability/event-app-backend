@@ -1,101 +1,102 @@
 <mat-card>
-<!-- Navigation on top of the site -->
-<a routerLink="../">Event</a>
-<a> > </a>
-<a>{{event?.title}}</a>
-<!-- Site Title -->
-<h1>
-  Event
-</h1>
-<mat-card>
-  <!-- Card Title -->
-  <h1>{{event?.title}}</h1>
-  <mat-list role="list">
-    <!-- Event ID -->
-    <mat-list-item role="listitem">
-      <div style="width: 10%"><b>ID: </b></div>
-      <div style="width: 90%">{{event?.id}}</div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <!-- Event Title -->
-    <mat-list-item role="listitem">
-      <div style="width: 10%"><b>Titel: </b></div>
-      <div style="width: 90%">{{event?.title}}</div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <!-- Event Description -->
-    <mat-list-item class="longListItemStyle" role="listitem">
-      <div style="width: 10%"><b>Beschreibung:</b></div>
-      <div style="width: 90%" [innerHtml]="event?.merged_description" class="listItems multiline"></div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <!-- Event Unformatted Description, only visible if there is a formatted description (otherwise, the unformatted one is shown above) -->
-    <mat-list-item *ngIf="event?.formatted_description" class="longListItemStyle" role="listitem">
-      <div style="width: 10%"><b>Unformatierte Beschreibung:</b></div>
-      <div style="width: 90%" [innerHtml]="event?.description" class="listItems multiline"></div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <!-- Event Location -->
-    <mat-list-item role="listitem">
-      <div style="width: 10%"><b>Ort:</b></div>
-      <div style="width: 90%">{{event?.location}}</div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <!-- Event Start and End -->
-    <mat-list-item role="listitem">
-      <div style="width: 10%"><b>Zeitraum: </b></div>
-      <div style="width: 90%">{{event?.start | datePipe: 'LLLL' : true }} - {{event?.end | datePipe: 'LLLL' : true }}</div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <!-- Image Path, points on a side, where the image can be gotten -->
-    <mat-list-item role="listitem">
-      <div style="width: 10%"><b>Bild: </b></div>
-      <div style="width: 90%;"><a [href]="event?.image_path" target="_blank">{{event?.image_path}}</a></div>
-    </mat-list-item>
-    <mat-list-item class="longListItemStyle" role="listitem">
-      <div style="width: 90%; margin-left: 10%;"><img [src]="event?.image_path" style="height: 100px" alt="Vorschau" onerror="this.alt='Vorschau konnte nicht geladen werden';"></div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <!-- URL of the Event -->
-    <mat-list-item role="listitem">
-      <div style="width: 10%"><b>URL: </b></div>
-      <div style="width: 90%"><a [href]="event?.url" target="_blank">{{event?.url}}</a></div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <!-- Event URL Label -->
-    <mat-list-item role="listitem">
-      <div style="width: 10%"><b>URL Label: </b></div>
-      <div style="width: 90%">{{event?.url_label}}</div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <!-- Categories -->
-    <mat-list-item role="listitem" class="longListItemStyle">
-      <div style="width: 10%"><b>Kategorien: </b></div>
-      <div style="width: 90%"><app-event-category *ngIf="event" [event]="event"></app-event-category></div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <!-- Speakers -->
-    <mat-list-item role="listitem" class="longListItemStyle">
-      <div style="width: 10%"><b>Moderation: </b></div>
-      <div style="width: 90%"><app-event-speaker *ngIf="event" [event]="event"></app-event-speaker></div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <!-- Published -->
-    <mat-list-item role="listitem">
-      <div style="width: 10%"><b>Publiziert: </b></div>
-      <div style="width: 90%">{{event?.published}}</div>
-    </mat-list-item>
-  </mat-list>
-  <!-- Button that directs to the Event Create Component to add new Events -->
-  <button style="margin: 10px 10px 0px 0px;" mat-raised-button color="primary" [routerLink]="['edit/']">Event bearbeiten</button>
-  <button style="margin: 10px 10px 0px 0px;" mat-raised-button color="primary" routerLink="sessions/create">Session hinzufügen</button>
-</mat-card>
-
-<!-- Shows a list of all sessions of this Event, directs to the Session-List Component
-      passes the event_id -->
-  <mat-card>
-    <app-session-list [eventId]="event_id"></app-session-list>
+  <!-- Navigation on top of the site -->
+  <a routerLink="../">Event</a>
+  <a> > </a>
+  <a>{{event?.title}}</a>
+  <!-- Site Title -->
+  <h1>
+    Event
+  </h1>
+  <mat-card style="margin-bottom: 30px;">
+    <!-- Card Title -->
+    <h2>{{event?.title}}</h2>
+    <mat-list role="list">
+      <!-- Event ID -->
+      <mat-list-item role="listitem">
+        <div style="width: 10%"><b>ID: </b></div>
+        <div style="width: 90%">{{event?.id}}</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <!-- Event Title -->
+      <mat-list-item role="listitem">
+        <div style="width: 10%"><b>Titel: </b></div>
+        <div style="width: 90%">{{event?.title}}</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <!-- Event Description -->
+      <mat-list-item class="longListItemStyle" role="listitem">
+        <div style="width: 10%"><b>Beschreibung:</b></div>
+        <div style="width: 90%" [innerHtml]="event?.merged_description" class="listItems multiline"></div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <!-- Event Unformatted Description, only visible if there is a formatted description (otherwise, the unformatted one is shown above) -->
+      <mat-list-item *ngIf="event?.formatted_description" class="longListItemStyle" role="listitem">
+        <div style="width: 10%"><b>Unformatierte Beschreibung:</b></div>
+        <div style="width: 90%" [innerHtml]="event?.description" class="listItems multiline"></div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <!-- Event Location -->
+      <mat-list-item role="listitem">
+        <div style="width: 10%"><b>Ort:</b></div>
+        <div style="width: 90%">{{event?.location}}</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <!-- Event Start and End -->
+      <mat-list-item role="listitem">
+        <div style="width: 10%"><b>Zeitraum: </b></div>
+        <div style="width: 90%">{{event?.start | datePipe: 'LLLL' : true }} - {{event?.end | datePipe: 'LLLL' : true }}</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <!-- Image Path, points on a side, where the image can be gotten -->
+      <mat-list-item role="listitem">
+        <div style="width: 10%"><b>Bild: </b></div>
+        <div style="width: 90%;"><a [href]="event?.image_path" target="_blank">{{event?.image_path}}</a></div>
+      </mat-list-item>
+      <mat-list-item class="longListItemStyle" role="listitem">
+        <div style="width: 90%; margin-left: 10%;"><img [src]="event?.image_path" style="height: 100px" alt="Vorschau" onerror="this.alt='Vorschau konnte nicht geladen werden';"></div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <!-- URL of the Event -->
+      <mat-list-item role="listitem">
+        <div style="width: 10%"><b>URL: </b></div>
+        <div style="width: 90%"><a [href]="event?.url" target="_blank">{{event?.url}}</a></div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <!-- Event URL Label -->
+      <mat-list-item role="listitem">
+        <div style="width: 10%"><b>URL Label: </b></div>
+        <div style="width: 90%">{{event?.url_label}}</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <!-- Categories -->
+      <mat-list-item role="listitem" class="longListItemStyle">
+        <div style="width: 10%"><b>Kategorien: </b></div>
+        <div style="width: 90%"><app-event-category *ngIf="event" [event]="event"></app-event-category></div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <!-- Speakers -->
+      <mat-list-item role="listitem" class="longListItemStyle">
+        <div style="width: 10%"><b>Moderation: </b></div>
+        <div style="width: 90%"><app-event-speaker *ngIf="event" [event]="event"></app-event-speaker></div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <!-- Published -->
+      <mat-list-item role="listitem">
+        <div style="width: 10%"><b>Publiziert: </b></div>
+        <div style="width: 90%">{{event?.published}}</div>
+      </mat-list-item>
+    </mat-list>
+    <button style="margin: 10px 10px 0px 0px;" mat-raised-button color="primary" [routerLink]="['edit/']">Event bearbeiten</button>
   </mat-card>
+
+  <mat-tab-group>
+    <mat-tab label="Dazugehörige Sessions">
+      <app-session-list [eventId]="event_id"></app-session-list>
+    </mat-tab>
+    <mat-tab label="Dazugehörige Präsentationen">
+      <app-presentation-list [eventId]="event_id"></app-presentation-list><!--SessionID ersetzen-->
+    </mat-tab>
+  </mat-tab-group>
 </mat-card>
 
 

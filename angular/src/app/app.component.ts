@@ -13,7 +13,7 @@ import { DateTimeAdapter } from 'ng-pick-datetime';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Event-App Admin Interface';
+  title = 'Event-App Admin-Panel';
 
   constructor(private _sailsService: SailsService,
     private authService: AuthService,

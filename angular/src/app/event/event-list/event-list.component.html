@@ -1,7 +1,11 @@
-<!-- Filter the elements of the list -->
-<mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-</mat-form-field>
+<div>
+  <button mat-raised-button color="primary" routerLink="/event/create">Event hinzufügen</button>
+  <!-- Filter the elements of the list -->
+  <mat-form-field style="margin: 0px 20px;">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort matSortActive="start" matSortDisableClear matSortDirection="desc">
 

@@ -34,10 +34,14 @@
   <mat-form-field class="fullSizeFormField">
     <input matInput placeholder="Raum" type="text" formControlName="room">
   </mat-form-field>
-  <!-- Presentatiom Session ID -->
+  <!-- Presentation Session ID -->
   <mat-form-field class="fullSizeFormField" hidden>
-    <input matInput placeholder="Session ID" type="text" formControlName="session_id" required>
+    <input matInput placeholder="Session ID" type="number" formControlName="session_id">
   </mat-form-field>
+    <!-- Presentation Event ID -->
+    <mat-form-field class="fullSizeFormField" hidden>
+      <input matInput placeholder="Event ID" type="number" formControlName="event_id">
+    </mat-form-field>
   <!-- Presentation Position -->
   <mat-form-field>
     <input matInput placeholder="Position (aufsteigend, optional)" type="number" formControlName="position">

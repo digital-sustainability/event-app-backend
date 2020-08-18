@@ -1,4 +1,4 @@
-import { Presentation } from '../presenation/presentation';
+import { Presentation } from '../presentation/presentation';
 import { Speaker } from '../speaker/speaker';
 
 export interface PresentationSpeaker {

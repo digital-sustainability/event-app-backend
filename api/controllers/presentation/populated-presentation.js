@@ -24,16 +24,16 @@ module.exports = {
     const presentation = await Presentation.findOne({id: inputs.id})
       .populate('session_id')
       .populate('speakers')
-      .populate('feedbacks');
+      .populate('feedbacks')
+      .populate('event_id');
 
-    const event = await Event.findOne({id: presentation.session_id.event_id});
+    if (presentation.session_id) {
+      const event = await Event.findOne({id: presentation.session_id.event_id});
 
-    presentation.session_id.event_id = event;
+      presentation.session_id.event_id = event;
+    }
 
     // All done.
     return exits.success(presentation);
-
   }
-
-
 };

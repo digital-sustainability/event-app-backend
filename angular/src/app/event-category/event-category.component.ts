@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { SpeakerService } from '../shared/speaker.service';
-import { Presentation } from '../shared/presenation/presentation';
+import { Presentation } from '../shared/presentation/presentation';
 import { Speaker } from '../shared/speaker/speaker';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
