@@ -93,7 +93,7 @@ include:
 staging:
   variables:
     DATABASE_URL: $DATABASE_URL_STAGING
-    HELM_UPGRADE_EXTRA_ARGS: --set postgresql.enabled=false --set deploymentApiVersion=apps/v1
+    HELM_UPGRADE_EXTRA_ARGS: --set deploymentApiVersion=apps/v1
     
 # Override Review database URL
 review:
