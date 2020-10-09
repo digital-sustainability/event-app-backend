@@ -18,6 +18,52 @@ export class EventFormComponent implements OnInit, OnChanges {
 
   eventForm: FormGroup;
 
+  restrictedEditorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: 'auto',
+    minHeight: '150',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '',
+    fonts: [],
+    sanitize: true,
+    toolbarPosition: 'top',
+    toolbarHiddenButtons: [
+      [
+        'strikeThrough',
+        'subscript',
+        'superscript',
+        'justifyLeft',
+        'justifyCenter',
+        'justifyRight',
+        'justifyFull',
+        'indent',
+        'outdent',
+        'insertUnorderedList',
+        'insertOrderedList',
+        'heading',
+        'fontName'
+      ],
+      [
+        'fontSize',
+        'backgroundColor',
+        'customClasses',
+        'link',
+        'unlink',
+        'insertImage',
+        'insertVideo',
+        'insertHorizontalRule'
+      ]
+    ]
+  };
+
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -60,6 +106,9 @@ export class EventFormComponent implements OnInit, OnChanges {
       'formatted_description': new FormControl('', [
 
       ]),
+      'formatted_lead': new FormControl('', [
+
+      ]),
       'start': new FormControl('', [
         Validators.required,
       ]),
@@ -91,10 +140,11 @@ export class EventFormComponent implements OnInit, OnChanges {
     this.eventForm.get('title').setValue(this.event.title);
     this.eventForm.get('description').setValue(this.event.description);
     this.eventForm.get('formatted_description').setValue(this.event.formatted_description);
+    this.eventForm.get('formatted_lead').setValue(this.event.formatted_lead);
     const start = new Date(this.event.start.substring(0, this.event.start.length - 1)); // remove the wrong Z for UTC at the end
-    //start.setTime(start.getTime() - 1 * 60 * 60 * 1000);
+    // start.setTime(start.getTime() - 1 * 60 * 60 * 1000);
     const end = new Date(this.event.end.substring(0, this.event.end.length - 1));
-    //end.setTime(end.getTime() - 1 * 60 * 60 * 1000);
+    // end.setTime(end.getTime() - 1 * 60 * 60 * 1000);
     this.eventForm.get('start').setValue(start);
     this.eventForm.get('end').setValue(end);
     this.eventForm.get('location').setValue(this.event.location);

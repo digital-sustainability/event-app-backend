@@ -4,7 +4,7 @@
 }
 
 .fullSizeFormField {
-  width: 100%;
+  width: calc(100% - 30px);
 }
 
 textarea {
@@ -13,6 +13,7 @@ textarea {
 
 .checkboxStyle {
   margin-left: 15px;
+  height: 50px;
 }
 
 .submit-button {
@@ -25,4 +26,11 @@ textarea {
 
 .category-container {
   margin-left: 10px;
+  width: calc(100% - 30px)
+}
+
+
+form {
+  max-width: 1000px;
+  margin: auto;
 }
