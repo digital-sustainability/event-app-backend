@@ -4,6 +4,10 @@
   <mat-form-field class="fullSizeFormField">
     <input matInput placeholder="Titel" type="text" formControlName="title" required>
   </mat-form-field>
+  <!-- Event Formatted Lead -->
+  <div class="fullSizeFormField htmlEditor">
+    <angular-editor placeholder="Formatiertes Lead (wird in der Event-Übersicht angezeigt)" formControlName="formatted_lead" [config]="restrictedEditorConfig"></angular-editor>
+  </div>
   <!-- Event Description -->
   <mat-form-field class="fullSizeFormField">
     <textarea matInput placeholder="Unformatierte Beschreibung (für ältere App-Versionen und falls keine formatierte Beschreibung angegeben wird)" type="text" formControlName="description" required></textarea>
@@ -50,8 +54,11 @@
   <!-- Checkbox to tell if the Event should be published or not -->
   <mat-checkbox class="checkboxStyle" [formControl]="eventForm.controls['published']" >Publizieren</mat-checkbox>
   <div class="fullSizeFormField">
+    <button mat-button [disabled]="eventForm.invalid" class="submit-button" (click)="onSubmit(false)">
+      Speichern & Weiterarbeiten
+    </button>
     <!-- Button to submit the data, takes the Button description from Edit or create -->
-    <button mat-raised-button color="primary" [disabled]="eventForm.invalid" class="submit-button" (click)="onSubmit(true)">
+    <button mat-raised-button color="primary" style="margin-left:15px;" [disabled]="eventForm.invalid" class="submit-button" (click)="onSubmit(true)">
       <mat-icon>input</mat-icon>{{newEvent ? 'Event erstellen' :  'Event anpassen'}}
     </button>
   </div>

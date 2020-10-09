@@ -10,6 +10,7 @@ export interface Event {
   description: string;
   formatted_description: string;
   merged_description?: string; // formatted_description, but if empty, description as fallback
+  formatted_lead: string;
   start: any;
   end: any;
   location: string;

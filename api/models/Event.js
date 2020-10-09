@@ -23,6 +23,10 @@ module.exports = {
       type: 'string',
       allowNull: true
     },
+    formatted_lead: {
+      type: 'string',
+      defaultsTo: ''
+    },
     start: {
       type: 'ref',
       required: true,
