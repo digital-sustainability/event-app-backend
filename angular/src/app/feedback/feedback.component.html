@@ -1,4 +1,4 @@
-<div class="container">
+<mat-card>
   <h1>Feedbacks</h1>
   <mat-card>
       <mat-form-field style="width: 100%">
@@ -41,7 +41,7 @@
 
       <ng-container matColumnDef="grade">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Bewertung </th>
-        <td mat-cell *matCellDef="let element"> {{element.grade}} </td>
+        <td mat-cell *matCellDef="let element" class="grade-cell"> {{element.grade}} </td>
       </ng-container>
 
       <ng-container matColumnDef="comment_positive">
@@ -67,4 +67,4 @@
     <button mat-raised-button (click)="exporter.exportTable('csv')">Export CSV</button>
     <button mat-raised-button (click)="exporter.exportTable('xlsx')">Export Excel</button>
   </mat-card>
-</div>
+</mat-card>
