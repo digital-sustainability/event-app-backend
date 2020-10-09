@@ -1,58 +1,76 @@
 <!-- This EventForm is used for the Create and Edit Component-->
 <form [formGroup]="eventForm">
   <!-- Event Title Formfield -->
-  <mat-form-field class="fullSizeFormField">
-    <input matInput placeholder="Titel" type="text" formControlName="title" required>
-  </mat-form-field>
-  <!-- Event Formatted Lead -->
-  <div class="fullSizeFormField htmlEditor">
-    <angular-editor placeholder="Formatiertes Lead (wird in der Event-Übersicht angezeigt)" formControlName="formatted_lead" [config]="restrictedEditorConfig"></angular-editor>
-  </div>
-  <!-- Event Description -->
-  <mat-form-field class="fullSizeFormField">
-    <textarea matInput placeholder="Unformatierte Beschreibung (für ältere App-Versionen und falls keine formatierte Beschreibung angegeben wird)" type="text" formControlName="description" required></textarea>
-  </mat-form-field>
-  <!-- Event Formatted Description -->
-  <div class="fullSizeFormField htmlEditor">
-    <angular-editor placeholder="Formatierte Beschreibung" formControlName="formatted_description" [config]="editorConfig"></angular-editor>
-  </div>
-  <!-- Event Start Formfield, only shows a Calender in Chrome -->
-  <mat-form-field>
-    <input matInput [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" formControlName="start" placeholder="Start" required>
-    <owl-date-time #dt1></owl-date-time>
-  </mat-form-field>
-  <!-- Event End -->
-  <mat-form-field>
-    <input matInput [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" formControlName="end" placeholder="Ende" required>
-    <owl-date-time #dt2></owl-date-time>
-  </mat-form-field>
-  <!-- Event Location Formfield -->
-  <mat-form-field class="fullSizeFormField">
-    <input matInput placeholder="Ort" type="text" formControlName="location" required>
-  </mat-form-field>
-  <!-- Event Image Path -->
-  <mat-form-field class="fullSizeFormField">
-    <input matInput placeholder="Bild URL" type="text" formControlName="image_path" required>
-  </mat-form-field>
-  <!-- Event URL -->
-  <mat-form-field class="fullSizeFormField">
-    <input matInput placeholder="URL" type="text" formControlName="url" required>
-  </mat-form-field>
-  <!-- Event URL Label -->
-  <mat-form-field class="fullSizeFormField">
-    <input matInput placeholder="URL Label" type="text" formControlName="url_label" required>
-  </mat-form-field>
-  <!-- Categories -->
-  <div class="category-container">
-    <p><b>Kategorien</b></p>
-    <p *ngIf="newEvent">
-      Event speichern, um Kategorien hinzuzufügen
-      <button mat-stroked-button [disabled]="eventForm.invalid" (click)="onSubmit(false)">Event speichern</button>
-    </p>
-    <app-event-category *ngIf="event && !newEvent" [event]="event"></app-event-category>
-  </div>
-  <!-- Checkbox to tell if the Event should be published or not -->
-  <mat-checkbox class="checkboxStyle" [formControl]="eventForm.controls['published']" >Publizieren</mat-checkbox>
+  <mat-tab-group>
+    <mat-tab label="Event-Daten">
+      <div  class=" pt-0 pb-0 mt-0 mb-0">
+      <mat-form-field class="fullSizeFormField">
+        <input matInput placeholder="Titel" type="text" formControlName="title" required>
+      </mat-form-field>
+      <!-- Event Start  -->
+      <mat-form-field>
+        <input matInput [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" formControlName="start" placeholder="Start" required>
+        <owl-date-time #dt1></owl-date-time>
+      </mat-form-field>
+      <!-- Event End -->
+      <mat-form-field>
+        <input matInput [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" formControlName="end" placeholder="Ende" required>
+        <owl-date-time #dt2></owl-date-time>
+      </mat-form-field>
+      <!-- Event Location Formfield -->
+      <mat-form-field class="fullSizeFormField">
+        <input matInput placeholder="Ort" type="text" formControlName="location" required>
+      </mat-form-field>
+      <!-- Event Image Path -->
+      <mat-form-field class="fullSizeFormField">
+        <input matInput placeholder="Bild URL" type="text" formControlName="image_path" required>
+      </mat-form-field>
+      <!-- Event URL -->
+      <mat-form-field class="fullSizeFormField">
+        <input matInput placeholder="URL" type="text" formControlName="url" required>
+      </mat-form-field>
+      <!-- Event URL Label -->
+      <mat-form-field class="fullSizeFormField">
+        <input matInput placeholder="URL Label" type="text" formControlName="url_label" required>
+      </mat-form-field>
+      <!-- Categories -->
+      <div class="category-container">
+        <p><b>Kategorien</b></p>
+        <p *ngIf="newEvent">
+          Event speichern, um Kategorien hinzuzufügen
+          <button mat-stroked-button [disabled]="eventForm.invalid" (click)="onSubmit(false)">Event speichern</button>
+        </p>
+        <app-event-category *ngIf="event && !newEvent" [event]="event"></app-event-category>
+      </div>
+      <!-- Checkbox to tell if the Event should be published or not -->
+      <div class="checkboxStyle">
+        <mat-checkbox [formControl]="eventForm.controls['published']" >Publizieren</mat-checkbox>
+      </div>
+    </div>
+    </mat-tab>
+    <mat-tab label="Beschreibungen">
+      <!-- Event Formatted Lead -->
+      <h3>Lead</h3>
+      <p>Wird in der Event-Übersicht angezeigt auf der Startseite der App angezeigt und sollte daher eher kurz sein.</p>
+      <div class="fullSizeFormField htmlEditor">
+        <angular-editor placeholder="Formatiertes Lead" formControlName="formatted_lead" [config]="restrictedEditorConfig"></angular-editor>
+      </div>
+      <!-- Event Description -->
+      <h3>Unformatierte Beschreibung</h3>
+      <p>Wird in der Event-Detailansicht angezeigt. Die unformatierte Beschreibung ist für ältere App-Versionen und falls keine formatierte Beschreibung angegeben wird. Daher ist dieses Feld obligaorisch.</p>
+      <mat-form-field class="fullSizeFormField">
+        <textarea matInput placeholder="Unformatierte Beschreibung " type="text" formControlName="description" required></textarea>
+      </mat-form-field>
+      <!-- Event Formatted Description -->
+      <h3>Formatierte Beschreibung</h3>
+      <p>Wird in der Event-Detailansicht angezeigt. Kann auch Links enthalten.</p>
+      <div class="fullSizeFormField htmlEditor">
+        <angular-editor placeholder="Formatierte Beschreibung" formControlName="formatted_description" [config]="editorConfig"></angular-editor>
+      </div>
+    </mat-tab>
+  </mat-tab-group>  
+
+
   <div class="fullSizeFormField">
     <button mat-button [disabled]="eventForm.invalid" class="submit-button" (click)="onSubmit(false)">
       Speichern & Weiterarbeiten
