@@ -25,16 +25,16 @@ module.exports.policies = {
     'findOne': true,
     'find-speakers': true,
     'get-by-date': true,
+    'get-ics': true,
     'create': "isAuthenticated",
     'update': "isAuthenticated",
-    'destroy': "isAuthenticated"
+    'destroy': "isAuthenticated",
   },
 
   FeedbackController: {
     'find': 'isAuthenticated',
     'findOne': 'isAuthenticated',
     'create': true,
-
   },
 
   MessageController: {
@@ -45,6 +45,7 @@ module.exports.policies = {
   PresentationController: {
     'find': true,
     'findOne': true,
+    'populated-presentation': true,
     'create': "isAuthenticated",
     'update': "isAuthenticated",
     'destroy': "isAuthenticated"
@@ -62,6 +63,7 @@ module.exports.policies = {
   SpeakerController: {
     'find': true,
     'findOne': true,
+    'populated-speaker': true,
     'create': "isAuthenticated",
     'update': "isAuthenticated",
     'destroy': "isAuthenticated"
@@ -107,14 +109,13 @@ module.exports.policies = {
     'destroy': "isAuthenticated"
   },
 
-  'notification/send': ["isAuthenticated"],
-
   NotificationController: {
     'find': "isAuthenticated",
     'findOne': "isAuthenticated",
     'create': "isAuthenticated",
     'update': "isAuthenticated",
-    'destroy': "isAuthenticated"
+    'destroy': "isAuthenticated",
+    'send': "isAuthenticated",
   },
 
   TopicController: {
@@ -124,9 +125,5 @@ module.exports.policies = {
     'update': "isAuthenticated",
     'destroy': "isAuthenticated"
   },
-
-  'presentation/populated-presentation': true,
-  'speaker/populated-speaker': true,
-
 
 };

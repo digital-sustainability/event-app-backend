@@ -36,6 +36,8 @@ module.exports.routes = {
 
   'get /api/speaker/:id/populated' : 'speaker/populated-speaker',
 
+  'get /api/event/:id/ics' : 'event/get-ics',
+
   /**
    * Enable CSRF in security config settings
    */
