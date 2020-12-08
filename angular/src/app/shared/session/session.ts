@@ -8,6 +8,8 @@ export interface Session {
   formatted_abstract: string;
   merged_abstract?: string;
   label_presentations: string;
+  video_conferencing_link?: string;
+  video_conferencing_label?: string;
   position?: number;
   room: string;
   event_id: any;

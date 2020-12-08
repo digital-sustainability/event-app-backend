@@ -78,6 +78,8 @@ export class PresenationFormComponent implements OnInit, OnChanges {
       ]),
       'room': new FormControl('', [
       ]),
+      'video_conferencing_link': new FormControl('', []),
+      'video_conferencing_label': new FormControl('', []),
       'session_id': new FormControl(),
       'event_id': new FormControl()
     });
@@ -115,6 +117,8 @@ export class PresenationFormComponent implements OnInit, OnChanges {
       this.presentationForm.get('position').setValue(this.presentation.position);
     }
     this.presentationForm.get('room').setValue(this.presentation.room);
+    this.presentationForm.get('video_conferencing_link').setValue(this.presentation.video_conferencing_link);
+    this.presentationForm.get('video_conferencing_label').setValue(this.presentation.video_conferencing_label);
 
     if (this.presentation.session_id) { // belongs to a session
       this.presentationForm.get('session_id').setValue(this.presentation.session_id.id);

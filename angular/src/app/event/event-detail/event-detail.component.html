@@ -65,13 +65,13 @@
       <!-- URL of the Event -->
       <mat-list-item role="listitem">
         <div style="width: 10%"><b>URL: </b></div>
-        <div style="width: 90%"><a [href]="event?.url" target="_blank">{{event?.url}}</a></div>
+        <div style="width: 90%"><a [href]="event?.url" target="_blank">{{event?.url_label}}</a>&nbsp;<i *ngIf="event?.url">({{event.url}})</i></div>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <!-- Event URL Label -->
+      <!-- Video conferencing link of the event -->
       <mat-list-item role="listitem">
-        <div style="width: 10%"><b>URL Label: </b></div>
-        <div style="width: 90%">{{event?.url_label}}</div>
+        <div style="width: 10%"><b>Link zur Videokonferenz: </b></div>
+        <div style="width: 90%"><a [href]="event?.video_conferencing_link" target="_blank">{{event?.video_conferencing_link}}</a>&nbsp;<i *ngIf="event?.video_conferencing_label">({{event.video_conferencing_label}})</i></div>
       </mat-list-item>
       <mat-divider></mat-divider>
       <!-- Categories -->

@@ -60,6 +60,12 @@
         <div class="listItems">{{presentation?.room}}</div>
       </mat-list-item>
       <mat-divider></mat-divider>
+      <!-- Video conferencing link of the presentation -->
+      <mat-list-item role="listitem">
+        <div style="width: 10%"><b>Link zur Videokonferenz: </b></div>
+        <div style="width: 90%"><a [href]="presentation?.video_conferencing_link" target="_blank">{{presentation?.video_conferencing_link}}</a>&nbsp;<i *ngIf="presentation?.video_conferencing_label">({{presentation.video_conferencing_label}})</i></div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
       <!-- Speakers -->
       <mat-list-item role="listitem" class="longListItemStyle">
         <div style="width: 10%"><b>Speakers: </b></div>

@@ -33,6 +33,14 @@
       <mat-form-field class="fullSizeFormField">
         <input matInput placeholder="URL Label" type="text" formControlName="url_label" required>
       </mat-form-field>
+      <!-- Event Video conferencing link -->
+      <mat-form-field class="fullSizeFormField">
+        <input matInput placeholder="Link zur Videokonferenz" type="text" formControlName="video_conferencing_link">
+      </mat-form-field>
+      <!-- Event Video conferencing label -->
+      <mat-form-field class="fullSizeFormField">
+        <input matInput placeholder="Label Videokonferenz-Link" type="text" formControlName="video_conferencing_label">
+      </mat-form-field>
       <!-- Categories -->
       <div class="category-container">
         <p><b>Kategorien</b></p>
@@ -51,7 +59,7 @@
     <mat-tab label="Beschreibungen">
       <!-- Event Formatted Lead -->
       <h3>Lead</h3>
-      <p>Wird in der Event-Übersicht angezeigt auf der Startseite der App angezeigt und sollte daher eher kurz sein.</p>
+      <p>Wird in der Event-Übersicht auf der Startseite der App angezeigt und sollte daher eher kurz sein.</p>
       <div class="fullSizeFormField htmlEditor">
         <angular-editor placeholder="Formatiertes Lead" formControlName="formatted_lead" [config]="restrictedEditorConfig"></angular-editor>
       </div>

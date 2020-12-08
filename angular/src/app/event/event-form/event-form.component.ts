@@ -127,6 +127,8 @@ export class EventFormComponent implements OnInit, OnChanges {
       'url_label': new FormControl('', [
         Validators.required,
       ]),
+      'video_conferencing_link': new FormControl('', []),
+      'video_conferencing_label': new FormControl('', []),
       'published': new FormControl(false, [
         Validators.required
       ]),
@@ -151,6 +153,8 @@ export class EventFormComponent implements OnInit, OnChanges {
     this.eventForm.get('image_path').setValue(this.event.image_path);
     this.eventForm.get('url').setValue(this.event.url);
     this.eventForm.get('url_label').setValue(this.event.url_label);
+    this.eventForm.get('video_conferencing_link').setValue(this.event.video_conferencing_link);
+    this.eventForm.get('video_conferencing_label').setValue(this.event.video_conferencing_label);
     this.eventForm.get('published').setValue(this.event.published);
   }
 
