@@ -30,6 +30,8 @@ module.exports.routes = {
 
   'post /api/presentationSpeaker/destroy': 'presentationspeaker/destroy',
 
+  'post /api/eventSpeaker/destroy': 'eventspeaker/destroy',
+
   'post /api/eventCategory/destroy': 'eventcategory/destroy',
 
   'get /api/presentation/:id/populated' : 'presentation/populated-presentation',
