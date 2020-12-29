@@ -57,6 +57,14 @@ module.exports = {
       type: 'string',
       allowNull: true
     },
+    video_conferencing_link: {
+      type: 'string',
+      allowNull: true
+    },
+    video_conferencing_label: {
+      type: 'string',
+      allowNull: true
+    },
     published: {
       type: 'boolean',
       defaultsTo: false

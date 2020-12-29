@@ -41,6 +41,7 @@ module.exports = {
         const speakers = (await dataStore.sendNativeQuery(query, [inputs.id])).rows;
 
         const ics = require('ics');
+        const moment = require('moment');
 
         let url;
         try {
@@ -48,12 +49,15 @@ module.exports = {
             url = populatedEvent.url;
         }
         catch (e) {}
-        let start = populatedEvent.start;
-        let end = populatedEvent.end;
+
+        let start = moment(populatedEvent.start.toISOString().substring(0, populatedEvent.start.toISOString().length - 1));
+        let end = moment(populatedEvent.end.toISOString().substring(0, populatedEvent.end.toISOString().length - 1));
+        
+        console.log([start.year(), start.month() + 1, start.date(), start.hour(), start.minute()]);
         
         const event = {
-            start: [start.getFullYear(), start.getMonth() + 1, start.getDate(), start.getHours(), start.getMinutes()],
-            end: [end.getFullYear(), end.getMonth() + 1, end.getDate(), end.getHours(), end.getMinutes()], 
+            start: [start.year(), start.month() + 1, start.date(), start.hour(), start.minute()],
+            end: [end.year(), end.month() + 1, end.date(), end.hour(), end.minute()], 
             title: populatedEvent.title,
             description: populatedEvent.description,
             location: populatedEvent.location,

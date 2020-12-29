@@ -50,7 +50,14 @@ module.exports = {
       type: 'string',
       defaultsTo: ''
     },
-
+    video_conferencing_link: {
+      type: 'string',
+      allowNull: true
+    },
+    video_conferencing_label: {
+      type: 'string',
+      allowNull: true
+    },
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
