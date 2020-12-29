@@ -12,6 +12,8 @@ export interface Presentation {
   end: any;
   access_token: string;
   position?: number;
+  video_conferencing_link?: string;
+  video_conferencing_label?: string;
   room: string;
   session_id: any;
   event_id: any;

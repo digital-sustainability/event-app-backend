@@ -17,6 +17,8 @@ export interface Event {
   image_path: string;
   url: string;
   url_label: string;
+  video_conferencing_link?: string;
+  video_conferencing_label?: string;
   published: boolean;
   categories: Category[];
   speakers: Speaker[];

@@ -35,6 +35,12 @@
         <div class="listItems">{{session?.room ? session?.room : '-'}}</div>
       </mat-list-item>
       <mat-divider></mat-divider>
+      <!-- Video conferencing link of the session -->
+      <mat-list-item role="listitem">
+        <div style="width: 10%"><b>Link zur Videokonferenz: </b></div>
+        <div style="width: 90%"><a [href]="session?.video_conferencing_link" target="_blank">{{session?.video_conferencing_link}}</a>&nbsp;<i *ngIf="session?.video_conferencing_label">({{session?.video_conferencing_label}})</i></div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
       <mat-list-item role="listitem">
         <div class="listDescription"><b>Label Präsentation:</b></div>
         <div class="listItems">{{session?.label_presentations}}</div>

@@ -67,6 +67,8 @@ export class SessionFormComponent implements OnInit, OnChanges {
       ]),
       'room': new FormControl('', [
       ]),
+      'video_conferencing_link': new FormControl('', []),
+      'video_conferencing_label': new FormControl('', []),
       'event_id': new FormControl('', [
         Validators.required
       ])
@@ -89,6 +91,8 @@ export class SessionFormComponent implements OnInit, OnChanges {
     }
     this.sessionForm.get('event_id').setValue(this.session.event_id);
     this.sessionForm.get('room').setValue(this.session.room);
+    this.sessionForm.get('video_conferencing_link').setValue(this.session.video_conferencing_link);
+    this.sessionForm.get('video_conferencing_label').setValue(this.session.video_conferencing_label);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
