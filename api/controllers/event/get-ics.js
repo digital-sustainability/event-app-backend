@@ -54,10 +54,12 @@ module.exports = {
         //let startWithoutUTC = new Date(populatedEvent.start.toISOString().substring(0, populatedEvent.start.toISOString().length - 1)); // data in database have wrong timezone
         //let endWithoutUTC = new Date(populatedEvent.end.toISOString().substring(0, populatedEvent.end.toISOString().length - 1));
 
-        console.log('from DB', populatedEvent.end, populatedEvent.start);
+        console.log('from DB', populatedEvent.start, populatedEvent.end);
 
-        let start = momentTz(populatedEvent.start, 'Europe/Zurich');
-        let end = momentTz(populatedEvent.end, 'Europe/Zurich');
+        console.log(populatedEvent.start.toISOString().substring(0, populatedEvent.start.toISOString().length - 1))
+
+        let start = momentTz.tz(populatedEvent.start.toISOString().substring(0, populatedEvent.start.toISOString().length - 1), 'Europe/Zurich');
+        let end = momentTz.tz(populatedEvent.end.toISOString().substring(0, populatedEvent.end.toISOString().length - 1), 'Europe/Zurich');
 
         console.log(start.toISOString(), end.toISOString(), start.hour(), end.hour())
 
