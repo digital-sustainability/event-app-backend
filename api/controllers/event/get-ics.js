@@ -59,6 +59,10 @@ module.exports = {
         let start = moment(populatedEvent.start);
         let end = moment(populatedEvent.end);
 
+        let date = new Date();
+        let offset = date.getTimezoneOffset();
+        console.log(date, offset);
+
         start.add(-utcOffset, "minutes"); // date is in the database incorrectly tagged as UTC
         end.add(-utcOffset, "minutes");
 
