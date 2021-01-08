@@ -25,7 +25,7 @@ module.exports = {
     },
     formatted_lead: {
       type: 'string',
-      defaultsTo: ''
+      allowNull: true
     },
     start: {
       type: 'ref',
