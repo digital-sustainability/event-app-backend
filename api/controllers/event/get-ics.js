@@ -41,7 +41,6 @@ module.exports = {
         const speakers = (await dataStore.sendNativeQuery(query, [inputs.id])).rows;
 
         const ics = require('ics');
-        const moment = require('moment');
         const momentTz = require('moment-timezone');
 
         let url;
@@ -51,15 +50,9 @@ module.exports = {
         }
         catch (e) {}
 
-        //let startWithoutUTC = new Date(populatedEvent.start.toISOString().substring(0, populatedEvent.start.toISOString().length - 1)); // data in database have wrong timezone
-        //let endWithoutUTC = new Date(populatedEvent.end.toISOString().substring(0, populatedEvent.end.toISOString().length - 1));
-
-        console.log('from DB', populatedEvent.start, populatedEvent.end);
-
-        let start = momentTz.tz(populatedEvent.start.toISOString().substring(0, populatedEvent.start.toISOString().length - 1), 'Europe/Zurich');
-        let end = momentTz.tz(populatedEvent.end.toISOString().substring(0, populatedEvent.end.toISOString().length - 1), 'Europe/Zurich');
-
-        console.log(start.format(), end.format(), start.utc().format(), start.hour(), end.hour())
+        // the database is configured to contain UTC data, but in fact they are in MET/MEST
+        let start = momentTz.tz(populatedEvent.start.toISOString().substring(0, populatedEvent.start.toISOString().length - 1), 'Europe/Zurich').utc(); 
+        let end = momentTz.tz(populatedEvent.end.toISOString().substring(0, populatedEvent.end.toISOString().length - 1), 'Europe/Zurich').utc();
 
         const event = {
             start: [start.year(), start.month() + 1, start.date(), start.hour(), start.minute()],
