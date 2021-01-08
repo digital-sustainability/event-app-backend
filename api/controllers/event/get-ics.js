@@ -56,12 +56,10 @@ module.exports = {
 
         console.log('from DB', populatedEvent.start, populatedEvent.end);
 
-        console.log(populatedEvent.start.toISOString().substring(0, populatedEvent.start.toISOString().length - 1))
-
         let start = momentTz.tz(populatedEvent.start.toISOString().substring(0, populatedEvent.start.toISOString().length - 1), 'Europe/Zurich');
         let end = momentTz.tz(populatedEvent.end.toISOString().substring(0, populatedEvent.end.toISOString().length - 1), 'Europe/Zurich');
 
-        console.log(start.toISOString(), end.toISOString(), start.hour(), end.hour())
+        console.log(start.format(), end.format(), start.utc().format(), start.hour(), end.hour())
 
         const event = {
             start: [start.year(), start.month() + 1, start.date(), start.hour(), start.minute()],
