@@ -42,6 +42,7 @@ module.exports = {
 
         const ics = require('ics');
         const moment = require('moment');
+        const momentTz = require('moment-timezone');
 
         let url;
         try {
@@ -55,16 +56,8 @@ module.exports = {
 
         console.log('from DB', populatedEvent.end, populatedEvent.start);
 
-        const utcOffset = moment().utcOffset();
-        let start = moment(populatedEvent.start);
-        let end = moment(populatedEvent.end);
-
-        let date = new Date();
-        let offset = date.getTimezoneOffset();
-        console.log(date, offset);
-
-        start.add(-utcOffset, "minutes"); // date is in the database incorrectly tagged as UTC
-        end.add(-utcOffset, "minutes");
+        let start = momentTz(populatedEvent.start, 'Europe/Zurich');
+        let end = momentTz(populatedEvent.end, 'Europe/Zurich');
 
         console.log(start.toISOString(), end.toISOString(), start.hour(), end.hour())
 

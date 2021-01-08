@@ -16,6 +16,7 @@
     "grunt": "^1.0.4",
     "ics": "^2.26.0",
     "moment": "^2.24.0",
+    "moment-timezone": "^0.5.32",
     "ng-material-datetimepicker": "^1.18.5",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
