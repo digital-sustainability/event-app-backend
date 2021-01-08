@@ -156,7 +156,9 @@ export class NotificationLinkModalComponent implements OnInit {
   calculatePresentationsOfEvent() {
     this.events.forEach((event: Event) => {
       this.presentationsOfEvent[event.id] =
-        this.presentations.filter((presentation: Presentation) => presentation.session_id.event_id === event.id);
+        this.presentations.filter((presentation: Presentation) => 
+          (presentation.session_id && presentation.session_id.event_id === event.id) ||
+          (presentation.event_id && presentation.event_id.id === event.id));
     });
   }
 
