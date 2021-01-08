@@ -53,9 +53,13 @@ module.exports = {
         //let startWithoutUTC = new Date(populatedEvent.start.toISOString().substring(0, populatedEvent.start.toISOString().length - 1)); // data in database have wrong timezone
         //let endWithoutUTC = new Date(populatedEvent.end.toISOString().substring(0, populatedEvent.end.toISOString().length - 1));
 
+        const utcOffset = moment().utcOffset();
         let start = moment(populatedEvent.start);
         let end = moment(populatedEvent.end);
-        
+
+        start.add(-utcOffset, "minutes"); // date is in the database incorrectly tagged as UTC
+        end.add(-utcOffset, "minutes");
+
         const event = {
             start: [start.year(), start.month() + 1, start.date(), start.hour(), start.minute()],
             end: [end.year(), end.month() + 1, end.date(), end.hour(), end.minute()], 
