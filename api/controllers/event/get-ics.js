@@ -50,10 +50,11 @@ module.exports = {
         }
         catch (e) {}
 
-        let start = moment(populatedEvent.start.toISOString().substring(0, populatedEvent.start.toISOString().length - 1));
-        let end = moment(populatedEvent.end.toISOString().substring(0, populatedEvent.end.toISOString().length - 1));
-        
-        console.log([start.year(), start.month() + 1, start.date(), start.hour(), start.minute()]);
+        let startWithoutUTC = new Date(populatedEvent.start.toISOString().substring(0, populatedEvent.start.toISOString().length - 1)); // data in database have wrong timezone
+        let endWithoutUTC = new Date(populatedEvent.end.toISOString().substring(0, populatedEvent.end.toISOString().length - 1));
+
+        let start = moment(startWithoutUTC);
+        let end = moment(endWithoutUTC);
         
         const event = {
             start: [start.year(), start.month() + 1, start.date(), start.hour(), start.minute()],
