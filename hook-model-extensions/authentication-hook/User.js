@@ -7,7 +7,6 @@ module.exports = {
             isEmail: true,
             unique: true,
             required: true,
-            regex: /^.+@inf\.unibe\.ch$/i
           },
         phone: {
             type: 'string',
